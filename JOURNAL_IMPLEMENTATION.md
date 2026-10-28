@@ -749,3 +749,28 @@ Aucun échec réseau.
 - Dashboard : section « Carrousel instituts », 8 lignes, boutons ↑/↓ présents
 - Réordonnancement : clic ↓ sur CNDT → ordre devient ANRP, CNDT, IRAD (PUT /1 et /2
   en 200, positions persistées) ; restauration vérifiée
+
+---
+
+## 32. Correction du slider des instituts + initialisation Git (28/10/2026)
+
+### Slider « Instituts sous tutelle »
+**Cause** : Swiper fixe la largeur des slides à l'initialisation ; les slides
+remplacés dynamiquement par l'API gardaient le `width:100%` par défaut → chaque slide
+prenait toute la largeur (1232px au lieu de 185px), le carrousel semblait absent.
+**Correctif** : après l'injection des slides, appel de `swiper.update()` (+ `loopFix`)
+sur l'instance exposée par Swiper 11 (`element.swiper`). Vérifié : slides 185px,
+identiques à la version statique (cache-busting v=6).
+
+### Initialisation Git
+- **Backend** (`CNDT_SITE_BACKEND`) : nouveau dépôt (branche main) —
+  1. `feat: API Laravel 13 du CNDT` (contenus, auth durcie, uploads, galeries,
+     auteurs, carrousel instituts, seeders)
+  2. `build: conteneurisation Docker + documentation`
+  `.gitignore` : vendor/.env gérés par Laravel, uploads et caches exclus.
+- **Frontend** (`CNDT_SITE_VITRINE_2`, dépôt existant, branche main) — 3 commits :
+  1. `feat: dashboard d'administration React + Tailwind + shadcn`
+  2. `feat: site public dynamique` (actualités, page article, galerie, badge, carrousel)
+  3. `fix: logo CNE, typographie, cache-busting, redirection admin`
+  `dashboard/node_modules` et `dashboard/dist` ignorés (le build déployé dans
+  `admin/` est versionné).
