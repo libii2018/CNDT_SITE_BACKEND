@@ -1,0 +1,60 @@
+services:
+
+  # ---------- Base de données ----------
+  mysql:
+    image: mysql:8.0
+    container_name: cndt-mysql
+    environment:
+      MYSQL_DATABASE: cndt_api
+      MYSQL_USER: cndt
+      MYSQL_PASSWORD: cndt_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  # ---------- API Laravel ----------
+  api:
+    build: ./cndt-api
+    container_name: cndt-api
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8000:80"
+    volumes:
+      # Dev : le code source est monté (modifications live sans rebuild)
+      - ./cndt-api:/var/www/html
+      # vendor reste sur le FS du conteneur (rapide) — le montage Windows
+      # rendrait chaque requête très lente (des milliers de fichiers PHP)
+      - api-vendor:/var/www/html/vendor
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: "3306"
+      DB_DATABASE: cndt_api
+      DB_USERNAME: cndt
+      DB_PASSWORD: cndt_secret
+      SANCTUM_TOKEN_EXPIRATION: "10080"
+    restart: unless-stopped
+
+  # ---------- Site vitrine (statique) ----------
+  frontend:
+    image: httpd:2.4-alpine
+    container_name: cndt-frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ../CNDT_SITE_VITRINE_2:/usr/local/apache2/htdocs:ro
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  api-vendor:
