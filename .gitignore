@@ -1,0 +1,16 @@
+# Laravel (cndt-api/.gitignore gère vendor, .env, cache…)
+*.log
+
+# Données locales / volumineuses non versionnées
+cndt-api/database/database.sqlite
+cndt-api/storage/app/public/uploads/
+cndt-api/public/storage
+cndt-api/storage/logs/
+cndt-api/storage/framework/cache/data/
+cndt-api/storage/framework/sessions/
+cndt-api/storage/framework/views/
+cndt-api/bootstrap/cache/*.php
+
+# IDE
+.idea/
+.vscode/
