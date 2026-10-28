@@ -52,7 +52,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../CNDT_SITE_VITRINE_2:/usr/local/apache2/htdocs:ro
+      - ./CNDT_SITE_VITRINE_2:/usr/local/apache2/htdocs:ro
     restart: unless-stopped
 
 volumes:
