@@ -16,6 +16,7 @@ class ArticleController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $articles = Article::query()
+            ->when($request->boolean('hero'), fn ($q) => $q->where('in_hero', true)->orderBy('hero_position'))
             ->when($request->filled('category'), fn ($q) => $q->where('category', $request->string('category')))
             ->when($request->filled('search'), fn ($q) => $q->where(fn ($w) => $w
                 ->where('title', 'like', '%'.$request->string('search').'%')
@@ -33,6 +34,9 @@ class ArticleController extends Controller
         $data = $this->validated($request);
         $data['slug'] ??= $this->uniqueSlug($data['title']);
         $data['published_at'] ??= now();
+        if (! empty($data['in_hero'])) {
+            $data['hero_position'] ??= Article::where('in_hero', true)->max('hero_position') + 1;
+        }
 
         return new ArticleResource(Article::create($data));
     }
@@ -79,6 +83,9 @@ class ArticleController extends Controller
             $data['slug'] = $this->uniqueSlug($data['title'], $article->id);
         }
 
+        if (! empty($data['in_hero']) && ($data['hero_position'] ?? null) === null) {
+            $data['hero_position'] = Article::where('in_hero', true)->where('id', '!=', $article->id)->max('hero_position') + 1;
+        }
         $article->update($data);
 
         return new ArticleResource($article);
@@ -104,6 +111,8 @@ class ArticleController extends Controller
             'author_role' => 'sometimes|nullable|string|max:255',
             'author_photo' => 'sometimes|nullable|string|max:2048',
             'author_url' => 'sometimes|nullable|string|max:2048',
+            'in_hero' => 'sometimes|boolean',
+            'hero_position' => 'sometimes|nullable|integer',
             'is_published' => 'sometimes|boolean',
             'published_at' => 'sometimes|nullable|date',
         ];

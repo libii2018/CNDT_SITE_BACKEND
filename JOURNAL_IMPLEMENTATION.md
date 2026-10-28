@@ -774,3 +774,34 @@ identiques à la version statique (cache-busting v=6).
   3. `fix: logo CNE, typographie, cache-busting, redirection admin`
   `dashboard/node_modules` et `dashboard/dist` ignorés (le build déployé dans
   `admin/` est versionné).
+
+---
+
+## 33. Carrousel de l'accueil (hero) géré dynamiquement + dropdown de position (28/10/2026)
+
+### Backend
+- Champs `in_hero` (bool) + `hero_position` (int) sur les articles ; `GET /articles?hero=1`
+  renvoie les slides du carrousel triés par position ; position auto-attribuée à
+  l'activation de `in_hero` ; seeder : les 6 articles du carrousel actuel, positions 1-6.
+
+### Dashboard — section « Carrousel accueil »
+- Liste des slides (vignette, titre, statut) avec **menu déroulant « Position »
+  (1..N) par slide** : choisir une position déplace l'article et renumérote tout
+  l'ordre (PUT séquentiels) — c'est le « dropdown pour bouger les positions » demandé.
+- Sélecteur d'ajout (articles hors carrousel) + bouton de retrait.
+- Case « Afficher dans le carrousel de l'accueil » ajoutée au formulaire d'article.
+
+### Site public
+- `renderHero()` dans api-actualites.js : les slides (image, eyebrow=catégorie, titre,
+  extrait, lien vers l'article dynamique) et les points de navigation sont générés
+  depuis l'API dans l'ordre géré. La logique du carrousel (is-active, points, flèches,
+  autoplay 6,5 s, pause au survol, prefers-reduced-motion) est réinitialisée sur les
+  nouveaux éléments (app.js ne voit plus que les slides détachés). Secours statique
+  si l'API est indisponible. Cache-busting v=7.
+
+### Validation (Edge headless)
+- Accueil : 6 slides dans l'ordre seedé, 6 dots, slide actif avec image chargée et
+  lien dynamique
+- Dashboard : 6 lignes, dropdowns 1..6 — passage de SIA en position 3 → l'API et
+  l'accueil reflètent immédiatement le nouvel ordre (Symposium, AIEA, SIA, …)
+- Aucune erreur JS. Ordre initial restauré.

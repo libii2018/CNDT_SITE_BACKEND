@@ -9,6 +9,7 @@ import { OverviewPage } from "@/pages/OverviewPage";
 import { EntityPage } from "@/pages/EntityPage";
 import { MessagesPage } from "@/pages/MessagesPage";
 import { OrganigrammePage } from "@/pages/OrganigrammePage";
+import { HeroCarouselPage } from "@/pages/HeroCarouselPage";
 
 const VALID = SECTIONS.map((s) => s.key);
 
@@ -49,6 +50,7 @@ export default function App() {
       {ENTITIES[route] && <EntityPage config={ENTITIES[route]} />}
       {route === "messages" && <MessagesPage onUnread={setUnread} />}
       {route === "organigramme" && <OrganigrammePage />}
+      {route === "hero" && <HeroCarouselPage />}
     </Layout>
   );
 }

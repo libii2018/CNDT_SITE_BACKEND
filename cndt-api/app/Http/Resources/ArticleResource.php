@@ -21,6 +21,8 @@ class ArticleResource extends JsonResource
             'author_role' => $this->author_role,
             'author_photo' => $this->author_photo,
             'author_url' => $this->author_url,
+            'in_hero' => $this->in_hero,
+            'hero_position' => $this->hero_position,
             'is_published' => $this->is_published,
             'images' => ArticleImageResource::collection($this->whenLoaded('articleImages')),
             'published_at' => $this->published_at?->toIso8601String(),

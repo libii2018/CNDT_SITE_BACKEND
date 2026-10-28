@@ -294,12 +294,96 @@ window.CNDT_API = window.CNDT_API || {
     }
   }
 
+  /* ---------- 5. Carrousel de l'accueil (hero) — alimenté par l'API ---------- */
+  async function renderHero() {
+    const track = $('.hero-track');
+    if (!track) return;
+
+    try {
+      const res = await fetchApi('/articles?hero=1');
+      const items = res.data || [];
+      if (!items.length) return; // garde les slides statiques
+
+      track.innerHTML = items.map((a) => `
+        <article class="hero-slide${''}" aria-hidden="true">
+          <img src="${esc(a.cover_image || 'assets/logo-cndt.webp')}" alt="${esc(a.title)}" width="1100" height="825" fetchpriority="high">
+          <div class="container hero-content">
+            <p class="eyebrow">${esc(CATEGORY_LABELS[a.category] || a.category || 'CNDT')}</p>
+            <h1>${esc(a.title)}</h1>
+            <p>${esc(a.excerpt || '')}</p>
+            <a class="button button-light" href="actualite/article.html?slug=${encodeURIComponent(a.slug)}">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>`).join('');
+
+      // Points de navigation régénérés
+      const dotsBox = $('.hero-dots');
+      if (dotsBox) {
+        dotsBox.innerHTML = items.map((_, i) =>
+          `<button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Afficher l'image ${i + 1}"></button>`).join('');
+      }
+
+      // La logique d'origine (app.js) travaille sur les slides statiques devenus
+      // détachés : on réinitialise le carrousel sur les nouveaux éléments.
+      startHero();
+    } catch {
+      // API indisponible : carrousel statique d'origine conservé
+    }
+  }
+
+  function startHero() {
+    const hero = $('.hero');
+    const slides = $$('.hero-slide');
+    const dots = $$('.hero-dot');
+    const prev = $('.hero-prev');
+    const next = $('.hero-next');
+    if (!hero || !slides.length) return;
+
+    let current = 0;
+    let timer = null;
+
+    const show = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const active = i === current;
+        s.classList.toggle('is-active', active);
+        s.setAttribute('aria-hidden', String(!active));
+      });
+      dots.forEach((d, i) => {
+        const active = i === current;
+        d.classList.toggle('is-active', active);
+        d.setAttribute('aria-selected', String(active));
+      });
+    };
+
+    const stop = () => { clearInterval(timer); timer = null; };
+    const start = () => {
+      stop();
+      if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timer = setInterval(() => show(current + 1), 6500);
+      }
+    };
+
+    // État initial : premier slide actif
+    show(0);
+
+    // Les flèches partagent leurs listeners avec app.js (inactifs sur les
+    // éléments détachés) — les nôtres pilotent les nouveaux slides.
+    prev?.addEventListener('click', () => { show(current - 1); start(); });
+    next?.addEventListener('click', () => { show(current + 1); start(); });
+    dots.forEach((d, i) => d.addEventListener('click', () => { show(i); start(); }));
+
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    start();
+  }
+
   /* ---------- Démarrage ---------- */
   const start = () => {
     renderActualitesGrid();
     renderNewsList();
     renderArticleDetail();
     renderInstituts();
+    renderHero();
   };
 
   if (document.readyState === 'loading') {

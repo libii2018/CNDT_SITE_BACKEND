@@ -56,6 +56,7 @@ export const ENTITIES: Record<string, EntityConfig> = {
       { key: "author_member", label: "Auteur (personnel du CNDT) — badge « Rédigé par »", type: "member" },
       { key: "cover_image", label: "Image de couverture", type: "image" },
       { key: "is_published", label: "Publié", type: "checkbox" },
+      { key: "in_hero", label: "Afficher dans le carrousel de l'accueil", type: "checkbox" },
     ],
   },
 
@@ -195,4 +196,5 @@ export const SECTIONS = [
   { key: "messages", label: "Messages" },
   { key: "organigramme", label: "Organigramme" },
   { key: "instituts", label: "Carrousel instituts" },
+  { key: "hero", label: "Carrousel accueil" },
 ];

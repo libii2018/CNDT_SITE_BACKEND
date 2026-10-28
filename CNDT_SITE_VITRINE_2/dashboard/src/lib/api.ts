@@ -71,6 +71,8 @@ export interface Article {
   id: number; title: string; slug: string; category: string | null;
   excerpt: string | null; content: string | null; cover_image: string | null;
   is_published: boolean; published_at: string | null; created_at: string;
+  in_hero?: boolean;
+  hero_position?: number | null;
 }
 export interface Publication {
   id: number; title: string; slug: string; type: string | null;

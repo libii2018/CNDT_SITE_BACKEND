@@ -12,13 +12,15 @@ class Article extends Model
 
     protected $fillable = [
         'title', 'slug', 'category', 'excerpt', 'content',
-        'cover_image', 'author_name', 'author_role', 'author_photo', 'author_url',
+        'cover_image', 'author_name', 'author_role', 'author_photo', 'author_url', 'in_hero', 'hero_position',
         'is_published', 'published_at',
     ];
 
     protected $casts = [
         'is_published' => 'boolean',
         'published_at' => 'datetime',
+        'in_hero' => 'boolean',
+        'hero_position' => 'integer',
     ];
 
     public function getRouteKeyName(): string

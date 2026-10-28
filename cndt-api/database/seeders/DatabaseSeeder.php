@@ -126,6 +126,15 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $hero = [
+            'sia-minresi-2026' => 1,
+            'symposium-2026' => 2,
+            'aiea70-2026' => 3,
+            'cndt-43e-session-comite' => 4,
+            'formation-finances-publiques-2026' => 5,
+            'fracture-numerique-per-bayangam-akonolinga' => 6,
+        ];
+
         foreach ($articles as $a) {
             Article::updateOrCreate(
                 ['slug' => $a['slug']],
@@ -139,6 +148,8 @@ class DatabaseSeeder extends Seeder
                     'author_role' => $a['author_role'] ?? null,
                     'author_photo' => $a['author_photo'] ?? null,
                     'author_url' => $a['author_url'] ?? null,
+                    'in_hero' => isset($hero[$a['slug']]),
+                    'hero_position' => $hero[$a['slug']] ?? null,
                     'is_published' => true,
                     'published_at' => $a['published_at'],
                 ],
