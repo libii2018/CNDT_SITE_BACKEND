@@ -4,6 +4,7 @@ import { ImagePlus, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Input } from "@/components/ui/input";
 import { api, type Article, type Paginated } from "@/lib/api";
 
 // Carrousel de la page d'accueil (hero) — gestion des articles affichés et
@@ -12,6 +13,7 @@ import { api, type Article, type Paginated } from "@/lib/api";
 export function HeroCarouselPage() {
   const [articles, setArticles] = useState<Article[] | null>(null);
   const [busy, setBusy] = useState(false);
+  const [search, setSearch] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -93,22 +95,46 @@ export function HeroCarouselPage() {
         Changez l'ordre avec le menu déroulant « Position ».
       </p>
 
-      {/* Ajouter un article au carrousel */}
-      <div className="flex flex-wrap items-center gap-3">
-        <label className="text-sm font-medium">Ajouter un article :</label>
-        <select
-          className="min-w-[280px] rounded-md border border-input bg-background px-3 py-2 text-sm"
-          value=""
-          disabled={busy || !others.length}
-          onChange={(e) => addToHero(e.target.value)}
-        >
-          <option value="">
-            {others.length ? "— Choisir un article —" : "Tous les articles sont déjà dans le carrousel"}
-          </option>
-          {others.map((a) => (
-            <option key={a.slug} value={a.slug}>{a.title}</option>
-          ))}
-        </select>
+      {/* Ajouter un article au carrousel — recherche ergonomique (100+ articles) */}
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Ajouter un article au carrousel :</label>
+        <Input
+          type="search"
+          placeholder="Rechercher par titre ou catégorie…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className="max-h-56 overflow-y-auto rounded-lg border bg-background">
+          {(() => {
+            const q = search.trim().toLowerCase();
+            const results = q
+              ? others.filter((a) =>
+                  a.title.toLowerCase().includes(q)
+                  || (a.category || "").toLowerCase().includes(q))
+                .slice(0, 8)
+              : others.slice(0, 5);
+            if (!others.length) {
+              return <p className="p-3 text-sm text-muted-foreground">Tous les articles sont déjà dans le carrousel.</p>;
+            }
+            if (!results.length) {
+              return <p className="p-3 text-sm text-muted-foreground">Aucun article ne correspond à « {search} ».</p>;
+            }
+            return results.map((a) => (
+              <div key={a.slug} className="flex items-center gap-3 border-b px-3 py-2 last:border-b-0">
+                {a.cover_image ? (
+                  <img src={a.cover_image} alt="" className="h-9 w-14 rounded object-cover" />
+                ) : (
+                  <ImagePlus className="h-4 w-4 shrink-0 text-muted-foreground" />
+                )}
+                <span className="min-w-0 flex-1 truncate text-sm">{a.title}</span>
+                {a.category && <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">{a.category}</span>}
+                <Button size="sm" disabled={busy} onClick={() => { addToHero(a.slug); setSearch(""); }}>
+                  + Ajouter
+                </Button>
+              </div>
+            ));
+          })()}
+        </div>
       </div>
 
       {/* Liste des slides avec dropdown de position */}

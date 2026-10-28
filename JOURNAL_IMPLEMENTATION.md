@@ -805,3 +805,26 @@ identiques à la version statique (cache-busting v=6).
 - Dashboard : 6 lignes, dropdowns 1..6 — passage de SIA en position 3 → l'API et
   l'accueil reflètent immédiatement le nouvel ordre (Symposium, AIEA, SIA, …)
 - Aucune erreur JS. Ordre initial restauré.
+
+---
+
+## 34. Ergonomie du carrousel accueil + retrait de sections (28/10/2026)
+
+### Ajout d'articles ergonomique
+Le sélecteur unique (impraticable avec 100+ articles) est remplacé par une
+**recherche** (titre ou catégorie) avec liste de résultats (vignette + titre +
+catégorie + bouton « + Ajouter »), plafonnée à 8 résultats — utilisable quel que
+soit le nombre d'articles.
+
+### Retrait des sections « Carrousel instituts » et « Organigramme » du dashboard
+- Sidebar et routes nettoyées (navigation : Vue d'ensemble, Actualités, Publications,
+  Galerie, Personnel, Projets, Messages, Carrousel accueil).
+- `OrganigrammePage.tsx` supprimé ; config de l'entité instituts retirée.
+- **Le site public est inchangé** : le carrousel des instituts et la page
+  organigramme restent alimentés par l'API (données seedées) ; les endpoints
+  backend sont conservés.
+
+### Validation (Edge headless)
+Navigation sans les deux sections ✓, recherche « test » → ajout au carrousel en
+position 7 ✓ puis retrait ✓, accueil public : 8 slides instituts + 6 slides hero,
+organigramme public 17 unités ✓, aucune erreur JS.

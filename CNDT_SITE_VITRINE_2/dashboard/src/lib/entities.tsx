@@ -163,27 +163,6 @@ export const ENTITIES: Record<string, EntityConfig> = {
     ],
   },
 
-  instituts: {
-    key: "instituts",
-    title: "Carrousel instituts",
-    singular: "un institut",
-    endpoint: "/instituts",
-    idKey: "id",
-    orderable: true,
-    columns: [
-      { label: "Institut", key: "name" },
-      { label: "Logo", key: "logo" },
-      { label: "Position", key: "position" },
-      { label: "Visible", render: (i) => (i.is_visible ? "Oui" : "Non") },
-    ],
-    fields: [
-      { key: "name", label: "Nom de l'institut", type: "text", required: true },
-      { key: "url", label: "Site web (URL)", type: "url" },
-      { key: "logo", label: "Logo (glisser-déposer ou chemin)", type: "image" },
-      { key: "position", label: "Position dans le carrousel", type: "number" },
-      { key: "is_visible", label: "Visible dans le carrousel", type: "checkbox" },
-    ],
-  },
 };
 
 export const SECTIONS = [
@@ -194,7 +173,5 @@ export const SECTIONS = [
   { key: "members", label: "Personnel" },
   { key: "projects", label: "Projets" },
   { key: "messages", label: "Messages" },
-  { key: "organigramme", label: "Organigramme" },
-  { key: "instituts", label: "Carrousel instituts" },
   { key: "hero", label: "Carrousel accueil" },
 ];
