@@ -1038,3 +1038,20 @@ Dashboard : éditeur WYSIWYG présent, champ intérêts présent, saisie de
 « Robotique de test » + Entrée → puce ajoutée puis seconde puce ✓ ;
 fiche publique : titre, biographie HTML rendue (gras), section intérêts avec
 3 chips ✓ ; aucune erreur JS ; membre de test supprimé.
+
+## 41. Correctif — logos du carrousel des instituts sur les fiches individuelles
+
+**Problème** : sur les pages individuelles créées (membres/membre.html), les
+logos du carrousel « Instituts sous tutelle du MINRESI » ne s'affichaient pas.
+
+**Cause** : le carrousel est rendu dynamiquement par `renderInstituts()` et le
+préfixe de chemin des logos relatifs ne couvrait que le sous-dossier
+`actualite/` — depuis `membres/`, « assets/… » résolvait vers
+`/membres/assets/…` (404).
+
+**Correctif** : le préfixe couvre désormais les sous-dossiers `actualite/` et
+`membres/` (regex étendue) ; cache-busting v=12.
+
+**Validation (Edge headless)** : les 8 logos (CNDT, ANRP, IRAD, IMPM, INC,
+MIPROMALO, CNE, IRGM) répondent HTTP 200 depuis membre.html, article.html,
+personnel.html et index.html.

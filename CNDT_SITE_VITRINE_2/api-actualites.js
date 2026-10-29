@@ -276,7 +276,8 @@ window.CNDT_API = window.CNDT_API || {
       if (!items.length) return; // garde les slides statiques existants
 
       // Chemins relatifs : préfixe selon la profondeur de la page
-      const prefix = /\/actualite\/[^/]*\.html/.test(location.pathname) ? '../' : '';
+      // (racine, ou sous-dossiers actualite/ et membres/)
+      const prefix = /\/(actualite|membres)\/[^/]*\.html/.test(location.pathname) ? '../' : '';
       const imgSrc = (p) => /^(https?:)?\//.test(p) ? p : prefix + p;
 
       wrapper.innerHTML = items.map((i) => `
