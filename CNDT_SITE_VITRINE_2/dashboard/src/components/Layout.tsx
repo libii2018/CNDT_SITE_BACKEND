@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { ExternalLink, LogOut, Newspaper, BookOpen, Images, Users,
-         Layers, Mail, Network, LayoutDashboard, Home } from "lucide-react";
+         Mail, Network, LayoutDashboard, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SECTIONS } from "@/lib/entities";
@@ -13,7 +13,6 @@ const ICONS: Record<string, ReactNode> = {
   publications: <BookOpen className="h-4 w-4" />,
   albums: <Images className="h-4 w-4" />,
   members: <Users className="h-4 w-4" />,
-  projects: <Layers className="h-4 w-4" />,
   messages: <Mail className="h-4 w-4" />,
   hero: <Home className="h-4 w-4" />,
 };

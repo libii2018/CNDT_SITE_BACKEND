@@ -31,9 +31,6 @@ export interface EntityConfig {
   columns: ColumnConfig[];
   fields: FieldConfig[];
   orderable?: boolean;
-  // Faux : masque le bouton « Nouveau » (entités alimentées par le site,
-  // ex : les messages du formulaire de contact).
-  canCreate?: boolean;
 }
 
 const fmt = (v: string | null | undefined) =>
@@ -174,69 +171,6 @@ export const ENTITIES: Record<string, EntityConfig> = {
     ],
   },
 
-  projects: {
-    key: "projects",
-    title: "Projets",
-    singular: "un projet",
-    endpoint: "/projects",
-    idKey: "slug",
-    columns: [
-      { label: "Projet", key: "title" },
-      { label: "Statut", key: "status" },
-      { label: "Publié", render: (p) => (p.is_published ? "Oui" : "Non") },
-      { label: "Début", key: "start_date" },
-    ],
-    fields: [
-      { key: "title", label: "Titre", type: "text", required: true },
-      {
-        key: "status", label: "Statut", type: "select",
-        options: [["a_venir", "À venir"], ["en_cours", "En cours"], ["termine", "Terminé"]],
-      },
-      { key: "summary", label: "Résumé", type: "textarea" },
-      { key: "description", label: "Description", type: "textarea" },
-      { key: "partner", label: "Partenaire", type: "text" },
-      { key: "cover_image", label: "Image de couverture", type: "image" },
-      { key: "link", label: "Lien externe (URL)", type: "url" },
-      { key: "start_date", label: "Date de début", type: "date" },
-      { key: "end_date", label: "Date de fin", type: "date" },
-      { key: "is_published", label: "Publié", type: "checkbox" },
-    ],
-  },
-
-  messages: {
-    key: "messages",
-    title: "Messages",
-    singular: "un message",
-    endpoint: "/messages",
-    idKey: "id",
-    // Messages reçus via le formulaire de contact du site : pas de création ici
-    canCreate: false,
-    columns: [
-      { label: "Reçu le", render: (m) => fmt(m.created_at) },
-      { label: "Nom", key: "name" },
-      { label: "Email", key: "email" },
-      { label: "Téléphone", key: "phone" },
-      { label: "Objet", key: "subject" },
-      {
-        label: "Message", key: "message",
-        render: (m) => (
-          <span title={m.message ?? undefined} className="line-clamp-2 max-w-[22rem] block">
-            {m.message}
-          </span>
-        ),
-      },
-      { label: "Lu", render: (m) => (m.is_read ? "Oui" : "Non") },
-    ],
-    fields: [
-      { key: "name", label: "Nom", type: "text" },
-      { key: "email", label: "Email", type: "email" },
-      { key: "phone", label: "Téléphone", type: "text" },
-      { key: "subject", label: "Objet", type: "text" },
-      { key: "message", label: "Message", type: "textarea" },
-      { key: "is_read", label: "Marqué comme lu", type: "checkbox" },
-    ],
-  },
-
 };
 
 export const SECTIONS = [
@@ -245,7 +179,6 @@ export const SECTIONS = [
   { key: "publications", label: "Publications" },
   { key: "albums", label: "Galerie" },
   { key: "members", label: "Personnel" },
-  { key: "projects", label: "Projets" },
   { key: "messages", label: "Messages" },
   { key: "hero", label: "Carrousel accueil" },
 ];

@@ -1110,3 +1110,26 @@ externe) → visible sur projets.html avec son statut et son lien ✓ ; filtre
 « En cours » ✓ ; fiche complète (metas, HTML rendu, bouton externe, sidebar,
 retour, 8 logos instituts) ✓ ; nav + footer ✓ ; aucune erreur JS ; aucune
 régression (index, galerie, actualités, contact) ; projet de test supprimé.
+
+## 44. Retrait de la section « Projets » du dashboard
+
+Comme pour « Carrousel instituts » et « Organigramme » (cf. §34), la section
+**Projets** est retirée du dashboard : sidebar et routes nettoyées
+(navigation : Vue d'ensemble, Actualités, Publications, Galerie, Personnel,
+Messages, Carrousel accueil), config `ENTITIES.projects` et icône supprimées.
+**Le site public est inchangé** : la page `projets.html` et la fiche
+`projets/projet.html` restent alimentées par l'API (`GET /projects`, données
+existantes conservées, endpoints backend intacts).
+
+### Correctif associé — section Messages dupliquée
+La config générique `ENTITIES.messages` ajoutée au §42 se superposait à la
+page dédiée `MessagesPage.tsx` (cartes avec marquer lu / supprimer /
+rafraîchir) qui gérait déjà cette section. La config générique est retirée :
+la section Messages retrouve son affichage unique d'origine. L'option
+`canCreate` (ajoutée pour elle) est retirée d'EntityConfig/EntityPage.
+
+### Validation (Edge headless)
+Navigation sans « Projets » ✓ ; hash `#projects` → aucune section cassée
+(repli silencieux) ✓ ; section Messages : 0 tableau, pas de bouton
+« Nouveau », bouton « Rafraîchir » unique (page dédiée seule) ✓ ;
+Actualités / Galerie / Personnel fonctionnels ✓ ; aucune erreur JS.

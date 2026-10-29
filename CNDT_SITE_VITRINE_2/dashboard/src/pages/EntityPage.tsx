@@ -162,11 +162,9 @@ const onTableClick = config.orderable
             value={search} onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        {config.canCreate !== false && (
-          <Button className="ml-auto" onClick={() => setCreating(true)}>
-            <Plus /> Nouveau
-          </Button>
-        )}
+        <Button className="ml-auto" onClick={() => setCreating(true)}>
+          <Plus /> Nouveau
+        </Button>
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
