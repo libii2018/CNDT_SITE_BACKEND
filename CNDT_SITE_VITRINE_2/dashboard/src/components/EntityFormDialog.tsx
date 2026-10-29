@@ -42,7 +42,7 @@ export function EntityFormDialog({
     const v: FormValues = {};
     for (const f of fields) {
       if (f.type === "gallery") {
-        const imgs = item?.images as any[] | undefined;
+        const imgs = (item?.[f.key] ?? item?.images) as any[] | undefined;
         v[f.key] = imgs ? imgs.map((i) => ({ id: i.id, path: i.path, caption: i.caption })) : [];
         continue;
       }

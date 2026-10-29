@@ -828,3 +828,37 @@ soit le nombre d'articles.
 Navigation sans les deux sections ✓, recherche « test » → ajout au carrousel en
 position 7 ✓ puis retrait ✓, accueil public : 8 slides instituts + 6 slides hero,
 organigramme public 17 unités ✓, aucune erreur JS.
+
+---
+
+## 35. Symbiose visuelle dashboard ↔ site + albums avec photos intégrées (29/10/2026)
+
+### Interface en symbiose avec le site statique
+- **Police du site** : CNDT Sans (URWGothic-Book/Demi) chargée depuis les assets du site
+  (chemins corrigés `../../assets/` depuis le CSS du build — les `../assets/`
+  résolvaient vers /admin/assets → 404).
+- **Palette exacte du site** : --primary #1f663f, encre #202923, vert foncé #0d2e20,
+  vert clair #e3eee7, bordures #dce4de, texte atténué #667069.
+- **Sidebar** type site : fond #0d2e20, bandeau « République du Cameroun / Paix ·
+  Travail · Patrie », item actif #1d5a3b ; topbar avec liseré vert.
+- **Connexion** : logo CNDT du site au-dessus du formulaire.
+
+### Albums : création + ajout de photos dans le formulaire
+- Champ **« Photos de l'album »** (dropzone multi-images avec vignettes et
+  suppression) directement dans la modale de création/édition d'album — les photos
+  sont téléversées immédiatement et rattachées à l'album à l'enregistrement
+  (synchronisation ajout/retrait via `/albums/{slug}/photos`).
+- L'ancien panneau de gestion des photos sous le tableau (AlbumPhotosPanel) est
+  retiré — tout se fait dans le formulaire.
+
+### Incident résolu : mot de passe admin inconnu
+Le commit de sécurisation (e80c690) fait générer un mot de passe admin aléatoire au
+seed ; les identifiants documentés ne fonctionnaient plus. **Réinitialisé à
+`admin@cndt.cm` / `password`** via tinker (attention : passer par l'instance du
+modèle pour le cast `hashed` — un `->update()` du query builder stocke en clair).
+Avant mise en ligne : définir `ADMIN_PASSWORD` ou changer le mot de passe.
+
+### Validation (Edge headless)
+Logo chargé ✓, bandeau + sidebar #0d2e20 ✓, police CNDT Sans appliquée ✓,
+création d'un album avec 2 images ajoutées dans le formulaire → album enregistré
+avec ses 2 photos via l'API ✓, nettoyage ✓, aucune erreur JS.

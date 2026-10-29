@@ -38,12 +38,18 @@ export function Layout({ user, route, unread, onLogout, children }: LayoutProps)
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col bg-primary text-primary-foreground transition-transform lg:static lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col bg-[#0d2e20] text-white transition-transform lg:static lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <div className="flex items-center gap-2 border-b border-white/15 px-5 py-4 text-base font-bold">
-          <Network className="h-5 w-5" />
+        <div className="border-b border-white/15 px-5 py-3">
+          <p className="text-[10px] uppercase tracking-[0.14em] text-white/60">
+            République du Cameroun
+          </p>
+          <p className="text-[10px] text-white/40">Paix · Travail · Patrie</p>
+        </div>
+        <div className="flex items-center gap-2 px-5 py-4 text-base font-bold">
+          <Network className="h-5 w-5 text-[#7ac99b]" />
           CNDT Admin
         </div>
         <nav className="flex-1 space-y-1 p-3">
@@ -55,7 +61,7 @@ export function Layout({ user, route, unread, onLogout, children }: LayoutProps)
               className={cn(
                 "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
                 route === s.key
-                  ? "bg-white/15 font-semibold text-white"
+                  ? "bg-[#1d5a3b] font-semibold text-white"
                   : "text-primary-foreground/80 hover:bg-white/10 hover:text-white",
               )}
             >
@@ -91,7 +97,7 @@ export function Layout({ user, route, unread, onLogout, children }: LayoutProps)
 
       {/* Contenu */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex items-center justify-between border-b bg-background px-6 py-4">
+        <header className="sticky top-0 z-20 flex items-center justify-between border-b-2 border-b-primary/70 bg-background px-6 py-4">
           <div className="flex items-center gap-3">
             <Button
               variant="outline" size="icon" className="lg:hidden"

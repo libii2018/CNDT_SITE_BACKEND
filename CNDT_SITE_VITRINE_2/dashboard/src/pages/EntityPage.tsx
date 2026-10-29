@@ -3,8 +3,6 @@ import { toast } from "sonner";
 import { Plus, Search, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
@@ -14,7 +12,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { EntityFormDialog, DeleteButton } from "@/components/EntityFormDialog";
-import { api, type Album, type Paginated, type Photo } from "@/lib/api";
+import { api, type Paginated } from "@/lib/api";
 import type { EntityConfig } from "@/lib/entities";
 
 // Page CRUD générique (tableau + recherche + modale) + gestion des photos (galerie)
@@ -48,7 +46,7 @@ export function EntityPage({ config }: { config: EntityConfig }) {
   useEffect(() => { load(); }, [load]);
 
   const save = async (values: Record<string, any>) => {
-    const { gallery, ...body } = values;
+    const { gallery, photos, ...body } = values;
     let item = editing;
 
     if (editing) {
@@ -60,13 +58,37 @@ export function EntityPage({ config }: { config: EntityConfig }) {
       item = res.data;
     }
 
-    // Synchronisation de la galerie d'images (articles uniquement)
+    // Synchronisation des images embarquées (galeries d'articles, photos d'albums)
     if (config.key === "articles" && item && Array.isArray(gallery)) {
       await syncArticleGallery(item[config.idKey], gallery, (editing?.images as any[]) ?? []);
+    }
+    if (config.key === "albums" && item && Array.isArray(photos)) {
+      await syncAlbumPhotos(item[config.idKey], photos, (editing?.photos as any[]) ?? []);
     }
 
     toast.success("Enregistré.");
     load();
+  };
+
+  const syncAlbumPhotos = async (
+    slug: string,
+    next: Array<{ id?: number; path: string; caption?: string | null }>,
+    original: Array<{ id: number }>,
+  ) => {
+    const keptIds = new Set(next.filter((i) => i.id).map((i) => i.id));
+    for (const img of next.filter((i) => !i.id)) {
+      try {
+        await api(`/albums/${encodeURIComponent(slug)}/photos`, {
+          method: "POST",
+          body: { path: img.path, caption: img.caption || undefined },
+        });
+      } catch (e: any) { toast.error(e.message); }
+    }
+    for (const img of original.filter((o) => !keptIds.has(o.id))) {
+      try {
+        await api(`/albums/${encodeURIComponent(slug)}/photos/${img.id}`, { method: "DELETE" });
+      } catch (e: any) { toast.error(e.message); }
+    }
   };
 
   const syncArticleGallery = async (
@@ -199,9 +221,6 @@ const onTableClick = config.orderable
         </div>
       )}
 
-      {/* Section spéciale galerie : gestion des photos par album */}
-      {config.key === "albums" && items && <AlbumPhotosPanel albums={items as Album[]} />}
-
       {/* Réordonnancement (carrousel instituts) */}
       {/* Modales */}
       {(editing || creating) && (
@@ -236,107 +255,3 @@ const onTableClick = config.orderable
   );
 }
 
-// ---------- Gestion des photos d'un album ----------
-function AlbumPhotosPanel({ albums }: { albums: Album[] }) {
-  const [albumSlug, setAlbumSlug] = useState(albums[0]?.slug ?? "");
-  const [photos, setPhotos] = useState<Photo[] | null>(null);
-  const [path, setPath] = useState("");
-  const [caption, setCaption] = useState("");
-
-  useEffect(() => {
-    setAlbumSlug(albums[0]?.slug ?? "");
-  }, [albums]);
-
-  const loadPhotos = useCallback(async () => {
-    if (!albumSlug) { setPhotos([]); return; }
-    try {
-      const res = await api<{ data: Album }>(`/albums/${encodeURIComponent(albumSlug)}`);
-      setPhotos(res.data.photos ?? []);
-    } catch {
-      setPhotos([]);
-    }
-  }, [albumSlug]);
-
-  useEffect(() => { loadPhotos(); }, [loadPhotos]);
-
-  const addPhoto = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!path) return;
-    try {
-      await api(`/albums/${encodeURIComponent(albumSlug)}/photos`, {
-        method: "POST",
-        body: { path, caption: caption || undefined, position: (photos?.length ?? 0) + 1 },
-      });
-      setPath(""); setCaption("");
-      toast.success("Photo ajoutée.");
-      loadPhotos();
-    } catch (err: any) {
-      toast.error(err.message);
-    }
-  };
-
-  const deletePhoto = async (id: number) => {
-    try {
-      await api(`/albums/${encodeURIComponent(albumSlug)}/photos/${id}`, { method: "DELETE" });
-      toast.success("Photo supprimée.");
-      loadPhotos();
-    } catch (err: any) {
-      toast.error(err.message);
-    }
-  };
-
-  if (!albums.length) return null;
-
-  return (
-    <Card>
-      <div className="border-b px-6 py-4">
-        <h3 className="font-semibold">Gestion des photos</h3>
-      </div>
-      <div className="flex flex-wrap items-center gap-3 border-b px-6 py-4">
-        <label className="text-sm text-muted-foreground">Album :</label>
-        <select
-          className="rounded-md border bg-background px-3 py-2 text-sm"
-          value={albumSlug}
-          onChange={(e) => setAlbumSlug(e.target.value)}
-        >
-          {albums.map((a) => (
-            <option key={a.slug} value={a.slug}>{a.title}</option>
-          ))}
-        </select>
-        <Badge variant="secondary">{photos?.length ?? 0} photo(s)</Badge>
-      </div>
-
-      <div className="grid gap-3 px-6 py-4 sm:grid-cols-3">
-        {photos?.map((p) => (
-          <div key={p.id} className="rounded-md border p-3 text-xs">
-            <div className="break-all text-muted-foreground">{p.path}</div>
-            {p.caption && <div className="mt-1">{p.caption}</div>}
-            <Button
-              size="sm" variant="ghost" className="mt-2 text-destructive hover:bg-destructive/10"
-              onClick={() => deletePhoto(p.id)}
-            >
-              Supprimer
-            </Button>
-          </div>
-        ))}
-        {photos && photos.length === 0 && (
-          <p className="text-sm text-muted-foreground">Aucune photo dans cet album.</p>
-        )}
-      </div>
-
-      <form onSubmit={addPhoto} className="flex flex-wrap gap-3 border-t px-6 py-4">
-        <Input
-          className="min-w-[220px] flex-1" placeholder="Chemin de l'image (ex. albums/session/photo-3.jpg)"
-          value={path} onChange={(e) => setPath(e.target.value)} required
-        />
-        <Input
-          className="min-w-[160px]" placeholder="Légende (optionnelle)"
-          value={caption} onChange={(e) => setCaption(e.target.value)}
-        />
-        <Button type="submit" disabled={!albumSlug}>
-          <Plus /> Ajouter la photo
-        </Button>
-      </form>
-    </Card>
-  );
-}

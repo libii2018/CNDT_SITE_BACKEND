@@ -104,6 +104,7 @@ export const ENTITIES: Record<string, EntityConfig> = {
       { key: "description", label: "Description", type: "textarea" },
       { key: "cover_image", label: "Image de couverture", type: "image" },
       { key: "position", label: "Position", type: "number" },
+      { key: "photos", label: "Photos de l'album", type: "gallery" },
     ],
   },
 
