@@ -113,5 +113,6 @@ Route::get('/projets/{page}', function (string $page) {
     return view($vue);
 })->where('page', '[A-Za-z0-9\-_]+');
 
-/* ---------- Dashboard React (build statique servi par Apache) ---------- */
-Route::redirect('/admin.html', '/admin/', 301);
+/* ---------- Dashboard React (pipeline Vite de Laravel, vue admin.blade.php) ---------- */
+Route::view('/admin', 'admin')->name('admin'); // /admin/ (barre finale) matche aussi
+Route::redirect('/admin.html', '/admin', 301);

@@ -1291,3 +1291,34 @@ base de données et images dans le stockage.
 chips ✓ ; cartes du personnel → fiches dynamiques ✓ ; les 8 articles migrés
 apparaissent dans la liste /actualites ✓ ; redirections 301 vérifiées ✓ ;
 aucune erreur JS.
+
+## 50. Dashboard intégré dans cndt-api — pipeline Laravel + React (Vite)
+
+**Demande** : mettre le dashboard dans cndt-api en utilisant les technologies
+Laravel + ReactJS.
+
+### Ce qui a été fait
+- **Source déplacée** : `dashboard/src` → `cndt-api/resources/js/dashboard`
+  (git mv, historique conservé) ; le dossier racine `dashboard/` disparaît —
+  tout vit dans l'application Laravel.
+- **Pipeline Vite de Laravel** : `laravel-vite-plugin` dans `vite.config.js`
+  (entrée `resources/js/dashboard/main.tsx`, alias `@`, plugins react +
+  tailwind v4) ; `package.json` de Laravel fusionné avec les dépendances du
+  dashboard ; tsconfig adaptés (`@/*` → `resources/js/dashboard/*`).
+- **Vue Blade** : `resources/views/admin.blade.php` (directive `@vite`,
+  mammoth.browser.min.js, `<div id="root">`) servie par la route `/admin`
+  (les barres finales sont équivalentes) ; l'ancien dossier statique
+  `public/admin/` est supprimé.
+- **Docker** : l'image API installe Node (COPY --from=node:22-bookworm-slim —
+  la variante alpine/musl ne s'exécute pas sur la base Debian de l'image PHP)
+  puis `npm ci && npm run build` au build de l'image ; `public/build`
+  n'est ni versionné ni copié (construit dans l'image).
+- Le dashboard n'est pas modifié fonctionnellement : SPA React à routage
+  hash, appels `/api/v1` relatifs — inchangés.
+
+### Validation
+`npm run build` → `public/build` + manifest ✓ ; image Docker rebuildée
+(node v22, manifest présent) ✓ ; `/admin` 200 avec les ressources
+`/build/assets/…` servies ✓ ; navigation, sections Actualités/Galerie/
+Personnel, Messages (page dédiée) ✓ ; aucune erreur JS ; aucune régression
+du site public (accueil, galerie, actualités, URLs propres).

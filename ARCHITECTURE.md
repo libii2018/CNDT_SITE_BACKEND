@@ -70,12 +70,20 @@ compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
   (actualités, hero, instituts, galerie, personnel, fiches, projets).
 - Formulaire de contact : `POST /api/v1/contact`.
 - L'ancien dossier statique `CNDT_SITE_VITRINE_2/` a été **retiré** du dépôt ;
-  la source du dashboard vit désormais à la racine : `dashboard/`.
+  le dashboard React vit dans `cndt-api/resources/js/dashboard/` (pipeline
+  Laravel + Vite).
 
-## 2. Frontend admin — dashboard (React + Tailwind + shadcn/ui)
+## 2. Frontend admin — dashboard (Laravel + React, pipeline Vite)
 
-- **Source** : `dashboard/` (à la racine du dépôt — Vite + React 19 + TypeScript)
-- **Build déployé** : `cndt-api/public/admin/` — même URL : http://localhost:8080/admin/
+- **Source** : `cndt-api/resources/js/dashboard/` (React 19 + TypeScript),
+  intégré au pipeline Vite **de Laravel** (`laravel-vite-plugin`,
+  `cndt-api/vite.config.js`, alias `@` → `resources/js/dashboard`).
+- **Vue Blade** : `resources/views/admin.blade.php` (directive `@vite`,
+  chargement de `mammoth.browser.min.js`, `<div id="root">`) — route `/admin`.
+- **Build** : `npm run build` (tsc + Vite → `cndt-api/public/build/` +
+  manifest) ; exécuté **dans l'image Docker** (`npm ci && npm run build`,
+  node:22-bookworm-slim). `public/build` n'est pas versionné.
+- URL : http://localhost:8080/admin
   (l'ancien `admin.html` à la racine redirige vers `admin/`)
 - Stack : **React 19**, **Tailwind CSS v4**, **shadcn/ui** (composants Radix UI), lucide-react,
   sonner (toasts), routage par hash (`#overview`, `#articles`, …) — aucun serveur de rewrite requis.

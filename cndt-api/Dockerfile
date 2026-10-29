@@ -16,9 +16,15 @@ WORKDIR /var/www/html
 # Composer (image officielle)
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Code applicatif (.dockerignore exclut vendor, logs, .git, sqlite local)
+# Node.js + npm (build du dashboard React via le pipeline Vite de Laravel)
+# /usr/local entier : binaire node + liens npm/npx + lib/node_modules
+COPY --from=node:22-bookworm-slim /usr/local /usr/local
+
+# Code applicatif (.dockerignore exclut vendor, logs, .git, sqlite local,
+# node_modules et public/build : le build npm est refait dans l'image)
 COPY . .
 
+# Dépendances PHP + build du dashboard (tsc + Vite → public/build)
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress \
     && chown -R www-data:www-data storage bootstrap/cache \
     && { \
@@ -26,7 +32,10 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
       echo 'opcache.validate_timestamps=1'; \
       echo 'realpath_cache_size=4096K'; \
       echo 'realpath_cache_ttl=600'; \
-    } > /usr/local/etc/php/conf.d/opcache-dev.ini
+    } > /usr/local/etc/php/conf.d/opcache-dev.ini \
+    && npm ci --no-audit --no-fund \
+    && npm run build \
+    && rm -rf node_modules
 
 EXPOSE 80
 
