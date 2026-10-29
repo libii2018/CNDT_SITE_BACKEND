@@ -7,6 +7,8 @@
      2. [data-news-list]        : derniers titres (widget accueil index.html)
      3. [data-article-detail]   : page d'un article (?slug=…)
         (page actualite/article.html)
+     4. [data-gallery-view="albums"] : albums + photos du dashboard
+        (page galerie.html)
 
    À inclure APRÈS app.js :
      <script defer src="api-actualites.js"></script>
@@ -379,6 +381,197 @@ window.CNDT_API = window.CNDT_API || {
     start();
   }
 
+  /* ---------- 6. Galerie photo dynamique (galerie.html) ---------- */
+  async function renderGalerie() {
+    const albumsView = $('[data-gallery-view="albums"]');
+    if (!albumsView) return; // pas la page galerie
+
+    let albums;
+    try {
+      const res = await fetchApi('/albums?per_page=100');
+      albums = res.data || [];
+    } catch {
+      return; // API indisponible : galerie statique d'origine conservée
+    }
+    if (!albums.length) return;
+
+    // Chemins : URL absolue ou racine (/storage/…) servies telles quelles
+    const imgSrc = (p) => (!p ? '' : /^(https?:)?\//.test(p) ? p : '/' + p.replace(/^\/+/, ''));
+    const moisAnnee = (iso) => iso
+      ? new Date(iso).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+      : '';
+
+    // --- Vue 1 : grille des albums (mêmes classes que le markup d'origine) ---
+    const grid = $('.gallery-albums', albumsView);
+    if (grid) {
+      grid.innerHTML = albums.map((al) => {
+        const photos = Array.isArray(al.photos) ? al.photos : [];
+        const cover = al.cover_image || photos[0]?.path || '';
+        const date = moisAnnee(al.created_at);
+        return `
+          <button type="button" class="gallery-album" data-album-open="${esc(al.slug)}">
+            <div class="gallery-album__cover">
+              ${cover ? `<img src="${esc(imgSrc(cover))}" alt="${esc(al.title)}" loading="lazy" onerror="this.remove()">` : ''}
+            </div>
+            <div class="gallery-album__body">
+              ${date ? `<p class="gallery-album__date">${esc(date)}</p>` : ''}
+              <h3 class="gallery-album__title">${esc(al.title)}</h3>
+            </div>
+          </button>`;
+      }).join('');
+    }
+
+    // --- Vues d'albums : les statiques sont remplacées par celles de l'API ---
+    $$('[data-album-view]').forEach((v) => v.remove());
+    albumsView.insertAdjacentHTML('afterend', albums.map((al) => {
+      const photos = Array.isArray(al.photos) ? al.photos : [];
+      const date = moisAnnee(al.created_at);
+      return `
+        <div class="gallery-view gallery-view--album" data-album-view="${esc(al.slug)}" hidden>
+          <button type="button" class="gallery-back" data-album-back>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>
+          </button>
+          <div class="gallery-album-head">
+            <h2 class="gallery-album-title">${esc(al.title)}</h2>
+            <p class="gallery-album-meta">${esc(date)} · <span>${photos.length} photo${photos.length > 1 ? 's' : ''}</span></p>
+            ${al.description ? `<p class="gallery-album-desc">${esc(al.description)}</p>` : ''}
+          </div>
+          <div class="gallery-photos">
+            ${photos.map((ph) => `
+              <button type="button" class="gallery-photo"
+                      data-photo-src="${esc(imgSrc(ph.path))}"
+                      data-photo-caption="${esc(ph.caption || '')}">
+                <img src="${esc(imgSrc(ph.path))}" alt="${esc(ph.caption || al.title)}" loading="lazy" onerror="this.closest('.gallery-photo')?.classList.add('is-empty')">
+              </button>`).join('')}
+          </div>
+        </div>`;
+    }).join(''));
+
+    initGalerie(albumsView);
+  }
+
+  // Réplique la logique de la galerie (app.js §GALERIE) sur les éléments
+  // dynamiques : ceux d'origine ont été détachés, leurs listeners sont morts.
+  function initGalerie(albumsView) {
+    const views = $$('[data-album-view]');
+
+    const showAlbums = () => {
+      albumsView.hidden = false;
+      views.forEach((v) => (v.hidden = true));
+      history.replaceState({}, '', location.pathname);
+    };
+
+    const showAlbum = (slug) => {
+      const target = views.find((v) => v.dataset.albumView === slug);
+      if (!target) return;
+      albumsView.hidden = true;
+      views.forEach((v) => (v.hidden = v !== target));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    $$('[data-album-open]', albumsView).forEach((btn) =>
+      btn.addEventListener('click', () => showAlbum(btn.dataset.albumOpen)));
+    $$('[data-album-back]').forEach((btn) =>
+      btn.addEventListener('click', showAlbums));
+
+    // Ouverture directe via ?album=…
+    const slug = new URLSearchParams(location.search).get('album');
+    if (slug) showAlbum(slug);
+
+    /* ----- Lightbox : clonée pour détacher les listeners de app.js ----- */
+    const oldLb = document.getElementById('lightbox');
+    if (!oldLb) return;
+    const lightbox = oldLb.cloneNode(true);
+    oldLb.replaceWith(lightbox);
+
+    const lbImg = lightbox.querySelector('[data-lb-img]');
+    const lbCaption = lightbox.querySelector('[data-lb-caption]');
+    const lbIndex = lightbox.querySelector('[data-lb-index]');
+    const lbTotal = lightbox.querySelector('[data-lb-total]');
+    const lbThumbs = lightbox.querySelector('[data-lb-thumbs]');
+
+    let currentPhotos = [];
+    let currentIndex = 0;
+
+    const updateLightbox = () => {
+      const photo = currentPhotos[currentIndex];
+      if (!photo) return;
+      lbImg.src = photo.src;
+      lbImg.alt = photo.caption || `Photo ${currentIndex + 1}`;
+      if (photo.caption) { lbCaption.textContent = photo.caption; lbCaption.hidden = false; }
+      else lbCaption.hidden = true;
+      lbIndex.textContent = currentIndex + 1;
+      lbTotal.textContent = currentPhotos.length;
+    };
+
+    const gotoPhoto = (index) => {
+      const total = currentPhotos.length;
+      if (!total) return;
+      currentIndex = (index + total) % total;
+      updateLightbox();
+      lbThumbs.querySelectorAll('.lightbox__thumb').forEach((btn, i) =>
+        btn.classList.toggle('is-current', i === currentIndex));
+      lbThumbs.querySelector('.lightbox__thumb.is-current')
+        ?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    };
+
+    const openLightbox = (photos, startIndex) => {
+      currentPhotos = photos;
+      currentIndex = startIndex;
+      updateLightbox();
+      lbThumbs.innerHTML = photos.map((photo, i) => `
+        <button type="button" class="lightbox__thumb ${i === currentIndex ? 'is-current' : ''}"
+                data-thumb-index="${i}" aria-label="Voir la photo ${i + 1}">
+          <img src="${photo.src}" alt="" loading="lazy">
+        </button>`).join('');
+      lbThumbs.querySelectorAll('[data-thumb-index]').forEach((btn) =>
+        btn.addEventListener('click', () => gotoPhoto(Number(btn.dataset.thumbIndex))));
+      lbThumbs.querySelector('.lightbox__thumb.is-current')
+        ?.scrollIntoView({ block: 'nearest', inline: 'center' });
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+    };
+
+    views.forEach((view) => {
+      const btns = $$('.gallery-photo', view);
+      const photos = btns.map((btn) => ({
+        src: btn.dataset.photoSrc,
+        caption: btn.dataset.photoCaption || '',
+      }));
+      btns.forEach((btn, i) =>
+        btn.addEventListener('click', () => openLightbox(photos, i)));
+    });
+
+    lightbox.querySelector('[data-lb-close]')?.addEventListener('click', closeLightbox);
+    lightbox.querySelector('[data-lb-prev]')?.addEventListener('click', () => gotoPhoto(currentIndex - 1));
+    lightbox.querySelector('[data-lb-next]')?.addEventListener('click', () => gotoPhoto(currentIndex + 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') gotoPhoto(currentIndex - 1);
+      if (e.key === 'ArrowRight') gotoPhoto(currentIndex + 1);
+    });
+
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) < 60) return;
+      gotoPhoto(diff > 0 ? currentIndex - 1 : currentIndex + 1);
+    });
+  }
+
   /* ---------- Démarrage ---------- */
   const start = () => {
     renderActualitesGrid();
@@ -386,6 +579,7 @@ window.CNDT_API = window.CNDT_API || {
     renderArticleDetail();
     renderInstituts();
     renderHero();
+    renderGalerie();
   };
 
   if (document.readyState === 'loading') {

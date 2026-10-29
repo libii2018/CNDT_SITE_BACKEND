@@ -862,3 +862,39 @@ Avant mise en ligne : définir `ADMIN_PASSWORD` ou changer le mot de passe.
 Logo chargé ✓, bandeau + sidebar #0d2e20 ✓, police CNDT Sans appliquée ✓,
 création d'un album avec 2 images ajoutées dans le formulaire → album enregistré
 avec ses 2 photos via l'API ✓, nettoyage ✓, aucune erreur JS.
+
+## 36. Galerie photo dynamique (galerie.html alimentée par l'API)
+
+**Problème** : les albums créés dans le dashboard n'apparaissaient pas sur le site
+public — la page `galerie.html` restait 100 % statique (albums codés en dur).
+
+### Ce qui a été fait
+- `CNDT_SITE_VITRINE_2/api-actualites.js` — nouvelle section **`renderGalerie()`** :
+  - `GET /api/v1/albums?per_page=100` (photos incluses) ;
+  - si l'API est indisponible ou qu'aucun album n'existe → **repli sur la galerie
+    statique d'origine** (comportement inchangé) ;
+  - régénère la grille `.gallery-albums` (mêmes classes que le markup statique :
+    cover = `cover_image` ou 1ʳᵉ photo, date « mois année », titre) ;
+  - remplace les vues d'album statiques par une vue par album
+    (`data-album-view`, back, head titre/meta « N photos »/description,
+    `.gallery-photos` avec `data-photo-src` / `data-photo-caption`) ;
+  - chemins : URL absolues et `/storage/…` servies telles quelles (le proxy Apache
+    du frontal sert déjà `/storage/`), chemins relatifs préfixés d'un `/` ;
+  - `onerror` gracieux : une image introuvable est retirée (les albums de seed
+    dont les fichiers n'existent pas n'affichent pas d'icônes cassées).
+- **`initGalerie()`** : réplique la logique de `app.js` (§GALERIE) sur les éléments
+  dynamiques — ceux d'origine sont détachés, leurs listeners sont morts :
+  navigation grille → album → retour, deep link `?album=slug`, et **lightbox complète
+  clonée** (`cloneNode(true)` + `replaceWith`) pour détacher les listeners de app.js
+  (navigation clavier, fond, flèches, miniatures, swipe tactile).
+- `galerie.html` : inclusion de `api-actualites.js?v=8` (après `app.js`) —
+  le carrousel des instituts de cette page devient dynamique au passage.
+- Cache-busting passé à `?v=8` sur `index.html`, `actualites.html`,
+  `actualite/article.html`.
+
+### Validation (Edge headless, `/tmp/dash-test/galerie-dyn-test.js`)
+Grille : 2 albums du dashboard rendus, covers chargées ✓ ; clic album → vue avec
+2 photos chargées ✓ ; clic photo → lightbox ouverte, image chargée, index « 1/2 »,
+2 miniatures ✓ ; fermeture ✓ ; retour grille ✓ ; deep link `?album=…` ✓ ;
+aucune erreur JS ; aucune régression sur index/actualités/article (hero, cartes,
+widget actualités, carrousel instituts).
