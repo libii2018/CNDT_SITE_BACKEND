@@ -1083,3 +1083,30 @@ Envoi réel depuis contact.html → message enregistré (nom, objet
 toujours active ✓ ; dashboard : message visible dans la section Messages,
 colonnes correctes, pas de bouton « Nouveau » ✓ ; aucune erreur JS ;
 message de test supprimé.
+
+## 43. Fonctionnalité Projets sur le site vitrine
+
+**Manque** : les projets gérés dans le dashboard (entité `projects` et API
+`GET /projects` déjà en place) n'étaient affichés nulle part sur le site public.
+
+### Ce qui a été fait
+- **`projets.html`** (nouvelle page) : hero « Nos projets », filtres
+  Tous / À venir / En cours / Terminés (`?status=…` côté API), grille de cartes
+  réutilisant les classes du design (`.archive-card` : couverture, statut,
+  période, titre, résumé, partenaire), bouton « Charger plus » (pagination).
+- **`projets/projet.html?slug=…`** (nouvelle fiche) : hero avec couverture et
+  titre, informations clés Statut / Partenaire / Période (rubriques masquées
+  si vides), description HTML (WYSIWYG du dashboard), bouton « Consulter le
+  projet » si un lien externe est renseigné, sidebar actualités, retour.
+- `api-actualites.js` (v=13) : `renderProjets()` et `renderProjetDetail()` ;
+  les regex de sous-dossiers (liens articles, logos instituts) couvrent
+  désormais `projets/`.
+- `app.js` : lien « Projets » ajouté dans la navigation principale et le pied
+  de page.
+
+### Validation (Edge headless)
+Projet créé via l'API (en cours, partenaire MINRESI, description riche, lien
+externe) → visible sur projets.html avec son statut et son lien ✓ ; filtre
+« En cours » ✓ ; fiche complète (metas, HTML rendu, bouton externe, sidebar,
+retour, 8 logos instituts) ✓ ; nav + footer ✓ ; aucune erreur JS ; aucune
+régression (index, galerie, actualités, contact) ; projet de test supprimé.

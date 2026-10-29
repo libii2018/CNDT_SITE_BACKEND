@@ -48,7 +48,7 @@ window.CNDT_API = window.CNDT_API || {
   function articleLink(slug) {
     // Depuis les sous-dossiers (actualite/, membres/) les liens sont locaux,
     // depuis la racine ils passent par le sous-dossier.
-    const inSubFolder = /\/(actualite|membres)\/[^/]*\.html/.test(location.pathname);
+    const inSubFolder = /\/(actualite|membres|projets)\/[^/]*\.html/.test(location.pathname);
     const prefix = inSubFolder ? 'article.html?slug=' : 'actualite/article.html?slug=';
     return prefix + encodeURIComponent(slug);
   }
@@ -277,7 +277,7 @@ window.CNDT_API = window.CNDT_API || {
 
       // Chemins relatifs : préfixe selon la profondeur de la page
       // (racine, ou sous-dossiers actualite/ et membres/)
-      const prefix = /\/(actualite|membres)\/[^/]*\.html/.test(location.pathname) ? '../' : '';
+      const prefix = /\/(actualite|membres|projets)\/[^/]*\.html/.test(location.pathname) ? '../' : '';
       const imgSrc = (p) => /^(https?:)?\//.test(p) ? p : prefix + p;
 
       wrapper.innerHTML = items.map((i) => `
@@ -787,6 +787,153 @@ window.CNDT_API = window.CNDT_API || {
     }
   }
 
+  /* ---------- 9. Projets (projets.html + projets/projet.html) ---------- */
+  const PROJET_STATUS = { a_venir: 'À venir', en_cours: 'En cours', termine: 'Terminé' };
+
+  function projetCardHtml(p) {
+    const img = p.cover_image
+      ? `<div class="archive-image"><img src="${esc(p.cover_image)}" alt="${esc(p.title)}" loading="lazy"></div>`
+      : '<div class="archive-image"></div>';
+    const statut = PROJET_STATUS[p.status] || p.status || 'Projet';
+    const periode = [p.start_date, p.end_date].filter(Boolean).join(' → ');
+    return `
+      <article class="archive-card">
+        ${img}
+        <div class="archive-body">
+          <div class="archive-meta">
+            <span>${esc(statut)}</span>
+            ${periode ? `<span>${esc(periode)}</span>` : ''}
+          </div>
+          <h2>${esc(p.title)}</h2>
+          ${p.summary ? `<p>${esc(p.summary)}</p>` : ''}
+          ${p.partner ? `<p><strong>Partenaire :</strong> ${esc(p.partner)}</p>` : ''}
+          <a class="text-link" href="projets/projet.html?slug=${encodeURIComponent(p.slug)}">Voir le projet <span aria-hidden="true">→</span></a>
+        </div>
+      </article>`;
+  }
+
+  async function renderProjets() {
+    const grid = $('[data-projets-grid]');
+    if (!grid) return; // pas la page projets
+
+    const state = { page: 1, filter: 'all', loading: false, hasMore: true };
+
+    $$('[data-projets-filter] [data-filter]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        $$('[data-projets-filter] [data-filter]').forEach((b) =>
+          b.classList.toggle('is-active', b === btn));
+        state.filter = btn.dataset.filter;
+        state.page = 1;
+        load(true);
+      });
+    });
+
+    const more = $('#projets-more');
+    if (more) more.addEventListener('click', () => load(false));
+
+    async function load(reset) {
+      if (state.loading || (reset === false && !state.hasMore)) return;
+      state.loading = true;
+
+      if (reset) grid.innerHTML = '<p class="archive-empty">Chargement des projets…</p>';
+
+      try {
+        const params = new URLSearchParams({ page: state.page, per_page: PER_PAGE });
+        if (state.filter !== 'all') params.set('status', state.filter);
+        const res = await fetchApi('/projects?' + params.toString());
+        const items = res.data || [];
+        state.hasMore = !!res.links?.next;
+        state.page += 1;
+
+        if (reset) grid.innerHTML = '';
+        if (!items.length && reset) {
+          grid.innerHTML = '<p class="archive-empty">Aucun projet publié pour le moment.</p>';
+        }
+        items.forEach((p) => grid.insertAdjacentHTML('beforeend', projetCardHtml(p)));
+        if (more) more.hidden = !state.hasMore;
+      } catch (err) {
+        if (reset) grid.innerHTML =
+          `<p class="archive-error">Impossible de charger les projets (${esc(err.message)}).</p>`;
+      } finally {
+        state.loading = false;
+      }
+    }
+
+    await load(true);
+  }
+
+  async function renderProjetDetail() {
+    const root = $('[data-projet-detail]');
+    if (!root) return; // pas la page fiche projet
+
+    const slug = new URLSearchParams(location.search).get('slug');
+    const hero = $('[data-projet-hero]', root);
+    const body = $('[data-projet-body]', root);
+
+    if (!slug) {
+      if (body) body.innerHTML =
+        '<p class="archive-error">Aucun projet demandé. <a class="text-link" href="../projets.html">Voir tous les projets</a></p>';
+      return;
+    }
+
+    try {
+      const res = await fetchApi('/projects/' + encodeURIComponent(slug));
+      const p = res.data;
+      document.title = `${p.title} | CNDT Cameroun`;
+
+      if (hero) {
+        const img = $('img', hero);
+        if (img && p.cover_image) {
+          img.src = /^(https?:)?\//.test(p.cover_image) ? p.cover_image : '../' + p.cover_image;
+          img.alt = p.title;
+        }
+        const h1 = $('h1', hero);
+        if (h1) h1.textContent = p.title;
+        const kicker = $('[data-projet-statut]', hero);
+        if (kicker) kicker.textContent = PROJET_STATUS[p.status] || 'Projet';
+
+        const metas = {
+          statut: PROJET_STATUS[p.status] || p.status,
+          partenaire: p.partner,
+          periode: [p.start_date, p.end_date].filter(Boolean).join(' → '),
+        };
+        Object.entries(metas).forEach(([cle, valeur]) => {
+          const li = $(`[data-meta="${cle}"]`, hero);
+          if (!li) return;
+          if (valeur) {
+            li.hidden = false;
+            $('strong', li).textContent = valeur;
+          } else {
+            li.hidden = true;
+          }
+        });
+      }
+
+      if (body) {
+        const contenu = p.description || p.summary || '';
+        if (/<\/?[a-z][\s\S]*>/i.test(contenu)) {
+          body.innerHTML = contenu;
+        } else {
+          const paragraphs = contenu.split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean);
+          body.innerHTML = paragraphs.length
+            ? paragraphs.map((t) => `<p>${esc(t)}</p>`).join('')
+            : '<p>(Description à venir.)</p>';
+        }
+      }
+
+      const lienBox = $('[data-projet-lien]');
+      const lien = $('[data-projet-lien-cible]');
+      if (lienBox && lien && p.link) {
+        lien.href = p.link;
+        lienBox.hidden = false;
+      }
+    } catch {
+      if (body) body.innerHTML =
+        `<p class="archive-error">Projet introuvable ou API indisponible. ` +
+        `<a class="text-link" href="../projets.html">Retour aux projets</a></p>`;
+    }
+  }
+
   /* ---------- Démarrage ---------- */
   const start = () => {
     renderActualitesGrid();
@@ -797,6 +944,8 @@ window.CNDT_API = window.CNDT_API || {
     renderGalerie();
     renderPersonnel();
     renderMembreFiche();
+    renderProjets();
+    renderProjetDetail();
   };
 
   if (document.readyState === 'loading') {

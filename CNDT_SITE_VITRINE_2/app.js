@@ -64,6 +64,7 @@ window.CNDT_SITE = { root: '' };
 
         <a href="${window.CNDT_SITE.root}actualites.html">Actualités</a>
         <a href="${window.CNDT_SITE.root}publication.html">Publications</a>
+        <a href="${window.CNDT_SITE.root}projets.html">Projets</a>
         <a href="${window.CNDT_SITE.root}contact.html">Contact</a>
 
         <div class="nav-search" data-nav-search role="search">
@@ -295,6 +296,7 @@ window.CNDT_SITE = { root: '' };
       <div>
         <a href="${window.CNDT_SITE.root}actualites.html">Actualités</a>
         <a href="${window.CNDT_SITE.root}publication.html">Publications</a>
+        <a href="${window.CNDT_SITE.root}projets.html">Projets</a>
       </div>
     </div>
     <div>
