@@ -113,7 +113,7 @@ Origins autorisés pour le frontend : `http://localhost[:8080|:5500]` et équiva
 
 ## Frontend
 
-Côté site vitrine (`CNDT_SITE_VITRINE_2`), remplacer les données statiques par des appels `fetch()` vers
+Le site vitrine est servi par cette application Laravel (vues Blade, `resources/views/pages`) ; le contenu dynamique consomme l'API via
 l'API, par exemple :
 
 ```js

@@ -9,7 +9,7 @@
         ┌─────────────────────────────────────────────┐
         │                                             │
         │   Site vitrine (public)     Dashboard admin │
-        │   CNDT_SITE_VITRINE_2       CNDT_SITE_      │
+        │   Site vitrine Blade      Dashboard admin │
         │   (HTML/CSS/JS statique)    VITRINE_2/admin  │
         │   :8080                    (SPA vanilla JS) │
         │        │                        :8080/admin  │
@@ -67,12 +67,12 @@ compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 - Le contenu dynamique reste alimenté côté client par `api-actualites.js`
   (actualités, hero, instituts, galerie, personnel, fiches, projets).
 - Formulaire de contact : `POST /api/v1/contact`.
-- `CNDT_SITE_VITRINE_2/` conserve la **source du dashboard** et sert de
-  référence historique (le site statique n'est plus servi directement).
+- L'ancien dossier statique `CNDT_SITE_VITRINE_2/` a été **retiré** du dépôt ;
+  la source du dashboard vit désormais à la racine : `dashboard/`.
 
 ## 2. Frontend admin — dashboard (React + Tailwind + shadcn/ui)
 
-- **Source** : `CNDT_SITE_VITRINE_2/dashboard/` (Vite + React 19 + TypeScript)
+- **Source** : `dashboard/` (à la racine du dépôt — Vite + React 19 + TypeScript)
 - **Build déployé** : `cndt-api/public/admin/` — même URL : http://localhost:8080/admin/
   (l'ancien `admin.html` à la racine redirige vers `admin/`)
 - Stack : **React 19**, **Tailwind CSS v4**, **shadcn/ui** (composants Radix UI), lucide-react,
@@ -102,7 +102,7 @@ dashboard/src/
 
 ### Développement et déploiement
 ```bash
-cd CNDT_SITE_VITRINE_2/dashboard
+cd dashboard
 npm run dev      # serveur de dev Vite (hot reload)
 npm run build    # build de production dans dist/
 # déployer : copier dist/* dans ../admin/

@@ -1174,3 +1174,18 @@ l'API inchangée, le dashboard inchangé (build React), toujours sous Docker.
   Messages du dashboard), navigation dashboard complète ✓.
 - Aucune erreur JS sur l'ensemble des pages ; messages de test supprimés
   (le message réel de l'utilisateur est conservé).
+
+## 46. Retrait du dossier CNDT_SITE_VITRINE_2/
+
+Suite de la refonte (§45) : le dossier statique n'a plus de rôle — le site est
+servi par Laravel (Blade) et le dashboard par `cndt-api/public/admin/`.
+
+- **Source du dashboard préservée** : `CNDT_SITE_VITRINE_2/dashboard/` est
+  déplacée à la racine du dépôt (`dashboard/`, git mv — historique conservé ;
+  node_modules/dist restent ignorés par son .gitignore).
+- Le reste du dossier (site statique historique, copies d'assets, build admin
+  dupliqué) est supprimé du dépôt et du disque.
+- Build vérifié depuis le nouvel emplacement : `npm run build` → déploiement
+  dans `cndt-api/public/admin/` ; dashboard opérationnel (connexion, sections,
+  aucune erreur JS).
+- ARCHITECTURE.md et cndt-api/README.md mis à jour (chemins `dashboard/`).
