@@ -170,23 +170,23 @@
             <div class="agenda-list">
 
 
-              <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
+              <a href="/article/fracture-numerique-per-bayangam-akonolinga">
                 <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
                 <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
               </a>
-              <a href="/actualite/aiea70-2026">
+              <a href="/article/aiea70-2026">
                 <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
                 <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
               </a>
-              <a href="/actualite/formation-finances-publiques-2026">
+              <a href="/article/formation-finances-publiques-2026">
                 <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
                 <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
               </a>
-              <a href="/actualite/cndt-43e-session-comite">
+              <a href="/article/cndt-43e-session-comite">
                 <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
                 <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
               </a>
-              <a href="/actualite/sia-minresi-2026">
+              <a href="/article/sia-minresi-2026">
                 <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
                 <p>Semaine de l'Intelligence Articielle au MINRESI</p>
               </a>

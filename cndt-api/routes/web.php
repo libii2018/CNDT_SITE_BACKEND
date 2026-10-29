@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Route;
 |   /  /actualites  /article/{slug}  /galerie  /personnel  /membre/{slug}
 |   /projets  /projet/{slug}  /publications  /contact  /organigramme
 |   /comite  /cabinet  /crmp  /caaf  /cdcrp  /rhcaj  /ct
-|   /actualite/{page}  /membres/{page}  /projets/{page}  (contenus historiques)
 |
-| Les anciennes URLs .html ne servent plus de contenu : elles redirigent
-| en 301 vers l'URL propre correspondante (liens externes, favoris).
+| Les articles et fiches individuelles sont tous gérés EN BASE
+| (dashboard/API) : plus aucune vue statique par article ou par membre.
+| Les anciennes URLs .html et les anciens chemins (/actualite/{page},
+| /membres/{page}) redirigent en 301 vers les URLs propres.
 | Le dashboard React est servi depuis public/admin/ par Apache ;
 | l'API reste sous /api/v1 (routes/api.php).
 */
@@ -77,29 +78,40 @@ Route::get('/rhcaj.html', $versPropre('/rhcaj'));
 Route::view('/ct', 'pages.ct')->name('ct');
 Route::get('/ct.html', $versPropre('/ct'));
 
-/* ---------- Contenus historiques (vues Blade statiques) ----------
-   /actualite/{page}, /membres/{page}, /projets/{page} — servis uniquement
-   si la vue existe dans resources/views/pages/ (404 sinon). */
-$pageStatique = function (string $dossier) {
-    return function (string $page) use ($dossier) {
-        $vue = 'pages.'.$dossier.'.'.str_replace(['/', '\\'], '', $page);
-        abort_unless(view()->exists($vue), 404);
+/* ---------- Contenus migrés en base de données ----------
+   Anciens articles statiques → articles en base (301) ; anciennes fiches
+   statiques → fiches dynamiques (301, mapping fichier → slug membre). */
+Route::get('/actualite/{page}', fn (string $page) =>
+    redirect('/article/'.$page, 301))->where('page', '[A-Za-z0-9\-_]+');
 
-        return view($vue);
-    };
-};
+$FICHES_MEMBRES = [
+    'ele-abiama-patrice' => 'dr-ele-abiama-patrice',
+    'tsuanyo-david' => 'dr-tsuanyo-david',
+    'kouna-jean' => 'm-kouna-jean-baptiste',
+    'bilounga-sandrine' => 'mme-bilounga-bindoua-marie-sandrine',
+    'isaoura-benite' => 'mme-isaoura-benite',
+    'aboubakar-el-boukar' => 'dr-aboubakar-el-boukar',
+    'amada-brahim' => 'm-amada-brahim',
+    'menga-francis-daniel' => 'dr-menga-francis-daniel',
+    'paglan-paul-andre' => 'dr-paglan-paul-andre',
+    'temgoua-pelagie' => 'mme-temgoua-nanfack-pelagie-flore-epse-abomo',
+    'eyoum-henriette' => 'mme-eyoum-ekoule-henriette-annie-dorette',
+    'babgai-raphael' => 'm-babgai-raphael-guideke',
+    'avah-jean-jaures' => 'm-avah-jean-jaures-fils',
+];
+Route::get('/membres/{page}', function (string $page) use ($FICHES_MEMBRES) {
+    abort_unless(isset($FICHES_MEMBRES[$page]), 404);
 
-Route::get('/actualite/{page}', $pageStatique('actualite'))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/membres/{page}', $pageStatique('membres'))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/projets/{page}', $pageStatique('projets'))->where('page', '[A-Za-z0-9\-_]+');
+    return redirect('/membre/'.$FICHES_MEMBRES[$page], 301);
+})->where('page', '[A-Za-z0-9\-_]+');
 
-// Anciennes URLs .html → URL propre
-Route::get('/actualite/{page}.html', fn (string $page) =>
-    redirect('/actualite/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/membres/{page}.html', fn (string $page) =>
-    redirect('/membres/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/projets/{page}.html', fn (string $page) =>
-    redirect('/projets/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
+/* Projets : page statique restante, servie uniquement si la vue existe */
+Route::get('/projets/{page}', function (string $page) {
+    $vue = 'pages.projets.'.str_replace(['/', '\\'], '', $page);
+    abort_unless(view()->exists($vue), 404);
+
+    return view($vue);
+})->where('page', '[A-Za-z0-9\-_]+');
 
 /* ---------- Dashboard React (build statique servi par Apache) ---------- */
 Route::redirect('/admin.html', '/admin/', 301);

@@ -279,7 +279,7 @@
                 <h2 id="news-title">Actualités</h2>
               </div>
               <div class="agenda-list">
-                <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
+                <a href="/article/fracture-numerique-per-bayangam-akonolinga">
                   <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
                   <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
                 </a>
