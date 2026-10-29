@@ -942,3 +942,32 @@ recherche « tchuinte » → 1 carte, « tablard » (membre de test) → ligne d
 tableau ✓ ; création/édition/suppression via API testées puis nettoyées ✓ ;
 dashboard : colonnes + champs présents dans la modale ✓ ; aucune erreur JS,
 aucune régression sur index/galerie/actualités.
+
+## 38. Catalogue du personnel — allègement du formulaire et liens des fiches
+
+Retours utilisateur :
+1. **plus de saisie de position** (ni position de la personne, ni position du
+   niveau) ;
+2. **retrait du champ « Chapitre »** ;
+3. **restaurer les liens des cartes vers les fiches individuelles**
+   (perdus au passage au dynamique, sauf pour le tableau qui n'a pas de fiche).
+
+### Ce qui a été fait
+- Backend : colonne **`page_url`** sur `members` (migration 2026_10_29_130000,
+  modèle, ressource, validation) — lien de la fiche personnelle de la carte.
+- PersonnelSeeder : les 14 cartes portent leurs liens d'origine
+  (`membres/ele-abiama-patrice.html`, … ; `#` pour la Direction, comme la page
+  statique) ; les positions ne sont plus seedées.
+- Dashboard : formulaires allégés — suppression des champs « Position du
+  niveau », « Position dans le niveau » et « Chapitre » ; ajout de « Lien de la
+  fiche personnelle ». Build redéployé dans `admin/`.
+- Site public : l'ordre d'affichage devient **l'ordre de création** (tri par
+  `id` des niveaux et des personnes — aucun positionnement à gérer), et les
+  cartes pointent vers `page_url` (repli `#`).
+
+### Validation (Edge headless)
+5 niveaux d'origine dans l'ordre (Direction → Autres Chefs de Secrétariat) ✓ ;
+14 cartes avec leurs liens vers les fiches (fiches testées HTTP 200) ✓ ;
+modale dashboard sans champ position/chapitre, champ lien présent ✓ ;
+aucune erreur JS. Note : le membre « test test » créé depuis le dashboard
+apparaît en dernier dans son niveau « Test » — supprimable depuis le dashboard.

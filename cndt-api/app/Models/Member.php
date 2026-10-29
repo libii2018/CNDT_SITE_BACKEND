@@ -9,7 +9,7 @@ class Member extends Model
     protected $fillable = [
         'first_name', 'last_name', 'slug', 'display_type', 'level', 'level_position',
         'role', 'grade', 'degree', 'speciality', 'unit', 'chapter',
-        'email', 'phone', 'photo', 'biography', 'is_visible', 'position',
+        'email', 'phone', 'photo', 'page_url', 'biography', 'is_visible', 'position',
     ];
 
     protected $casts = [

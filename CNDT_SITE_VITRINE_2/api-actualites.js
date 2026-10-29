@@ -599,14 +599,12 @@ window.CNDT_API = window.CNDT_API || {
         if (!niveaux.has(cle)) niveaux.set(cle, []);
         niveaux.get(cle).push(m);
       });
-      const entrees = [...niveaux.entries()].sort((a, b) => {
-        const pa = Math.min(...a[1].map((m) => m.level_position ?? 0));
-        const pb = Math.min(...b[1].map((m) => m.level_position ?? 0));
-        return pa - pb;
-      });
+      // Ordre d'affichage : ordre de création (id), aucun positionnement à gérer
+      const entrees = [...niveaux.entries()].sort((a, b) =>
+        Math.min(...a[1].map((m) => m.id)) - Math.min(...b[1].map((m) => m.id)));
 
       hierarchy.innerHTML = entrees.map(([niveau, liste], i) => {
-        liste.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+        liste.sort((a, b) => a.id - b.id);
         return `
           <section class="staff-level" data-staff-level aria-labelledby="dyn-level-${i}">
             <header class="staff-level__head">
@@ -615,7 +613,7 @@ window.CNDT_API = window.CNDT_API || {
             </header>
             <div class="staff-level__grid">
               ${liste.map((m) => `
-                <a class="staff-person" href="#"
+                <a class="staff-person" href="${esc(m.page_url || '#')}"
                   data-staff-item
                   data-search="${esc((fullName(m) + ' ' + (m.role || '') + ' ' + niveau + ' ' + (m.degree || '') + ' ' + (m.unit || '')).toLowerCase())}">
                   ${m.photo ? `<img src="${esc(imgSrc(m.photo))}" alt="${esc(fullName(m))}" loading="lazy" onerror="this.remove()">` : ''}

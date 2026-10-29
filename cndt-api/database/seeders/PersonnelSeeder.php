@@ -30,18 +30,17 @@ class PersonnelSeeder extends Seeder
 
     private function catalogue(): array
     {
-        $cartes = function (string $level, int $levelPosition, array $personnes): array {
-            return array_map(fn ($p, $i) => [
+        $cartes = function (string $level, array $personnes): array {
+            return array_map(fn ($p) => [
                 'first_name' => $p[0],
                 'last_name' => $p[1],
                 'display_type' => 'card',
                 'level' => $level,
-                'level_position' => $levelPosition,
                 'role' => $p[2],
                 'degree' => $p[3],
                 'photo' => $p[4] ?? null,
-                'position' => $i + 1,
-            ], $personnes, array_keys($personnes));
+                'page_url' => $p[5] ?? null,
+            ], $personnes);
         };
 
         $table = function (array $personnes): array {
@@ -55,29 +54,29 @@ class PersonnelSeeder extends Seeder
         };
 
         return array_merge(
-            $cartes('Direction', 1, [
-                ['Dr Madeleine', 'TCHUINTE', "Ministre de la Recherche Scientifique et de l'Innovation — Présidente du Comité", 'Docteur', 'assets/people/ministre.jpg'],
+            $cartes('Direction', [
+                ['Dr Madeleine', 'TCHUINTE', "Ministre de la Recherche Scientifique et de l'Innovation — Présidente du Comité", 'Docteur', 'assets/people/ministre.jpg', null],
             ]),
-            $cartes('Secrétariat Permanent', 2, [
-                ['Dr ELE ABIAMA', 'Patrice', 'Secrétaire Permanent du CNDT', 'Directeur de Recherche', 'assets/people/sp.webp'],
+            $cartes('Secrétariat Permanent', [
+                ['Dr ELE ABIAMA', 'Patrice', 'Secrétaire Permanent du CNDT', 'Directeur de Recherche', 'assets/people/sp.webp', 'membres/ele-abiama-patrice.html'],
             ]),
-            $cartes('Coordinations exécutives adjointes', 3, [
-                ['Dr TSUANYO', 'David', 'Coordonnateur Exécutif Adjoint chargé de la Recherche', "Doctorat en Ingénierie de l'Énergie", 'assets/people/tsuanyo.webp'],
-                ['M.', 'KOUNA Jean Baptiste', 'Coordonnateur Exécutif Adjoint — Commission Administrative, Financière et Comptable', 'Master Professionnel en Propriété Intellectuelle', 'assets/people/kouna.webp'],
-                ['Mme', 'BILOUNGA BINDOUA Marie Sandrine', 'Coordonnatrice Exécutive Adjointe chargée de la Coopération', 'Master en Économie · DESS Banque-Finance · Master GRH', 'assets/people/bilounga.webp'],
-                ['Mme', 'ISAOURA Bénite', 'Coordonnatrice Exécutive Adjointe — Documentation, Communication et Relations Publiques', 'Master Professionnel en Informatique', 'assets/people/isaoura.webp'],
+            $cartes('Coordinations exécutives adjointes', [
+                ['Dr TSUANYO', 'David', 'Coordonnateur Exécutif Adjoint chargé de la Recherche', "Doctorat en Ingénierie de l'Énergie", 'assets/people/tsuanyo.webp', 'membres/tsuanyo-david.html'],
+                ['M.', 'KOUNA Jean Baptiste', 'Coordonnateur Exécutif Adjoint — Commission Administrative, Financière et Comptable', 'Master Professionnel en Propriété Intellectuelle', 'assets/people/kouna.webp', 'membres/kouna-jean.html'],
+                ['Mme', 'BILOUNGA BINDOUA Marie Sandrine', 'Coordonnatrice Exécutive Adjointe chargée de la Coopération', 'Master en Économie · DESS Banque-Finance · Master GRH', 'assets/people/bilounga.webp', 'membres/bilounga-sandrine.html'],
+                ['Mme', 'ISAOURA Bénite', 'Coordonnatrice Exécutive Adjointe — Documentation, Communication et Relations Publiques', 'Master Professionnel en Informatique', 'assets/people/isaoura.webp', 'membres/isaoura-benite.html'],
             ]),
-            $cartes('Chefs de Secrétariat titulaires', 4, [
-                ['Dr', 'ABOUBAKAR EL BOUKAR', 'Chef du Secrétariat des Politiques Scientifiques et Technologiques', 'Doctorat en Droit Public', 'assets/people/el-boukar.webp'],
-                ['M.', 'AMADA BRAHIM', "Chef du Secrétariat des Ressources Humaines, de l'Action Sociale et du Multiculturalisme", 'Doctorant en Biologie', 'assets/people/amada.webp'],
-                ['Dr MENGA Francis', 'Daniel', "Chef de Secrétariat Technologies de l'Energie des Mines et de l'Environnement", "Doctorat en Énergétique et Environnement", 'assets/people/menga.jpeg'],
-                ['Dr PAGLAN Paul', 'André', 'Chef du Secrétariat Technologies et Transformations Industrielles', 'Doctorat en Physique Non Linéaire et Systèmes Complexes', 'assets/people/paglan.webp'],
-                ['Mme', 'TEMGOUA NANFACK Pélagie Flore épse ABOMO', 'Chef du Secrétariat TIC et Intelligence Artificielle', 'Master de Recherche en Informatique', 'assets/people/temgoua.webp'],
+            $cartes('Chefs de Secrétariat titulaires', [
+                ['Dr', 'ABOUBAKAR EL BOUKAR', 'Chef du Secrétariat des Politiques Scientifiques et Technologiques', 'Doctorat en Droit Public', 'assets/people/el-boukar.webp', 'membres/aboubakar-el-boukar.html'],
+                ['M.', 'AMADA BRAHIM', "Chef du Secrétariat des Ressources Humaines, de l'Action Sociale et du Multiculturalisme", 'Doctorant en Biologie', 'assets/people/amada.webp', 'membres/amada-brahim.html'],
+                ['Dr MENGA Francis', 'Daniel', "Chef de Secrétariat Technologies de l'Energie des Mines et de l'Environnement", "Doctorat en Énergétique et Environnement", 'assets/people/menga.jpeg', 'membres/menga-francis-daniel.html'],
+                ['Dr PAGLAN Paul', 'André', 'Chef du Secrétariat Technologies et Transformations Industrielles', 'Doctorat en Physique Non Linéaire et Systèmes Complexes', 'assets/people/paglan.webp', 'membres/paglan-paul-andre.html'],
+                ['Mme', 'TEMGOUA NANFACK Pélagie Flore épse ABOMO', 'Chef du Secrétariat TIC et Intelligence Artificielle', 'Master de Recherche en Informatique', 'assets/people/temgoua.webp', 'membres/temgoua-pelagie.html'],
             ]),
-            $cartes('Autres Chefs de Secrétariat', 5, [
-                ['Mme', 'EYOUM EKOULE Henriette Annie Dorette', 'Assistante du Secrétaire Permanent', 'Baccalauréat D', 'assets/people/eyoum.webp'],
-                ['M.', 'BABGAI Raphaël GUIDÉKÉ', 'Chef de Secrétariat Adjoint — Responsable du Parc Informatique', 'Master en Informatique et Télécommunications', 'assets/people/babgai-raphael-guidéke.jpeg'],
-                ['M.', 'AVAH Jean Jaurès Fils', 'Chef de la cellule informatique', 'DEA en Biologie Animale, option Zoologie', 'assets/people/avah.webp'],
+            $cartes('Autres Chefs de Secrétariat', [
+                ['Mme', 'EYOUM EKOULE Henriette Annie Dorette', 'Assistante du Secrétaire Permanent', 'Baccalauréat D', 'assets/people/eyoum.webp', 'membres/eyoum-henriette.html'],
+                ['M.', 'BABGAI Raphaël GUIDÉKÉ', 'Chef de Secrétariat Adjoint — Responsable du Parc Informatique', 'Master en Informatique et Télécommunications', 'assets/people/babgai-raphael-guidéke.jpeg', 'membres/babgai-raphael.html'],
+                ['M.', 'AVAH Jean Jaurès Fils', 'Chef de la cellule informatique', 'DEA en Biologie Animale, option Zoologie', 'assets/people/avah.webp', 'membres/avah-jean-jaures.html'],
             ]),
             $table([
                 ['Mme', 'ATEM TAKANG-ETTA Linda-Rose', 'Diplôme d\'Ingénieur en Génie des Procédés Chimiques'],

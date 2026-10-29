@@ -96,7 +96,7 @@ export interface Member {
   level_position?: number; role: string | null; grade?: string | null;
   degree?: string | null; speciality?: string | null;
   unit: string | null; chapter: string | null;
-  email: string | null; phone: string | null; photo: string | null;
+  email: string | null; phone: string | null; photo: string | null; page_url?: string | null;
   biography: string | null; is_visible: boolean; position: number;
 }
 export interface Project {

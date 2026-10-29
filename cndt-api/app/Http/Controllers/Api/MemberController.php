@@ -78,6 +78,7 @@ class MemberController extends Controller
             'email' => 'sometimes|nullable|email|max:255',
             'phone' => 'sometimes|nullable|string|max:50',
             'photo' => 'sometimes|nullable|string|max:255',
+            'page_url' => 'sometimes|nullable|string|max:255',
             'biography' => 'sometimes|nullable|string',
             'is_visible' => 'sometimes|boolean',
             'position' => 'sometimes|integer',
