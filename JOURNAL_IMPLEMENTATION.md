@@ -1055,3 +1055,31 @@ préfixe de chemin des logos relatifs ne couvrait que le sous-dossier
 **Validation (Edge headless)** : les 8 logos (CNDT, ANRP, IRAD, IMPM, INC,
 MIPROMALO, CNE, IRGM) répondent HTTP 200 depuis membre.html, article.html,
 personnel.html et index.html.
+
+## 42. Formulaire de contact câblé sur l'API + section Messages du dashboard
+
+**Problème** : le formulaire de `contact.html` était une démo locale (succès
+simulé, rien n'était envoyé) et la section « Messages » du dashboard était vide
+(aucune configuration d'entité).
+
+### Ce qui a été fait
+- **Site public** (`app.js` §13) : le submit envoie un vrai
+  `POST /api/v1/contact` (throttle serveur : 5 messages / 10 min) —
+  bouton désactivé pendant l'envoi, message de succès/erreur dans
+  `[data-contact-feedback]`, gestion du 429 (trop de messages), l'objet envoyé
+  est le libellé français de l'option choisie ; les validations locales
+  d'origine sont conservées.
+- **Dashboard** : configuration `messages` (colonnes Reçu le / Nom / Email /
+  Téléphone / Objet / Message (tronqué) / Lu ; modale de consultation avec
+  « Marqué comme lu » — seul champ persistant via PUT). Nouvelle option
+  `canCreate: false` dans EntityConfig → le bouton « Nouveau » est masqué
+  pour les entités alimentées par le site.
+- Le badge « non lus » de la sidebar existait déjà et s'appuie sur
+  `GET /messages?unread=1`.
+
+### Validation (Edge headless)
+Envoi réel depuis contact.html → message enregistré (nom, objet
+« Demande d'information », non lu) ✓ ; validation locale (email invalide)
+toujours active ✓ ; dashboard : message visible dans la section Messages,
+colonnes correctes, pas de bouton « Nouveau » ✓ ; aucune erreur JS ;
+message de test supprimé.

@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm) {
     const feedback = contactForm.querySelector('[data-contact-feedback]');
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const data = new FormData(contactForm);
@@ -900,10 +900,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      /* Démo locale : à remplacer par un POST vers votre backend ou service d'envoi
-         (Formspree, EmailJS, API maison…) */
-      showFeedback('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 48 h.', 'success');
-      contactForm.reset();
+      /* Envoi réel vers l'API Laravel : POST /api/v1/contact
+         (limité en fréquence côté serveur : 5 messages / 10 min). */
+      const sujetSel = contactForm.querySelector('select[name="subject"]');
+      const bouton = contactForm.querySelector('button[type="submit"]');
+      const api = (window.CNDT_API && window.CNDT_API.url) || '/api/v1';
+      const payload = {
+        name: String(data.get('name') || '').trim(),
+        email,
+        phone: String(data.get('phone') || '').trim() || null,
+        subject: (sujetSel && sujetSel.selectedIndex > 0)
+          ? sujetSel.options[sujetSel.selectedIndex].text
+          : null,
+        message: String(data.get('message') || '').trim(),
+      };
+
+      bouton.disabled = true;
+      try {
+        const res = await fetch(api + '/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.status === 429) throw new Error('trop de messages envoyés, réessayez dans quelques minutes.');
+        if (!res.ok) throw new Error('erreur ' + res.status);
+        showFeedback('Merci ! Votre message a bien été envoyé. Nous vous répondrons sous 48 h.', 'success');
+        contactForm.reset();
+      } catch (err) {
+        showFeedback("L'envoi a échoué : " + err.message, 'error');
+      } finally {
+        bouton.disabled = false;
+      }
     });
 
     function showFeedback(message, type) {
