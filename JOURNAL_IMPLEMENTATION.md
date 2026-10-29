@@ -1189,3 +1189,28 @@ servi par Laravel (Blade) et le dashboard par `cndt-api/public/admin/`.
   dans `cndt-api/public/admin/` ; dashboard opérationnel (connexion, sections,
   aucune erreur JS).
 - ARCHITECTURE.md et cndt-api/README.md mis à jour (chemins `dashboard/`).
+
+## 47. Routes Laravel complètes pour tout le site
+
+`routes/web.php` réorganisé : chaque page du projet possède une **route
+Laravel propre (canonical, nommée)** et les URLs historiques `.html` restent
+servies en alias :
+
+- URLs propres : `/`, `/actualites`, `/galerie`, `/personnel`, `/projets`,
+  `/publications`, `/contact`, `/organigramme`, `/comite`, `/cabinet`,
+  `/crmp`, `/caaf`, `/cdcrp`, `/rhcaj`, `/ct` (+ alias `.html` de chacune).
+- Slugs dynamiques : `/article/{slug}`, `/membre/{slug}`, `/projet/{slug}`
+  → redirection 301 vers la forme complète `…html?slug=…` (les pages
+  dynamiques lisent `?slug=` côté client).
+- Pages historiques : `/actualite/{page}.html`, `/membres/{page}.html`,
+  `/projets/{page}.html` avec garde d'existence de la vue (404 propre).
+- Noms de routes (`accueil`, `actualites`, `article`, `galerie`,
+  `personnel`, `membre`, `projets`, `projet`, `publications`, `contact`,
+  organisation/commissions) — utilisables avec `route()`.
+- L'API reste sous `/api/v1` (routes/api.php, inchangée) ; le dashboard est
+  servi par Apache depuis `public/admin/` (`/admin.html` → 301 `/admin/`).
+
+### Validation
+Toutes les URLs propres : 200 ✓ ; les 3 redirections de slugs : 301 vers la
+forme `?slug=` ✓ ; URLs historiques toujours 200 ✓ ; image API rebuildée et
+conteneur redémarré (routage persistant).
