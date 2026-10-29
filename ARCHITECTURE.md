@@ -56,9 +56,11 @@ compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 
 **Refonte** : le site vitrine est servi par l'application Laravel (`cndt-api`).
 
-- **Vues** : `cndt-api/resources/views/pages/*.blade.php` (une vue par page,
-  conversion intégrale du site statique d'origine — 40 vues) +
-  `layouts/site.blade.php` (header et footer **rendus côté serveur**).
+- **Vues** : `cndt-api/resources/views/pages/*.blade.php` (19 vues — une par
+  gabarit de page ; tous les articles et fiches individuelles sont désormais
+  **gérés en base de données** et rendus par les gabarits dynamiques
+  `/article/{slug}` et `/membre/{slug}`) + `layouts/site.blade.php`
+  (header et footer **rendus côté serveur**).
 - **URLs historiques conservées** (`/`, `/galerie.html`, `/actualite/article.html`,
   `/membres/{page}.html`, …) : `routes/web.php` — tous les liens internes
   existants fonctionnent à l'identique.

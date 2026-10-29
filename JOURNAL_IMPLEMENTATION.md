@@ -1256,3 +1256,38 @@ formulaire de contact ✓ ; aucune erreur JS. Toutes les URLs .html testées →
 Des copies locales des vues ont été supprimées par effet de bord de
 commandes `docker exec` (conversion de chemins MSYS) ; récupération depuis
 git + re-application du script de remplacement, sans perte.
+
+## 49. Factorisation des vues — articles et fiches membres migrés en base
+
+**Demande** : factoriser les vues Blade `actualite` et `membre`, données en
+base de données et images dans le stockage.
+
+### Ce qui a été fait
+- **Extraction automatisée** (Python) depuis les 21 vues statiques :
+  - **8 articles** : titre, extrait, contenu HTML complet (sections), image de
+    couverture, date de publication (calendrier d'origine), **galerie
+    d'images (45 photos avec légendes)** ;
+  - **13 fiches membres** : photo, grade, spécialité, « Depuis », biographie
+    complète (~1 200 caractères chacun), centres d'intérêts (puces).
+- **62 images copiées dans le stockage Laravel**
+  (`storage/app/public/uploads/2026/10/…`, servi par `/storage/…`) — chemins
+  réécrits dans les contenus ; photos members (`assets/people/*`) incluses.
+- **Import en base** (Eloquent + HtmlSanitizer) : `articles` (updateOrCreate
+  par slug) + `article_images` ; `members` enrichis (photo, grade,
+  spécialité, since, interests, biography) avec `page_url` à null → les
+  cartes pointent vers la fiche dynamique `/membre/{slug}`.
+- **21 vues statiques supprimées** — les articles et fiches sont rendus par
+  les gabarits dynamiques uniques `pages/actualite/article.blade.php` et
+  `pages/membres/membre.blade.php` (19 vues au total dans pages/).
+- **Redirections 301** : `/actualite/{page}` → `/article/{page}` ;
+  `/membres/{page}` → `/membre/{slug}` (mapping fichier → slug membre,
+  404 pour un nom inconnu) ; liens internes des vues mis à jour.
+- Image API rebuildée (vues + routes persistantes au redémarrage).
+
+### Validation (Edge headless)
+/article/aiea70-2026 : titre, couverture /storage chargée, contenu, galerie
+3/3 images ✓ ; /membre/dr-ele-abiama-patrice : photo /storage, 4 infos clés
+(Grade=Directeur de Recherche, Spécialité, Fonction, Depuis=2019), biographie,
+chips ✓ ; cartes du personnel → fiches dynamiques ✓ ; les 8 articles migrés
+apparaissent dans la liste /actualites ✓ ; redirections 301 vérifiées ✓ ;
+aucune erreur JS.
