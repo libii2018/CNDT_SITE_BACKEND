@@ -89,7 +89,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col bg-[#0d2e20] text-white transition-transform lg:static lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 flex w-60 flex-col bg-[#0d2e20] text-white transition-transform lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
@@ -147,7 +147,7 @@ export function Layout({ children }: { children: ReactNode }) {
       )}
 
       {/* Contenu */}
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col lg:ml-60">
         <header className="sticky top-0 z-20 flex items-center justify-between border-b-2 border-b-primary/70 bg-background px-6 py-4">
           <div className="flex items-center gap-3">
             <Button

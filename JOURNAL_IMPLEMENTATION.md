@@ -1360,3 +1360,15 @@ de `ADMIN_PASSWORD`) → /admin « Vue d'ensemble » ✓ ; chaque section à sa
 page avec titre et élément actif corrects ✓ ; badge messages (7 non lus)
 ✓ ; modales de création/édition des articles (WYSIWYG) ✓ ; titre du
 document par page ✓ ; aucune erreur JS ; site public inchangé.
+
+## 52. Sidebar du dashboard fixe
+
+La sidebar du dashboard (Layout Inertia) est désormais **fixe à l'écran** :
+`fixed` sur toutes les tailles (plus de `lg:static`), visible en permanence
+lors du défilement du contenu ; la colonne de contenu est décalée de la
+largeur de la sidebar (`lg:ml-60`) sur desktop. Le comportement coulissant
+du menu mobile est conservé (`-translate-x-full` hors écran).
+
+Validation (Edge headless) : position `fixed`, la sidebar reste en haut
+(top 0) après un défilement de 1200 px, contenu décalé de 240 px, aucune
+erreur JS. Image rebuildée.
