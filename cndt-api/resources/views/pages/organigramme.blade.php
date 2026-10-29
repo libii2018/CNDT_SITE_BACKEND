@@ -33,11 +33,11 @@
           <div data-org-tree>
             <noscript>
               <p>L'organigramme interactif nécessite JavaScript. Consultez les pages
-              <a href="cabinet.html">Cabinet du Secrétaire Permanent</a>,
-              <a href="crmp.html">Commission Recherche &amp; Management des Projets</a>,
-              <a href="cdcrp.html">Documentation, Communication &amp; Relations Publiques</a>,
-              <a href="rhcaj.html">RH, Coopération &amp; Affaires Juridiques</a> et
-              <a href="caaf.html">Affaires Administratives &amp; Financières</a>.</p>
+              <a href="/cabinet">Cabinet du Secrétaire Permanent</a>,
+              <a href="/crmp">Commission Recherche &amp; Management des Projets</a>,
+              <a href="/cdcrp">Documentation, Communication &amp; Relations Publiques</a>,
+              <a href="/rhcaj">RH, Coopération &amp; Affaires Juridiques</a> et
+              <a href="/caaf">Affaires Administratives &amp; Financières</a>.</p>
             </noscript>
           </div>
 

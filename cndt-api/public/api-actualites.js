@@ -3,12 +3,12 @@
    ------------------------------------------------------------
    Consomme l'API Laravel (GET /api/v1/articles) et alimente :
      1. [data-actualites-grid]  : liste complète + filtres + "Charger plus"
-        (page actualites.html)
-     2. [data-news-list]        : derniers titres (widget accueil index.html)
+        (page /actualites)
+     2. [data-news-list]        : derniers titres (widget accueil /)
      3. [data-article-detail]   : page d'un article (?slug=…)
-        (page actualite/article.html)
+        (page /article/{slug})
      4. [data-gallery-view="albums"] : albums + photos du dashboard
-        (page galerie.html)
+        (page /galerie)
 
    À inclure APRÈS app.js :
      <script defer src="api-actualites.js"></script>
@@ -46,11 +46,7 @@ window.CNDT_API = window.CNDT_API || {
   }
 
   function articleLink(slug) {
-    // Depuis les sous-dossiers (actualite/, membres/) les liens sont locaux,
-    // depuis la racine ils passent par le sous-dossier.
-    const inSubFolder = /\/(actualite|membres|projets)\/[^/]*\.html/.test(location.pathname);
-    const prefix = inSubFolder ? 'article.html?slug=' : 'actualite/article.html?slug=';
-    return prefix + encodeURIComponent(slug);
+    return '/article/' + encodeURIComponent(slug);
   }
 
   function cardHtml(article) {
@@ -171,13 +167,14 @@ window.CNDT_API = window.CNDT_API || {
     const root = $('[data-article-detail]');
     if (!root) return;
 
-    const slug = new URLSearchParams(location.search).get('slug');
+    const slug = new URLSearchParams(location.search).get('slug')
+      || (location.pathname.match(/\/article\/([^/]+)/) || [])[1];
     const hero = $('[data-article-hero]', root);
     const body = $('[data-article-body]', root);
 
     if (!slug) {
       if (body) body.innerHTML =
-        '<p class="archive-error">Aucun article demandé. <a class="text-link" href="../actualites.html">Voir toutes les actualités</a></p>';
+        '<p class="archive-error">Aucun article demandé. <a class="text-link" href="/actualites">Voir toutes les actualités</a></p>';
       if (hero) hero.hidden = true;
       return;
     }
@@ -260,7 +257,7 @@ window.CNDT_API = window.CNDT_API || {
     } catch (err) {
       if (body) body.innerHTML =
         `<p class="archive-error">Actualité introuvable ou API indisponible. ` +
-        `<a class="text-link" href="../actualites.html">Retour aux actualités</a></p>`;
+        `<a class="text-link" href="/actualites">Retour aux actualités</a></p>`;
       if (hero) hero.hidden = true;
     }
   }
@@ -275,9 +272,9 @@ window.CNDT_API = window.CNDT_API || {
       const items = (res.data || []).filter((i) => i.is_visible !== false);
       if (!items.length) return; // garde les slides statiques existants
 
-      // Chemins relatifs : préfixe selon la profondeur de la page
-      // (racine, ou sous-dossiers actualite/ et membres/)
-      const prefix = /\/(actualite|membres|projets)\/[^/]*\.html/.test(location.pathname) ? '../' : '';
+      // Chemins relatifs : préfixe selon la profondeur de l'URL
+      // (pages racine = 1 segment, sinon on remonte d'un niveau)
+      const prefix = /^\/[^/]*$/.test(location.pathname) ? '' : '../';
       const imgSrc = (p) => /^(https?:)?\//.test(p) ? p : prefix + p;
 
       wrapper.innerHTML = items.map((i) => `
@@ -316,7 +313,7 @@ window.CNDT_API = window.CNDT_API || {
             <p class="eyebrow">${esc(CATEGORY_LABELS[a.category] || a.category || 'CNDT')}</p>
             <h1>${esc(a.title)}</h1>
             <p>${esc(a.excerpt || '')}</p>
-            <a class="button button-light" href="actualite/article.html?slug=${encodeURIComponent(a.slug)}">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/article/${encodeURIComponent(a.slug)}">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>`).join('');
 
@@ -614,7 +611,7 @@ window.CNDT_API = window.CNDT_API || {
             </header>
             <div class="staff-level__grid">
               ${liste.map((m) => `
-                <a class="staff-person" href="${esc(m.page_url || 'membres/membre.html?slug=' + encodeURIComponent(m.slug))}"
+                <a class="staff-person" href="${esc(m.page_url || '/membre/' + encodeURIComponent(m.slug))}"
                   data-staff-item
                   data-search="${esc((fullName(m) + ' ' + (m.role || '') + ' ' + niveau + ' ' + (m.degree || '') + ' ' + (m.unit || '')).toLowerCase())}">
                   ${m.photo ? `<img src="${esc(imgSrc(m.photo))}" alt="${esc(fullName(m))}" loading="lazy" onerror="this.remove()">` : ''}
@@ -710,7 +707,8 @@ window.CNDT_API = window.CNDT_API || {
     const hero = $('[data-membre-hero]');
     if (!hero) return; // pas la page fiche
 
-    const slug = new URLSearchParams(location.search).get('slug');
+    const slug = new URLSearchParams(location.search).get('slug')
+      || (location.pathname.match(/\/membre\/([^/]+)/) || [])[1];
     const nom = $('[data-membre-nom]', hero);
     if (!slug) {
       if (nom) nom.textContent = 'Aucune fiche demandée.';
@@ -787,7 +785,7 @@ window.CNDT_API = window.CNDT_API || {
     }
   }
 
-  /* ---------- 9. Projets (projets.html + projets/projet.html) ---------- */
+  /* ---------- 9. Projets (/projets + /projet/{slug}) ---------- */
   const PROJET_STATUS = { a_venir: 'À venir', en_cours: 'En cours', termine: 'Terminé' };
 
   function projetCardHtml(p) {
@@ -807,7 +805,7 @@ window.CNDT_API = window.CNDT_API || {
           <h2>${esc(p.title)}</h2>
           ${p.summary ? `<p>${esc(p.summary)}</p>` : ''}
           ${p.partner ? `<p><strong>Partenaire :</strong> ${esc(p.partner)}</p>` : ''}
-          <a class="text-link" href="projets/projet.html?slug=${encodeURIComponent(p.slug)}">Voir le projet <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="/projet/${encodeURIComponent(p.slug)}">Voir le projet <span aria-hidden="true">→</span></a>
         </div>
       </article>`;
   }
@@ -866,13 +864,14 @@ window.CNDT_API = window.CNDT_API || {
     const root = $('[data-projet-detail]');
     if (!root) return; // pas la page fiche projet
 
-    const slug = new URLSearchParams(location.search).get('slug');
+    const slug = new URLSearchParams(location.search).get('slug')
+      || (location.pathname.match(/\/projet\/([^/]+)/) || [])[1];
     const hero = $('[data-projet-hero]', root);
     const body = $('[data-projet-body]', root);
 
     if (!slug) {
       if (body) body.innerHTML =
-        '<p class="archive-error">Aucun projet demandé. <a class="text-link" href="../projets.html">Voir tous les projets</a></p>';
+        '<p class="archive-error">Aucun projet demandé. <a class="text-link" href="/projets">Voir tous les projets</a></p>';
       return;
     }
 
@@ -930,7 +929,7 @@ window.CNDT_API = window.CNDT_API || {
     } catch {
       if (body) body.innerHTML =
         `<p class="archive-error">Projet introuvable ou API indisponible. ` +
-        `<a class="text-link" href="../projets.html">Retour aux projets</a></p>`;
+        `<a class="text-link" href="/projets">Retour aux projets</a></p>`;
     }
   }
 

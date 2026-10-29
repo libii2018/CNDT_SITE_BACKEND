@@ -137,28 +137,28 @@
                 <h2 id="news-title">Actualités</h2>
               </div>
               <div class="agenda-list">
-                <a href="fracture-numerique-per-bayangam-akonolinga.html">
+                <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
                   <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
                   <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
                 </a>
-                <a href="aiea70-2026.html">
+                <a href="/actualite/aiea70-2026">
                   <time datetime="2026-09-14"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
                   <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
                 </a>
-                <a href="formation-finances-publiques-2026.html">
+                <a href="/actualite/formation-finances-publiques-2026">
                   <time datetime="2026-08-19"><small>MER</small><strong>19</strong><span>AOU<br>2026</span></time>
                   <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
                 </a>
-                <a href="cndt-43e-session-comite.html">
+                <a href="/actualite/cndt-43e-session-comite">
                   <time datetime="2026-07-09"><small>JEU</small><strong>09</strong><span>JUIL<br>2026</span></time>
                   <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
                 </a>
-                <a href="sia-minresi-2026.html">
+                <a href="/actualite/sia-minresi-2026">
                   <time datetime="2026-06-09"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
                   <p>Semaine de l'Intelligence Artificielle au MINRESI</p>
                 </a>
               </div>
-              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+              <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
             </section>
 
             <section id="ressources" class="resource-module" aria-labelledby="resources-title">
@@ -176,7 +176,7 @@
 
         <!-- Retour -->
         <div class="project-back">
-          <a class="text-link" href="../actualites.html">← Retour aux Actualités</a>
+          <a class="text-link" href="/actualites">← Retour aux Actualités</a>
         </div>
 
       </div>

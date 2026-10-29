@@ -28,9 +28,9 @@
         <div class="container">
 
           <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="../index.html">Accueil</a>
+            <a href="/">Accueil</a>
             <span aria-hidden="true">›</span>
-            <a href="../projets.html">Projets</a>
+            <a href="/projets">Projets</a>
             <span aria-hidden="true">›</span>
             <span aria-current="page">Projet</span>
           </nav>
@@ -59,18 +59,18 @@
                   <h2 id="projet-news-title">Actualités</h2>
                 </div>
                 <div class="agenda-list" data-news-list></div>
-                <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+                <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
               </section>
 
               <section id="ressources" class="resource-module" aria-labelledby="projet-resources-title">
                 <h2 id="projet-resources-title">Publications &amp; médias</h2>
                 <nav aria-label="Publications et médias">
-                  <a href="../publication.html"><span aria-hidden="true">›</span>Techno Mag</a>
+                  <a href="/publications"><span aria-hidden="true">›</span>Techno Mag</a>
                   <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span>Émissions TV</a>
-                  <a href="../galerie.html"><span aria-hidden="true">›</span>Photothèque</a>
-                  <a href="../projets.html"><span aria-hidden="true">›</span>Projets</a>
-                  <a href="../publication.html"><span aria-hidden="true">›</span>Rapports</a>
-                  <a href="../contact.html"><span aria-hidden="true">›</span>Contact</a>
+                  <a href="/galerie"><span aria-hidden="true">›</span>Photothèque</a>
+                  <a href="/projets"><span aria-hidden="true">›</span>Projets</a>
+                  <a href="/publications"><span aria-hidden="true">›</span>Rapports</a>
+                  <a href="/contact"><span aria-hidden="true">›</span>Contact</a>
                 </nav>
               </section>
             </aside>
@@ -78,7 +78,7 @@
 
           <!-- Retour -->
           <div class="project-back">
-            <a class="text-link" href="../projets.html">← Retour aux projets</a>
+            <a class="text-link" href="/projets">← Retour aux projets</a>
           </div>
 
         </div>

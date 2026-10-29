@@ -16,7 +16,7 @@
             <p class="eyebrow">SIA MINRESI 2026</p>
             <h1>Semaine de l'Intelligence Articielle au MINRESI</h1>
             <p>Sous la présidence de Madame le Ministre de la Recherche Scientifique et de l'innovation, Dr Madeleine TCHUINTE, s’est tenue ce mardi 09 juin 2026, dans la salle de conférences du MINRESI, la cérémonie officielle d’ouverture du SIA MENRESI 2026.</p>
-            <a class="button button-light" href="actualite/sia-minresi-2026.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/sia-minresi-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -27,7 +27,7 @@
             <p class="eyebrow">Symposium 2026</p>
             <h1>Symposium sur l'Intelligence Artificielle et la Souveraineté Numérique au Cameroun</h1>
             <p>Le lundi 25 mai 2026, le Comité National de Développement des Technologies (CNDT) a organisé, dans la salle de conférences du MINRESI, une journée dédiée à un enjeu stratégique majeur pour le Cameroun.</p>
-            <a class="button button-light" href="actualite/symposium-2026.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/symposium-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -38,7 +38,7 @@
             <p class="eyebrow">AIEA 70</p>
             <h1>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</h1>
             <p>La délégation camerounaise, conduite par Madame le Ministre de la Recherche Scientifique et de l'Innovation, Dr Madeleine TCHUINTE, prend part à la 70ᵉ Conférence Générale de l'Agence Internationale de l'Énergie Atomique (AIEA), qui se tient à Vienne en Autriche, du 14 au 18 septembre 2026.</p>
-            <a class="button button-light" href="actualite/aiea70-2026.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/aiea70-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -49,7 +49,7 @@
             <p class="eyebrow">Comite 43e</p>
             <h1>Le Cameroun à la 43ᵉ session du Comité National de Développement des Technologies</h1>
             <p>Le Comité National de Développement des Technologies (CNDT) a tenu, ce 09 juillet 2026, la 43ᵉ session de son Comité, présidée par le Dr Madeleine TCHUINTE, Ministre de la Recherche Scientifique et de l'Innovation.</p>
-            <a class="button button-light" href="actualite/cndt-43e-session-comite.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/cndt-43e-session-comite">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -60,7 +60,7 @@
             <p class="eyebrow">Finances Publiques</p>
             <h1>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun</h1>
             <p>Les 19 et 20 août 2026, le Comité National de Développement des Technologies (CNDT) a organisé un atelier consacré à l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun.</p>
-            <a class="button button-light" href="actualite/formation-finances-publiques-2026.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/formation-finances-publiques-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -71,7 +71,7 @@
             <p class="eyebrow">Inclusion numérique</p>
             <h1>Réduction de la fracture numérique en milieu rural : Bayangam et Akonolinga</h1>
             <p>Le MINRESI, à travers le CNDT, a formé des jeunes, des enseignants et des acteurs locaux aux outils numériques, à la programmation et à l'intelligence artificielle aux Plateformes énergétiques rurales d'Akonolinga et de Bayangam, d'août 2025 à juin 2026.</p>
-            <a class="button button-light" href="actualite/fracture-numerique-per-bayangam-akonolinga.html">Pour plus d'informations <span aria-hidden="true">→</span></a>
+            <a class="button button-light" href="/actualite/fracture-numerique-per-bayangam-akonolinga">Pour plus d'informations <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </div>
@@ -112,7 +112,7 @@
                 <span class="opening-quote" aria-hidden="true">“</span>
                 <p>Je vous souhaite, chers internautes, une agréable bienvenue sur le site officiel du Comité National de Développement des Technologies.</p>
                 <p>Cet espace met en valeur nos actions de veille, d’adaptation et de transfert des technologies, avec l’ambition de rapprocher la recherche des besoins concrets de développement du Cameroun.</p>
-                <a class="text-link" href="comite.html">Découvrir le CNDT <span aria-hidden="true">→</span></a>
+                <a class="text-link" href="/comite">Découvrir le CNDT <span aria-hidden="true">→</span></a>
               </div>
             </div>
           </section>
@@ -191,39 +191,39 @@
           <div class="agenda-list" data-news-list>
 
 
-            <a href="actualite/fracture-numerique-per-bayangam-akonolinga.html">
+            <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
               <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
               <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
             </a>
-            <a href="actualite/aiea70-2026.html">
+            <a href="/actualite/aiea70-2026">
               <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
               <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
             </a>
-            <a href="actualite/formation-finances-publiques-2026.html">
+            <a href="/actualite/formation-finances-publiques-2026">
               <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
               <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
             </a>
-            <a href="actualite/cndt-43e-session-comite.html">
+            <a href="/actualite/cndt-43e-session-comite">
               <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
               <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
             </a>
-            <a href="actualite/sia-minresi-2026.html">
+            <a href="/actualite/sia-minresi-2026">
               <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
               <p>Semaine de l'Intelligence Articielle au MINRESI</p>
             </a>
           
           </div>
-            <a class="sidebar-more" href="actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+            <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
           </section>
 
           <section id="ressources" class="resource-module" aria-labelledby="resources-title">
               <h2 id="resources-title">Publications &amp; médias</h2>
               <nav aria-label="Publications et médias">
-                <a href="publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
-                <a href="publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
-                <a href="publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
                 <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
-                <a href="galerie.html"><span aria-hidden="true">›</span> Photothèque</a>
+                <a href="/galerie"><span aria-hidden="true">›</span> Photothèque</a>
               </nav>
             </section>
         </aside>
@@ -236,7 +236,7 @@
           <div>
             <h2 class="secretariats-title">Organigramme</h2>
           </div>
-          <!-- <a class="text-link" href="organigramme.html">Voir l’organigramme <span aria-hidden="true">→</span></a> -->
+          <!-- <a class="text-link" href="/organigramme">Voir l’organigramme <span aria-hidden="true">→</span></a> -->
         </div>
 
         <!-- =========================================================
@@ -248,7 +248,7 @@
             Carte 5 — Secrétariat Permanent (CARTE EN VEDETTE)
             Traitement visuel distinctif : fond sombre + or
             ========================================================= -->
-        <a class="cndt-tile cndt-tile--featured" role="listitem" href="index.html#institution"
+        <a class="cndt-tile cndt-tile--featured" role="listitem" href="/#institution"
           aria-label="Découvrir le Secrétariat Permanent du CNDT">
           <div class="cndt-tile__header">
             <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
@@ -290,7 +290,7 @@
         <!-- =========================================================
           Carte 1 — Cabinet du Secrétaire Permanent
         ========================================================= -->
-        <a class="cndt-tile" role="listitem" href="cabinet.html"
+        <a class="cndt-tile" role="listitem" href="/cabinet"
           aria-label="Découvrir le Cabinet du Secrétaire Permanent">
           <div class="cndt-tile__header">
             <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
@@ -318,7 +318,7 @@
         <!-- =========================================================
           Carte 3 — Commission Opérationnelle
         ========================================================= -->
-        <a class="cndt-tile" role="listitem" href="crmp.html"
+        <a class="cndt-tile" role="listitem" href="/crmp"
           aria-label="Découvrir la Commission Opérationnelle">
           <div class="cndt-tile__header">
             <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
@@ -345,7 +345,7 @@
         <!-- =========================================================
           Carte 4 — Commission Support
         ========================================================= -->
-        <a class="cndt-tile" role="listitem" href="rhcaj.html"
+        <a class="cndt-tile" role="listitem" href="/rhcaj"
           aria-label="Découvrir la Commission Support">
           <div class="cndt-tile__header">
             <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
@@ -368,7 +368,7 @@
                 <!-- =========================================================
             Carte 2 — Commission Technique
             ========================================================= -->
-        <a class="cndt-tile" role="listitem" href="ct.html"
+        <a class="cndt-tile" role="listitem" href="/ct"
           aria-label="Découvrir les Commissions Techniques">
           <div class="cndt-tile__header">
             <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">

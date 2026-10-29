@@ -20,7 +20,7 @@
       <div class="container">
 
         <nav class="breadcrumb" aria-label="Fil d'Ariane">
-          <a href="index.html">Accueil</a>
+          <a href="/">Accueil</a>
           <span aria-hidden="true">›</span>
           <span aria-current="page">Projets</span>
         </nav>

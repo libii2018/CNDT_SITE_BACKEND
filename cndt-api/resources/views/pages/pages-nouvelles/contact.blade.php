@@ -1,0 +1,331 @@
+@extends('layouts.site')
+
+@section('title', "Contact | CNDT Cameroun")
+
+@section('description', "Contactez le Comité National de Développement des Technologies — coordonnées, formulaire de feedback et localisation.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="inner-hero">
+      <!-- <img src="assets/S-1.webp" alt="Siège du CNDT à Yaoundé" width="1100" height="825"> -->
+      <div class="container">
+        <p class="page-kicker">Nous joindre</p>
+        <h1>Contact</h1>
+        <p>Coordonnées officielles, formulaire de feedback et localisation du Comité National de Développement des Technologies.</p>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="/">Accueil</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">Contact</span>
+        </nav>
+
+        <!-- =========================================================
+             BLOC COORDONNÉES (3 cartes)
+             ========================================================= -->
+        <div class="page-heading">
+          <div>
+            <p class="page-kicker">Coordonnées officielles</p>
+            <h2>Comment nous joindre</h2>
+          </div>
+          <p>Pour toute demande d'information, partenariat ou visite institutionnelle.</p>
+        </div>
+
+        <div class="contact-cards">
+
+          <!-- Adresse -->
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/>
+              </svg>
+            </div>
+            <h3>Adresse</h3>
+            <p>
+              Centre administratif<br>
+              B.P. 1457 — Yaoundé<br>
+              République du Cameroun
+            </p>
+          </article>
+
+          <!-- Téléphone -->
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2Z"/>
+              </svg>
+            </div>
+            <h3>Téléphone</h3>
+            <p>
+              <a href="tel:+237222222509">(+237) 222 22 25 09</a><br>
+              <a href="tel:+237222222496">(+237) 222 22 24 96</a>
+            </p>
+          </article>
+
+          <!-- Email -->
+          <article class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2 7.6 5.1L19.6 7H4.4ZM20 8.3l-7.4 5a1 1 0 0 1-1.2 0L4 8.3V17h16V8.3Z"/>
+              </svg>
+            </div>
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:contact@cndtcameroun.cm">contact@cndtcameroun.cm</a><br>
+              <span class="contact-muted">Réponse sous 48 h ouvrées</span>
+            </p>
+          </article>
+
+        </div>
+
+        <!-- =========================================================
+             FORMULAIRE + RÉSEAUX SOCIAUX
+             ========================================================= -->
+        <div class="contact-layout">
+
+          <!-- ---------- Formulaire ---------- -->
+          <section class="contact-form-wrapper" aria-labelledby="form-title">
+            <div class="page-heading" style="margin-bottom:22px;">
+              <div>
+                <p class="page-kicker">Feedback</p>
+                <h2 id="form-title">Envoyer un message</h2>
+              </div>
+            </div>
+
+            <form class="contact-form" id="contact-form" novalidate>
+              <div class="contact-form__row">
+                <label class="contact-field">
+                  <span class="contact-field__label">Nom complet <em>*</em></span>
+                  <input type="text" name="name" required autocomplete="name" placeholder="Votre nom et prénom">
+                </label>
+
+                <label class="contact-field">
+                  <span class="contact-field__label">Email <em>*</em></span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="vous@exemple.cm">
+                </label>
+              </div>
+
+              <div class="contact-form__row">
+                <label class="contact-field">
+                  <span class="contact-field__label">Téléphone</span>
+                  <input type="tel" name="phone" autocomplete="tel" placeholder="(+237) …">
+                </label>
+
+                <label class="contact-field">
+                  <span class="contact-field__label">Objet <em>*</em></span>
+                  <select name="subject" required>
+                    <option value="">— Choisir —</option>
+                    <option value="information">Demande d'information</option>
+                    <option value="partenariat">Partenariat / Coopération</option>
+                    <option value="projet">Soumission de projet</option>
+                    <option value="presse">Presse &amp; médias</option>
+                    <option value="reclamation">Réclamation</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="contact-field">
+                <span class="contact-field__label">Message <em>*</em></span>
+                <textarea name="message" rows="6" required placeholder="Décrivez votre demande…"></textarea>
+              </label>
+
+              <label class="contact-checkbox">
+                <input type="checkbox" name="consent" required>
+                <span>J'accepte que mes données soient utilisées pour traiter ma demande.</span>
+              </label>
+
+              <div class="contact-form__foot">
+                <button type="submit" class="button__contact">
+                  Envoyer le message
+                </button>
+              </div>
+
+              <!-- Message de retour -->
+              <p class="contact-form__feedback" data-contact-feedback role="status" hidden></p>
+            </form>
+          </section>
+
+          <!-- ---------- Réseaux sociaux + horaires ---------- -->
+          <aside class="contact-aside" aria-labelledby="social-title">
+            <div class="contact-social">
+              <h2 id="social-title">Suivez-nous</h2>
+              <p>Retrouvez nos actualités, publications et événements sur nos réseaux sociaux.</p>
+
+              <ul class="social-links">
+                <li>
+                  <a href="https://www.facebook.com/profile.php?id=61577854203433" target="_blank" rel="noopener"
+                     aria-label="Page Facebook du CNDT" class="social-link social-link--facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/>
+                    </svg>
+                    <span>Facebook</span>
+                  </a>
+                </li>
+
+                <!-- <li>
+                  <a href="https://www.linkedin.com/company/cndt-cameroun" target="_blank" rel="noopener"
+                     aria-label="Page LinkedIn du CNDT" class="social-link social-link--linkedin">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M6.94 8.5H4.06V19.5h2.88V8.5ZM5.5 7.19a1.69 1.69 0 1 0 0-3.38 1.69 1.69 0 0 0 0 3.38ZM20 19.5v-6.02c0-3.2-1.71-4.69-3.99-4.69-1.84 0-2.66 1.01-3.12 1.72V8.5H10.1c.04.82 0 11 0 11h2.79v-6.14c0-.25.02-.5.09-.68.2-.5.66-1.02 1.43-1.02 1.01 0 1.41.77 1.41 1.89v5.95H20Z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                  </a>
+                </li> -->
+
+                <!-- <li>
+                  <a href="https://twitter.com/cndtcameroun" target="_blank" rel="noopener"
+                     aria-label="Compte X (Twitter) du CNDT" class="social-link social-link--x">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M18.24 3H21l-6.55 7.48L21.6 21h-6.2l-4.86-6.36L4.99 21H2.22l6.98-7.98L2.4 3h6.35l4.4 5.81L18.24 3Zm-1.09 16.2h1.53L7.9 4.7H6.26l10.89 14.5Z"/>
+                    </svg>
+                    <span>Twitter</span>
+                  </a>
+                </li> -->
+
+                <li>
+                  <a href="https://www.youtube.com/@cndt" target="_blank" rel="noopener"
+                     aria-label="Chaîne YouTube du CNDT" class="social-link social-link--youtube">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.12C19.5 3.56 12 3.56 12 3.56s-7.5 0-9.4.52A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.12c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.12A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/>
+                    </svg>
+                    <span>YouTube</span>
+                  </a>
+                </li>
+
+                <!-- <li>
+                  <a href="https://www.instagram.com/cndtcameroun" target="_blank" rel="noopener"
+                     aria-label="Compte Instagram du CNDT" class="social-link social-link--instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.8c-3.15 0-3.5.01-4.73.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.23-.06-1.58-.07-4.73-.07Zm0 3.06a4.98 4.98 0 1 1 0 9.96 4.98 4.98 0 0 1 0-9.96Zm0 8.21a3.23 3.23 0 1 0 0-6.46 3.23 3.23 0 0 0 0 6.46Zm6.34-8.41a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0Z"/>
+                    </svg>
+                    <span>Instagram</span>
+                  </a>
+                </li> -->
+              </ul>
+            </div>
+
+            <div class="contact-hours">
+              <h2>Horaires d'ouverture</h2>
+              <ul>
+                <li><span>Lundi — Vendredi</span><strong>07:30 — 15:30</strong></li>
+                <li><span>Samedi</span><strong>Fermé</strong></li>
+                <li><span>Dimanche &amp; jours fériés</span><strong>Fermé</strong></li>
+              </ul>
+            </div>
+          </aside>
+
+        </div>
+
+        <!-- =========================================================
+             LOCALISATION — GOOGLE MAPS
+             ========================================================= -->
+        <section class="contact-map" aria-labelledby="map-title">
+          <div class="page-heading" style="margin-bottom:22px;">
+            <div>
+              <p class="page-kicker">Localisation</p>
+              <h2 id="map-title">Nous trouver</h2>
+            </div>
+            <p>Le CNDT est situé au Centre administratif de Yaoundé, à proximité des principaux ministères.</p>
+          </div>
+
+          <div class="contact-map__embed">
+            <iframe
+              title="Localisation du CNDT à Yaoundé sur Google Maps"
+              src="https://www.google.com/maps?q=Comit%C3%A9%20National%20de%20D%C3%A9veloppement%20des%20Technologies%20Yaound%C3%A9&output=embed"
+              width="100%"
+              height="450"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <div class="contact-map__foot">
+            <p><strong>Centre administratif, Yaoundé</strong> — B.P. 1457, Cameroun</p>
+            <a class="button button-outline-dark" href="https://www.google.com/maps/dir/?api=1&destination=Comit%C3%A9+National+de+D%C3%A9veloppement+des+Technologies+Yaound%C3%A9" target="_blank" rel="noopener">
+              Obtenir l'itinéraire <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+        <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts et Partenaires</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                <img src="assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

@@ -20,7 +20,7 @@
       <div class="container">
 
         <nav class="breadcrumb" aria-label="Fil d'Ariane">
-          <a href="index.html">Accueil</a>
+          <a href="/">Accueil</a>
           <span aria-hidden="true">›</span>
           <span aria-current="page">Personnel</span>
         </nav>
@@ -92,7 +92,7 @@
             </header>
 
             <div class="staff-level__grid">
-              <a class="staff-person" href="membres/ele-abiama-patrice.html"
+              <a class="staff-person" href="/membres/ele-abiama-patrice"
                 data-staff-item
                 data-search="dr ele abiama patrice secrétaire permanent secrétariat permanent">
                 <img src="assets/people/sp.webp" alt="Dr ELE ABIAMA Patrice" loading="lazy">
@@ -113,7 +113,7 @@
             </header>
 
             <div class="staff-level__grid">
-              <a class="staff-person" href="membres/tsuanyo-david.html"
+              <a class="staff-person" href="/membres/tsuanyo-david"
                 data-staff-item
                 data-search="dr tsuanyo david coordonnateur exécutif adjoint recherche">
                 <img src="assets/people/tsuanyo.webp" alt="Dr TSUANYO David" loading="lazy">
@@ -124,7 +124,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/kouna-jean.html"
+              <a class="staff-person" href="/membres/kouna-jean"
                 data-staff-item
                 data-search="M. KOUNA Jean Baptiste coordonnateur administratif financier comptable">
                 <img src="assets/people/kouna.webp" alt="M. KOUNA Jean Baptiste" loading="lazy">
@@ -135,7 +135,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/bilounga-sandrine.html"
+              <a class="staff-person" href="/membres/bilounga-sandrine"
                 data-staff-item
                 data-search="Mme BILOUNGA BINDOUA Marie Sandrine coordonnateur coopération">
                 <img src="assets/people/bilounga.webp" alt="Mme BILOUNGA BINDOUA Marie Sandrine" loading="lazy">
@@ -146,7 +146,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/isaoura-benite.html"
+              <a class="staff-person" href="/membres/isaoura-benite"
                 data-staff-item
                 data-search="Mme ISAOURA Bénite documentation communication relations publiques">
                 <img src="assets/people/isaoura.webp" alt="Mme ISAOURA Bénite" loading="lazy">
@@ -167,7 +167,7 @@
             </header>
 
             <div class="staff-level__grid">
-              <a class="staff-person" href="membres/aboubakar-el-boukar.html"
+              <a class="staff-person" href="/membres/aboubakar-el-boukar"
                 data-staff-item
                 data-search="dr aboubakar el boukar politiques scientifiques technologiques">
                 <img src="assets/people/el-boukar.webp" alt="Dr ABOUBAKAR EL BOUKAR" loading="lazy">
@@ -178,7 +178,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/amada-brahim.html"
+              <a class="staff-person" href="/membres/amada-brahim"
                 data-staff-item
                 data-search="M. AMADA BRAHIM ressources humaines action sociale multiculturalisme">
                 <img src="assets/people/amada.webp" alt="M. AMADA BRAHIM" loading="lazy">
@@ -189,7 +189,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/menga-francis-daniel.html"
+              <a class="staff-person" href="/membres/menga-francis-daniel"
                 data-staff-item
                 data-search="dr menga francis-daniel recherche">
                 <img src="assets/people/menga.jpeg" alt="Dr MENGA Francis-Daniel" loading="lazy">
@@ -200,7 +200,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/paglan-paul-andre.html"
+              <a class="staff-person" href="/membres/paglan-paul-andre"
                 data-staff-item
                 data-search="dr paglan paul andré technologies transformations industrielles">
                 <img src="assets/people/paglan.webp" alt="Dr PAGLAN Paul André" loading="lazy">
@@ -211,7 +211,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/temgoua-pelagie.html"
+              <a class="staff-person" href="/membres/temgoua-pelagie"
                 data-staff-item
                 data-search="Mme TEMGOUA NANFACK Pélagie Flore TIC intelligence artificielle">
                 <img src="assets/people/temgoua.webp" alt="Mme TEMGOUA NANFACK Pélagie Flore" loading="lazy">
@@ -232,7 +232,7 @@
             </header>
 
             <div class="staff-level__grid">
-              <a class="staff-person" href="membres/eyoum-henriette.html"
+              <a class="staff-person" href="/membres/eyoum-henriette"
                 data-staff-item
                 data-search="eyoum ekoule henriette assistante secrétaire permanent">
                 <img src="assets/people/eyoum.webp" alt="Mme EYOUM EKOULE Henriette Annie Dorette" loading="lazy">
@@ -243,7 +243,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/babgai-raphael.html"
+              <a class="staff-person" href="/membres/babgai-raphael"
                 data-staff-item
                 data-search="babgai raphaël guidéké parc informatique">
                 <img src="assets/people/babgai-raphael-guidéke.jpeg" alt="M. BABGAI Raphaël GUIDÉKÉ" loading="lazy">
@@ -254,7 +254,7 @@
                 </div>
               </a>
 
-              <a class="staff-person" href="membres/avah-jean-jaures.html"
+              <a class="staff-person" href="/membres/avah-jean-jaures"
                 data-staff-item
                 data-search="avah jean jaurès fils documentation archives">
                 <img src="assets/people/avah.webp" alt="M. AVAH Jean Jaurès Fils" loading="lazy">

@@ -195,38 +195,38 @@
                 <h2 id="news-title">Actualités</h2>
               </div>
               <div class="agenda-list">
-                <a href="fracture-numerique-per-bayangam-akonolinga.html">
+                <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
                   <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
                   <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
                 </a>
-                <a href="../actualites.html#per-numerique">
+                <a href="/actualites#per-numerique">
                   <time datetime="2026-09-04"><small>MAR</small><strong>15</strong><span>SEP<br>2026</span></time>
                   <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
                 </a>
-                <a href="../actualites.html#sia-2026">
+                <a href="/actualites#sia-2026">
                   <time datetime="2026-06-15"><small>LUN</small><strong>15</strong><span>JUN<br>2026</span></time>
                   <p>Première édition de la Semaine de l’Intelligence Artificielle au MINRESI</p>
                 </a>
-                <a href="../actualites.html#souverainete-numerique">
+                <a href="/actualites#souverainete-numerique">
                   <time datetime="2026-05-25"><small>LUN</small><strong>25</strong><span>MAI<br>2026</span></time>
                   <p>Intelligence artificielle et souveraineté numérique : chercheurs et experts en dialogue</p>
                 </a>
-                <a href="../actualites.html#per-numerique">
+                <a href="/actualites#per-numerique">
                   <time datetime="2026-09-04"><small>VEN</small><strong>04</strong><span>SEP<br>2026</span></time>
                   <p>Rétrocession de la plateforme énergétique rurale numérique à la Commune de Bayangam</p>
                 </a>
               </div>
-              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+              <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
             </section>
 
             <section id="ressources" class="resource-module" aria-labelledby="resources-title">
               <h2 id="resources-title">Publications &amp; médias</h2>
               <nav aria-label="Publications et médias">
-                <a href="../publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
-                <a href="../publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
-                <a href="../publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
                 <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
-                <a href="../publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+                <a href="/publications#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
               </nav>
             </section>
           </aside>
@@ -235,7 +235,7 @@
 
         <!-- Retour -->
         <div class="project-back">
-          <a class="text-link" href="../actualites.html">Retour aux Actualités</a>
+          <a class="text-link" href="/actualites">Retour aux Actualités</a>
         </div>
 
       </div>

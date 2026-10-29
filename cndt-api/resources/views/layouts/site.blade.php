@@ -16,7 +16,7 @@
   <a class="skip-link" href="#contenu">Aller au contenu</a>
 
 
-<header class="site-header">
+<header class="site-header" data-site-header data-root="">
   <div class="utility-bar">
     <div class="utility-inner">
       <p>République du Cameroun <span>Paix · Travail · Patrie</span></p>
@@ -30,7 +30,7 @@
 
   <div class="main-nav-wrap">
     <div class="main-nav">
-      <a class="brand" href="/index.html" aria-label="Accueil du CNDT">
+      <a class="brand" href="/" aria-label="Accueil du CNDT">
         <img src="/assets/logo-cndt.webp" alt="Logo du CNDT">
         <span class="brand-copy">
           <strong>Comité National de Développement des Technologies</strong>
@@ -44,7 +44,7 @@
       </button>
 
       <nav id="primary-nav" class="primary-nav" aria-label="Navigation principale">
-        <a href="/index.html">Accueil</a>
+        <a href="/">Accueil</a>
 
         <button
           type="button"
@@ -59,10 +59,10 @@
           </svg>
         </button>
 
-        <a href="/actualites.html">Actualités</a>
-        <a href="/publication.html">Publications</a>
-        <a href="/projets.html">Projets</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/publications">Publications</a>
+        <a href="/projets">Projets</a>
+        <a href="/contact">Contact</a>
 
         <div class="nav-search" data-nav-search role="search">
           <form class="nav-search__form" autocomplete="off" novalidate>
@@ -155,17 +155,17 @@
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="/index.html#institution">
+                      <a href="/#institution">
                         <span>Mot du Secrétaire Permanent</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/comite.html">
+                      <a href="/comite">
                         <span>Comité</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/cabinet.html">
+                      <a href="/cabinet">
                         <span>Cabinet du Secrétaire Permanent</span>
                       </a>
                     </li>
@@ -175,17 +175,17 @@
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="/crmp.html">
+                      <a href="/crmp">
                         <span>Commission recherche et management des projets</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/caaf.html">
+                      <a href="/caaf">
                         <span>Commission des affaires administratives, financières et des engagements</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/cdcrp.html">
+                      <a href="/cdcrp">
                         <span>Commission documentation, communication et relations publiques</span>
                       </a>
                     </li>
@@ -195,22 +195,22 @@
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="/rhcaj.html">
+                      <a href="/rhcaj">
                         <span>Commission des ressources humaines, de la coopération et des affaires juridiques</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/ct.html">
+                      <a href="/ct">
                         <span>Commission technique</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/personnel.html">
+                      <a href="/personnel">
                         <span>Catalogue du personnel</span>
                       </a>
                     </li>
                     <li>
-                      <a href="/galerie.html">
+                      <a href="/galerie">
                         <span>Galerie photo</span>
                       </a>
                     </li>
@@ -220,7 +220,7 @@
               </div>
 
               <div class="mega-menu__foot">
-                <a class="mega-menu__cta" href="/organigramme.html">
+                <a class="mega-menu__cta" href="/organigramme">
                   Voir l'organigramme complet
                   <span aria-hidden="true">→</span>
                 </a>
@@ -237,7 +237,7 @@
 @yield('content')
 
 
-<footer id="contact" class="site-footer">
+<footer id="contact" class="site-footer" data-site-footer data-root="">
   <div class="container footer-grid">
     <div class="footer-brand">
       <img src="/assets/logo-cndt.webp" alt="CNDT" width="120" height="97" loading="lazy">
@@ -272,13 +272,13 @@
     </div>
     <div>
       <h2>Accès rapide</h2>
-      <a href="/index.html#institution">Présentation</a>
-      <a href="/organigramme.html">Organigramme</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/#institution">Présentation</a>
+      <a href="/organigramme">Organigramme</a>
+      <a href="/contact">Contact</a>
       <div>
-        <a href="/actualites.html">Actualités</a>
-        <a href="/publication.html">Publications</a>
-        <a href="/projets.html">Projets</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/publications">Publications</a>
+        <a href="/projets">Projets</a>
       </div>
     </div>
     <div>

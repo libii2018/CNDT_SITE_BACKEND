@@ -26,9 +26,9 @@
         <div class="container">
 
           <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="../index.html">Accueil</a>
+            <a href="/">Accueil</a>
             <span aria-hidden="true">›</span>
-            <a href="../actualites.html">Actualités</a>
+            <a href="/actualites">Actualités</a>
             <span aria-hidden="true">›</span>
             <span aria-current="page">Actualité</span>
           </nav>
@@ -59,17 +59,17 @@
                   <h2 id="news-title">Actualités</h2>
                 </div>
                 <div class="agenda-list" data-news-list></div>
-                <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+                <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
               </section>
 
               <section id="ressources" class="resource-module" aria-labelledby="resources-title">
                 <h2 id="resources-title">Publications &amp; médias</h2>
                 <nav aria-label="Publications et médias">
-                  <a href="../publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
-                  <a href="../publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
-                  <a href="../publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                  <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                  <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                  <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
                   <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
-                  <a href="../publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+                  <a href="/publications#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
                 </nav>
               </section>
             </aside>
@@ -77,7 +77,7 @@
           </div>
 
           <p style="margin-top:34px;">
-            <a class="text-link" href="../actualites.html"><span aria-hidden="true">←</span> Retour aux actualités</a>
+            <a class="text-link" href="/actualites"><span aria-hidden="true">←</span> Retour aux actualités</a>
           </p>
 
         </div>

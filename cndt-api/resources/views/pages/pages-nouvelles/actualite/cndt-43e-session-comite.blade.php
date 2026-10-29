@@ -1,0 +1,205 @@
+@extends('layouts.site')
+
+@section('title', "43ᵉ session du Comité du CNDT | CNDT Cameroun")
+
+@section('description', "43ᵉ session du Comité National de Développement des Technologies (CNDT) — 09 juillet 2026, présidée par le Dr Madeleine TCHUINTE, Ministre de la Recherche Scientifique et de l'Innovation.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO : en-tête de l'actualité
+         ========================================================= -->
+    <section class="inner-hero inner-hero--project">
+      <img src="../assets/comite-43/1.jpg" alt="43ᵉ session du Comité National de Développement des Technologies" width="1100" height="825">
+      <div class="container">
+        <h1>CNDT : 43ᵉ session du Comité National de Développement des Technologies</h1>
+        <ul class="project-hero-meta" aria-label="Informations clés de l'événement">
+          <li><span>Date</span><strong>09 juillet 2026</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <!-- =========================================================
+             LAYOUT : navigation latérale + contenu
+             ========================================================= -->
+        <div class="project-layout">
+
+          <!-- ---------- Contenu principal ---------- -->
+          <article class="project-content">
+
+            <!-- ============ 1. Présentation ============ -->
+            <section id="presentation" class="project-section">
+              <h2>Présentation</h2>
+
+              <p class="lead">
+                Le Comité National de Développement des Technologies (CNDT) a tenu, ce
+                <strong>09 juillet 2026</strong>, la <strong>43ᵉ session de son Comité</strong>,
+                présidée par le <strong>Dr Madeleine TCHUINTE</strong>, Ministre de la Recherche
+                Scientifique et de l'Innovation.
+              </p>
+
+              <p>
+                Les travaux ont porté sur l'examen du rapport annuel de performance, l'examen des
+                comptes administratifs et de gestion pour l'exercice 2025, ainsi que sur le budget
+                révisé pour l'exercice 2026.
+              </p>
+            </section>
+
+            <!-- ============ 2. Ordre du jour ============ -->
+            <section id="ordre-du-jour" class="project-section">
+              <h2>Ordre du jour</h2>
+
+              <ul class="project-list">
+                <li>Examen du rapport annuel de performance ;</li>
+                <li>Examen des comptes administratifs et de gestion pour l'exercice 2025 ;</li>
+                <li>Examen et adoption du budget révisé pour l'exercice 2026 ;</li>
+                <li>Divers et orientations stratégiques.</li>
+              </ul>
+            </section>
+
+            <!-- ============ 3. Galerie ============ -->
+            <section id="galerie" class="project-section" data-article-gallery="cndt-43e-session-comite">
+              <h2>Galerie</h2>
+
+              <div class="project-gallery">
+                <figure>
+                  <img src="../assets/comite-43/1.jpg" alt="Ouverture de la 43ᵉ session du Comité du CNDT" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/comite-43/2.jpg" alt="Présidence de la session par le Dr Madeleine TCHUINTE" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/comite-43/3.jpg" alt="Membres du Comité lors des délibérations" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/comite-43/4.jpg" alt="Ouverture de la 43ᵉ session du Comité du CNDT" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/comite-43/5.jpg" alt="Présidence de la session par le Dr Madeleine TCHUINTE" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/comite-43/6.jpg" alt="Membres du Comité lors des délibérations" loading="lazy">
+                </figure>
+              </div>
+            </section>
+
+          </article>
+
+          <!-- ---------- SIDEBAR ---------- -->
+          <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+            <section class="news-agenda" aria-labelledby="news-title">
+              <div class="sidebar-heading">
+                <h2 id="news-title">Actualités</h2>
+              </div>
+              <div class="agenda-list">
+                <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
+                  <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                  <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+                </a>
+                <a href="/actualite/cndt-43e-session-comite">
+                  <time datetime="2026-07-09"><small>JEU</small><strong>09</strong><span>JUL<br>2026</span></time>
+                  <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+                </a>
+                <a href="/actualite/formation-finances-publiques-2026">
+                  <time datetime="2026-08-19"><small>MER</small><strong>19</strong><span>AOÛ<br>2026</span></time>
+                  <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+                </a>
+                <a href="/actualites#per-numerique">
+                  <time datetime="2026-09-15"><small>MAR</small><strong>15</strong><span>SEP<br>2026</span></time>
+                  <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+                </a>
+                <a href="/actualites#sia-2026">
+                  <time datetime="2026-06-15"><small>LUN</small><strong>15</strong><span>JUN<br>2026</span></time>
+                  <p>Première édition de la Semaine de l'Intelligence Artificielle au MINRESI</p>
+                </a>
+              </div>
+              <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
+                <a href="/publications#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+              </nav>
+            </section>
+          </aside>
+
+        </div>
+
+        <!-- Retour -->
+        <div class="project-back">
+          <a class="text-link" href="/actualites">Retour aux Actualités</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <section class="instituts">
+    <div class="block-heading">
+        <h2 class="sp-title">Instituts et Partenaires</h2>
+    </div>
+
+    <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/impm.png" alt="IMPM" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+                </a>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  
+@endsection

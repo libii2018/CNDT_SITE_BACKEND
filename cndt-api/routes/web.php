@@ -4,82 +4,82 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Site vitrine — routes Laravel
+| Site vitrine — routes Laravel (URLs propres, sans .html)
 |--------------------------------------------------------------------------
-| Deux familles d'URLs servent les mêmes vues Blade (resources/views/pages) :
+| URLs canoniques :
+|   /  /actualites  /article/{slug}  /galerie  /personnel  /membre/{slug}
+|   /projets  /projet/{slug}  /publications  /contact  /organigramme
+|   /comite  /cabinet  /crmp  /caaf  /cdcrp  /rhcaj  /ct
+|   /actualite/{page}  /membres/{page}  /projets/{page}  (contenus historiques)
 |
-|   1. URLs propres (canonical)   : /actualites, /article/{slug}, /galerie…
-|   2. URLs historiques (.html)    : /actualites.html, /membres/{page}.html…
-|      conservées telles quelles — tous les liens internes du site
-|      (app.js, api-actualites.js, vues) continuent de fonctionner.
-|
-| Les pages dynamiques (article, fiche membre, fiche projet) lisent le
-| contenu via ?slug=… : les URLs propres redirigent donc vers la forme
-| complète (ex. /article/{slug} → /actualite/article.html?slug={slug}).
-|
-| Le dashboard React (build statique) est servi depuis public/admin/ par
-| Apache ; l'API reste sous /api/v1 (routes/api.php).
+| Les anciennes URLs .html ne servent plus de contenu : elles redirigent
+| en 301 vers l'URL propre correspondante (liens externes, favoris).
+| Le dashboard React est servi depuis public/admin/ par Apache ;
+| l'API reste sous /api/v1 (routes/api.php).
 */
+
+/* ---------- Redirections .html → URL propre (redirections 301) ----------
+   La chaîne de requête est préservée (ex. /galerie.html?album=x → /galerie?album=x). */
+$versPropre = function (string $chemin) {
+    return fn () => redirect($chemin.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301);
+};
 
 /* ---------- Accueil ---------- */
 Route::view('/', 'pages.index')->name('accueil');
-Route::view('/index.html', 'pages.index');
+Route::get('/index.html', $versPropre('/'));
 
 /* ---------- Actualités ---------- */
 Route::view('/actualites', 'pages.actualites')->name('actualites');
-Route::view('/actualites.html', 'pages.actualites');
-Route::get('/article/{slug}', fn (string $slug) =>
-    redirect()->to('/actualite/article.html?slug='.urlencode($slug), 301)
-)->name('article');
-Route::view('/actualite/article.html', 'pages.actualite.article');
+Route::get('/actualites.html', $versPropre('/actualites'));
+Route::view('/article/{slug}', 'pages.actualite.article')->name('article');
+Route::get('/actualite/article.html', fn () =>
+    redirect('/article/'.request()->string('slug'), 301));
 
 /* ---------- Galerie photo ---------- */
 Route::view('/galerie', 'pages.galerie')->name('galerie');
-Route::view('/galerie.html', 'pages.galerie');
+Route::get('/galerie.html', $versPropre('/galerie'));
 
 /* ---------- Catalogue du personnel ---------- */
 Route::view('/personnel', 'pages.personnel')->name('personnel');
-Route::view('/personnel.html', 'pages.personnel');
-Route::get('/membre/{slug}', fn (string $slug) =>
-    redirect()->to('/membres/membre.html?slug='.urlencode($slug), 301)
-)->name('membre');
-Route::view('/membres/membre.html', 'pages.membres.membre');
+Route::get('/personnel.html', $versPropre('/personnel'));
+Route::view('/membre/{slug}', 'pages.membres.membre')->name('membre');
+Route::get('/membres/membre.html', fn () =>
+    redirect('/membre/'.request()->string('slug'), 301));
 
 /* ---------- Projets ---------- */
 Route::view('/projets', 'pages.projets')->name('projets');
-Route::view('/projets.html', 'pages.projets');
-Route::get('/projet/{slug}', fn (string $slug) =>
-    redirect()->to('/projets/projet.html?slug='.urlencode($slug), 301)
-)->name('projet');
-Route::view('/projets/projet.html', 'pages.projets.projet');
+Route::get('/projets.html', $versPropre('/projets'));
+Route::view('/projet/{slug}', 'pages.projets.projet')->name('projet');
+Route::get('/projets/projet.html', fn () =>
+    redirect('/projet/'.request()->string('slug'), 301));
 
 /* ---------- Publications & contact ---------- */
 Route::view('/publications', 'pages.publication')->name('publications');
-Route::view('/publication.html', 'pages.publication');
+Route::get('/publication.html', $versPropre('/publications'));
 Route::view('/contact', 'pages.contact')->name('contact');
-Route::view('/contact.html', 'pages.contact');
+Route::get('/contact.html', $versPropre('/contact'));
 
 /* ---------- Organisation & commissions ---------- */
 Route::view('/organigramme', 'pages.organigramme')->name('organigramme');
-Route::view('/organigramme.html', 'pages.organigramme');
+Route::get('/organigramme.html', $versPropre('/organigramme'));
 Route::view('/comite', 'pages.comite')->name('comite');
-Route::view('/comite.html', 'pages.comite');
+Route::get('/comite.html', $versPropre('/comite'));
 Route::view('/cabinet', 'pages.cabinet')->name('cabinet');
-Route::view('/cabinet.html', 'pages.cabinet');
+Route::get('/cabinet.html', $versPropre('/cabinet'));
 Route::view('/crmp', 'pages.crmp')->name('crmp');
-Route::view('/crmp.html', 'pages.crmp');
+Route::get('/crmp.html', $versPropre('/crmp'));
 Route::view('/caaf', 'pages.caaf')->name('caaf');
-Route::view('/caaf.html', 'pages.caaf');
+Route::get('/caaf.html', $versPropre('/caaf'));
 Route::view('/cdcrp', 'pages.cdcrp')->name('cdcrp');
-Route::view('/cdcrp.html', 'pages.cdcrp');
+Route::get('/cdcrp.html', $versPropre('/cdcrp'));
 Route::view('/rhcaj', 'pages.rhcaj')->name('rhcaj');
-Route::view('/rhcaj.html', 'pages.rhcaj');
+Route::get('/rhcaj.html', $versPropre('/rhcaj'));
 Route::view('/ct', 'pages.ct')->name('ct');
-Route::view('/ct.html', 'pages.ct');
+Route::get('/ct.html', $versPropre('/ct'));
 
-/* ---------- Pages historiques (vues Blade statiques) ----------
-   /actualite/{page}.html, /membres/{page}.html, /projets/{page}.html —
-   servies uniquement si la vue existe dans resources/views/pages/. */
+/* ---------- Contenus historiques (vues Blade statiques) ----------
+   /actualite/{page}, /membres/{page}, /projets/{page} — servis uniquement
+   si la vue existe dans resources/views/pages/ (404 sinon). */
 $pageStatique = function (string $dossier) {
     return function (string $page) use ($dossier) {
         $vue = 'pages.'.$dossier.'.'.str_replace(['/', '\\'], '', $page);
@@ -89,9 +89,17 @@ $pageStatique = function (string $dossier) {
     };
 };
 
-Route::get('/actualite/{page}.html', $pageStatique('actualite'))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/membres/{page}.html', $pageStatique('membres'))->where('page', '[A-Za-z0-9\-_]+');
-Route::get('/projets/{page}.html', $pageStatique('projets'))->where('page', '[A-Za-z0-9\-_]+');
+Route::get('/actualite/{page}', $pageStatique('actualite'))->where('page', '[A-Za-z0-9\-_]+');
+Route::get('/membres/{page}', $pageStatique('membres'))->where('page', '[A-Za-z0-9\-_]+');
+Route::get('/projets/{page}', $pageStatique('projets'))->where('page', '[A-Za-z0-9\-_]+');
+
+// Anciennes URLs .html → URL propre
+Route::get('/actualite/{page}.html', fn (string $page) =>
+    redirect('/actualite/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
+Route::get('/membres/{page}.html', fn (string $page) =>
+    redirect('/membres/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
+Route::get('/projets/{page}.html', fn (string $page) =>
+    redirect('/projets/'.$page.(request()->getQueryString() ? '?'.request()->getQueryString() : ''), 301))->where('page', '[A-Za-z0-9\-_]+');
 
 /* ---------- Dashboard React (build statique servi par Apache) ---------- */
 Route::redirect('/admin.html', '/admin/', 301);

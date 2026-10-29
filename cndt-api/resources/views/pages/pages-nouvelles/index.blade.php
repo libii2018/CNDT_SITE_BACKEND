@@ -1,0 +1,475 @@
+@extends('layouts.site')
+
+@section('title', "CNDT Cameroun | Comité National de Développement des Technologies")
+
+@section('description', "Site institutionnel du Comité National de Développement des Technologies du Cameroun.")
+
+@section('content')
+  <main id="contenu">
+    <section class="hero" aria-label="Temps forts du CNDT" tabindex="0">
+      <div class="hero-track">
+
+        <article class="hero-slide" aria-hidden="true">
+          <img src="assets/S-1.webp" alt="Rencontre scientifique organisée par le CNDT" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">SIA MINRESI 2026</p>
+            <h1>Semaine de l'Intelligence Articielle au MINRESI</h1>
+            <p>Sous la présidence de Madame le Ministre de la Recherche Scientifique et de l'innovation, Dr Madeleine TCHUINTE, s’est tenue ce mardi 09 juin 2026, dans la salle de conférences du MINRESI, la cérémonie officielle d’ouverture du SIA MENRESI 2026.</p>
+            <a class="button button-light" href="/actualite/sia-minresi-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="hero-slide" aria-hidden="true">
+          <img src="assets/Symposium_1.jpg" alt="Rencontre scientifique organisée par le CNDT" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">Symposium 2026</p>
+            <h1>Symposium sur l'Intelligence Artificielle et la Souveraineté Numérique au Cameroun</h1>
+            <p>Le lundi 25 mai 2026, le Comité National de Développement des Technologies (CNDT) a organisé, dans la salle de conférences du MINRESI, une journée dédiée à un enjeu stratégique majeur pour le Cameroun.</p>
+            <a class="button button-light" href="/actualite/symposium-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="hero-slide is-active" aria-hidden="false">
+          <img src="assets/aiea/1.jpeg" alt="Rencontre scientifique organisée par le CNDT" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">AIEA 70</p>
+            <h1>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</h1>
+            <p>La délégation camerounaise, conduite par Madame le Ministre de la Recherche Scientifique et de l'Innovation, Dr Madeleine TCHUINTE, prend part à la 70ᵉ Conférence Générale de l'Agence Internationale de l'Énergie Atomique (AIEA), qui se tient à Vienne en Autriche, du 14 au 18 septembre 2026.</p>
+            <a class="button button-light" href="/actualite/aiea70-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="hero-slide" aria-hidden="true">
+          <img src="assets/comite-43/1.jpg" alt="Rencontre scientifique organisée par le CNDT" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">Comite 43e</p>
+            <h1>Le Cameroun à la 43ᵉ session du Comité National de Développement des Technologies</h1>
+            <p>Le Comité National de Développement des Technologies (CNDT) a tenu, ce 09 juillet 2026, la 43ᵉ session de son Comité, présidée par le Dr Madeleine TCHUINTE, Ministre de la Recherche Scientifique et de l'Innovation.</p>
+            <a class="button button-light" href="/actualite/cndt-43e-session-comite">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="hero-slide is-active" aria-hidden="false">
+          <img src="assets/FormationFInancePublique_1.jpg" alt="Rencontre scientifique organisée par le CNDT" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">Finances Publiques</p>
+            <h1>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun</h1>
+            <p>Les 19 et 20 août 2026, le Comité National de Développement des Technologies (CNDT) a organisé un atelier consacré à l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun.</p>
+            <a class="button button-light" href="/actualite/formation-finances-publiques-2026">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+
+        <article class="hero-slide" aria-hidden="true">
+          <img src="assets/per-rural/1.jpg" alt="Photo de famille autour de Madame le Ministre Dr Madeleine TCHUINTE lors des activités numériques aux PER de Bayangam et d'Akonolinga" width="1100" height="825" fetchpriority="high">
+          <!-- <div class="hero-shade"></div> -->
+          <div class="container hero-content">
+            <p class="eyebrow">Inclusion numérique</p>
+            <h1>Réduction de la fracture numérique en milieu rural : Bayangam et Akonolinga</h1>
+            <p>Le MINRESI, à travers le CNDT, a formé des jeunes, des enseignants et des acteurs locaux aux outils numériques, à la programmation et à l'intelligence artificielle aux Plateformes énergétiques rurales d'Akonolinga et de Bayangam, d'août 2025 à juin 2026.</p>
+            <a class="button button-light" href="/actualite/fracture-numerique-per-bayangam-akonolinga">Pour plus d'informations <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="container hero-controls">
+        <div class="hero-dots" role="tablist" aria-label="Choisir une image">
+          <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Afficher l’image 1"></button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Afficher l’image 2"></button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Afficher l’image 3"></button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Afficher l’image 4"></button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="true" aria-label="Afficher l’image 1"></button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Afficher l’image 6"></button>
+        </div>
+        <div class="hero-arrows">
+          <button class="hero-arrow hero-prev" type="button" aria-label="Image précédente">←</button>
+          <button class="hero-arrow hero-next" type="button" aria-label="Image suivante">→</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="institution" class="home-content">
+      <div class="container home-grid">
+        <div class="main-column">
+          <section class="secretary-block" aria-labelledby="sp-title">
+            <div class="block-heading">
+              <p>Le Secrétariat Permanent</p>
+              <h2 class="sp-title">Mot du Secrétaire Permanent</h2>
+            </div>
+            <div class="secretary-card">
+              <figure>
+                <img src="assets/hero-1.webp" alt="Dr ELE ABIAMA Patrice, Secrétaire Permanent du CNDT" width="640" height="480" loading="lazy">
+                <figcaption>
+                  <strong>Dr ELE ABIAMA Patrice</strong>
+                  <span>Secrétaire Permanent</span>
+                </figcaption>
+              </figure>
+              <div class="secretary-copy">
+                <span class="opening-quote" aria-hidden="true">“</span>
+                <p>Je vous souhaite, chers internautes, une agréable bienvenue sur le site officiel du Comité National de Développement des Technologies.</p>
+                <p>Cet espace met en valeur nos actions de veille, d’adaptation et de transfert des technologies, avec l’ambition de rapprocher la recherche des besoins concrets de développement du Cameroun.</p>
+                <a class="text-link" href="/comite">Découvrir le CNDT <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </section>
+
+          <section class="missions-block" aria-labelledby="missions-title">
+            <div class="block-heading">
+              <p>Ce que nous faisons</p>
+              <h2 class="sp-title">Nos missions</h2>
+            </div>
+
+            <div class="cndt-grid">
+             
+              <div class="cndt-card">
+                <img src="assets/missions/help.png" alt="Collecter" class="cndt-card-img">
+                <h3 class="cndt-card-title">Collecter</h3>
+                <p class="cndt-card-text">La documentation</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/help-1.png" alt="Traiter" class="cndt-card-img">
+                <h3 class="cndt-card-title">Traiter</h3>
+                <p class="cndt-card-text">L'information technologique</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/operations_chirurgicales.png" alt="Assurer" class="cndt-card-img">
+                <h3 class="cndt-card-title">Assurer</h3>
+                <p class="cndt-card-text">La veille technologique</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/benevoles.png" alt="Étudier" class="cndt-card-img">
+                <h3 class="cndt-card-title">Étudier</h3>
+                <p class="cndt-card-text">Les modalités d'acquisition et d'adaptation des technologies</p>
+              </div>
+  
+              <div class="cndt-card">
+                <img src="assets/missions/cas_traites.png" alt="Collecter" class="cndt-card-img">
+                <h3 class="cndt-card-title">Faire l'inventaire</h3>
+                <p class="cndt-card-text">Des technologies locales</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/hopitaux_partenaires.png" alt="Traiter" class="cndt-card-img">
+                <h3 class="cndt-card-title">Promouvoir</h3>
+                <p class="cndt-card-text">Les technologies locales</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/help-1_1.png" alt="Assurer" class="cndt-card-img">
+                <h3 class="cndt-card-title">Assurer</h3>
+                <p class="cndt-card-text">Les technologies étrangères pour le Développement du Cameroun</p>
+              </div>
+  
+              
+              <div class="cndt-card">
+                <img src="assets/missions/annees_existence.png" alt="Étudier" class="cndt-card-img">
+                <h3 class="cndt-card-title">Organiser</h3>
+                <p class="cndt-card-text">Les séminaires et conférences de vulgarisation</p>
+              </div>
+  
+            </div>
+          </section>
+        </div>
+
+        <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+          <section class="news-agenda" aria-labelledby="news-title">
+            <div class="sidebar-heading">
+              <h2 id="news-title">Actualités</h2>
+            </div>
+          <div class="agenda-list" data-news-list>
+
+
+            <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
+              <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+              <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+            </a>
+            <a href="/actualite/aiea70-2026">
+              <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+              <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+            </a>
+            <a href="/actualite/formation-finances-publiques-2026">
+              <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
+              <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+            </a>
+            <a href="/actualite/cndt-43e-session-comite">
+              <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
+              <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+            </a>
+            <a href="/actualite/sia-minresi-2026">
+              <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+              <p>Semaine de l'Intelligence Articielle au MINRESI</p>
+            </a>
+          
+          </div>
+            <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
+          </section>
+
+          <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
+                <a href="/galerie"><span aria-hidden="true">›</span> Photothèque</a>
+              </nav>
+            </section>
+        </aside>
+
+      </div>
+    </section>
+    
+    <section id="secretariats" class="secretariats-block container" aria-labelledby="secretariats-title">
+        <div class="block-heading heading-row">
+          <div>
+            <h2 class="secretariats-title">Organigramme</h2>
+          </div>
+          <!-- <a class="text-link" href="/organigramme">Voir l’organigramme <span aria-hidden="true">→</span></a> -->
+        </div>
+
+        <!-- =========================================================
+     GRILLE DE CARTES — inspirée du DSFR Tuile (verticale)
+     ========================================================= -->
+      <div class="cndt-tiles" role="list">
+
+          <!-- =========================================================
+            Carte 5 — Secrétariat Permanent (CARTE EN VEDETTE)
+            Traitement visuel distinctif : fond sombre + or
+            ========================================================= -->
+        <a class="cndt-tile cndt-tile--featured" role="listitem" href="/#institution"
+          aria-label="Découvrir le Secrétariat Permanent du CNDT">
+          <div class="cndt-tile__header">
+            <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+              <!-- Couronne de laurier (partie gauche) -->
+              <path d="M14 40 C14 58 26 68 40 74"
+                    stroke="#c7a65d" stroke-width="3"
+                    fill="none" stroke-linecap="round"/>
+              <!-- Couronne de laurier (partie droite) -->
+              <path d="M66 40 C66 58 54 68 40 74"
+                    stroke="#c7a65d" stroke-width="3"
+                    fill="none" stroke-linecap="round"/>
+              <!-- Feuilles de laurier gauche -->
+              <ellipse cx="14" cy="34" rx="4" ry="2" fill="#c7a65d" transform="rotate(-40 14 34)"/>
+              <ellipse cx="13" cy="44" rx="4" ry="2" fill="#c7a65d" transform="rotate(-70 13 44)"/>
+              <ellipse cx="16" cy="54" rx="4" ry="2" fill="#c7a65d" transform="rotate(-100 16 54)"/>
+              <ellipse cx="22" cy="62" rx="4" ry="2" fill="#c7a65d" transform="rotate(-130 22 62)"/>
+              <!-- Feuilles de laurier droite -->
+              <ellipse cx="66" cy="34" rx="4" ry="2" fill="#c7a65d" transform="rotate(40 66 34)"/>
+              <ellipse cx="67" cy="44" rx="4" ry="2" fill="#c7a65d" transform="rotate(70 67 44)"/>
+              <ellipse cx="64" cy="54" rx="4" ry="2" fill="#c7a65d" transform="rotate(100 64 54)"/>
+              <ellipse cx="58" cy="62" rx="4" ry="2" fill="#c7a65d" transform="rotate(130 58 62)"/>
+              <!-- Étoile centrale -->
+              <path d="M40 14 L44 26 L56 26 L46 34 L50 46 L40 38 L30 46 L34 34 L24 26 L36 26 Z"
+                    fill="#f3f7f4"/>
+              <!-- Disque doré en dessous -->
+              <circle cx="40" cy="54" r="6" fill="#c7a65d"/>
+              <circle cx="40" cy="54" r="3" fill="#1d5a3b"/>
+            </svg>
+          </div>
+          <div class="cndt-tile__body">
+            <h3 class="cndt-tile__title">Secrétariat Permanent</h3>
+            <p class="cndt-tile__desc">
+              Coordination générale, pilotage stratégique et représentation officielle du CNDT.
+            </p>
+            <span class="cndt-tile__cta" aria-hidden="true">Découvrir <span>→</span></span>
+          </div>
+        </a>
+
+        <!-- =========================================================
+          Carte 1 — Cabinet du Secrétaire Permanent
+        ========================================================= -->
+        <a class="cndt-tile" role="listitem" href="/cabinet"
+          aria-label="Découvrir le Cabinet du Secrétaire Permanent">
+          <div class="cndt-tile__header">
+            <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+              <path d="M40 6 L74 28 H6 Z" fill="#1d5a3b"/>
+              <rect x="10" y="28" width="60" height="4" fill="#c7a65d"/>
+              <rect x="14" y="32" width="6" height="32" fill="#1d5a3b"/>
+              <rect x="26" y="32" width="6" height="32" fill="#1d5a3b"/>
+              <rect x="37" y="32" width="6" height="32" fill="#1d5a3b"/>
+              <rect x="48" y="32" width="6" height="32" fill="#1d5a3b"/>
+              <rect x="60" y="32" width="6" height="32" fill="#1d5a3b"/>
+              <rect x="10" y="64" width="60" height="4" fill="#1d5a3b"/>
+              <rect x="6"  y="68" width="68" height="4" fill="#1d5a3b"/>
+              <circle cx="40" cy="20" r="3" fill="#c7a65d"/>
+            </svg>
+          </div>
+          <div class="cndt-tile__body">
+            <h3 class="cndt-tile__title">Cabinet du Secrétaire Permanent</h3>
+            <p class="cndt-tile__desc">
+              Unités rattachées directement à la direction exécutive du CNDT.
+            </p>
+            <span class="cndt-tile__cta" aria-hidden="true">Consulter <span>→</span></span>
+          </div>
+        </a>
+
+        <!-- =========================================================
+          Carte 3 — Commission Opérationnelle
+        ========================================================= -->
+        <a class="cndt-tile" role="listitem" href="/crmp"
+          aria-label="Découvrir la Commission Opérationnelle">
+          <div class="cndt-tile__header">
+            <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+              <circle cx="36" cy="44" r="26" fill="#1d5a3b"/>
+              <circle cx="36" cy="44" r="18" fill="#f3f7f4"/>
+              <circle cx="36" cy="44" r="11" fill="#1d5a3b"/>
+              <circle cx="36" cy="44" r="5"  fill="#c7a65d"/>
+              <path d="M36 44 L72 8" stroke="#c7a65d" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M72 8 L62 10" stroke="#c7a65d" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M72 8 L70 18" stroke="#c7a65d" stroke-width="4" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="cndt-tile__body">
+            <h3 class="cndt-tile__title">Commission Opérationnelle</h3>
+            <p class="cndt-tile__desc">
+              Recherche, management des projets, documentation et communication.
+            </p>
+            <span class="cndt-tile__cta" aria-hidden="true">Consulter <span>→</span></span>
+          </div>
+        </a>
+
+
+
+        <!-- =========================================================
+          Carte 4 — Commission Support
+        ========================================================= -->
+        <a class="cndt-tile" role="listitem" href="/rhcaj"
+          aria-label="Découvrir la Commission Support">
+          <div class="cndt-tile__header">
+            <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+              <path d="M40 6 L70 18 V40 C70 56 56 68 40 74 C24 68 10 56 10 40 V18 Z" fill="#1d5a3b"/>
+              <path d="M40 14 L62 22 V40 C62 52 53 61 40 66 C27 61 18 52 18 40 V22 Z" fill="#c7a65d"/>
+              <path d="M28 40 L36 48 L54 30"
+                    stroke="#f3f7f4" stroke-width="5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="cndt-tile__body">
+            <h3 class="cndt-tile__title">Commission Support</h3>
+            <p class="cndt-tile__desc">
+              Ressources humaines, coopération, affaires juridiques et financières.
+            </p>
+            <span class="cndt-tile__cta" aria-hidden="true">Consulter <span>→</span></span>
+          </div>
+        </a>
+
+                <!-- =========================================================
+            Carte 2 — Commission Technique
+            ========================================================= -->
+        <a class="cndt-tile" role="listitem" href="/ct"
+          aria-label="Découvrir les Commissions Techniques">
+          <div class="cndt-tile__header">
+            <svg class="cndt-tile__pictogram" viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+              <g transform="translate(40 40)">
+                <g fill="#1d5a3b">
+                  <circle r="24"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(45)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(90)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(135)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(180)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(225)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(270)"/>
+                  <rect x="-5" y="-32" width="10" height="12" rx="1.5" transform="rotate(315)"/>
+                </g>
+                <circle r="10" fill="#f3f7f4"/>
+                <circle r="5" fill="#c7a65d"/>
+              </g>
+            </svg>
+          </div>
+          <div class="cndt-tile__body">
+            <h3 class="cndt-tile__title">Commission Technique</h3>
+            <p class="cndt-tile__desc">
+              Cinq Secrétariats techniques couvrant les domaines scientifiques prioritaires.
+            </p>
+            <span class="cndt-tile__cta" aria-hidden="true">Consulter <span>→</span></span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="instituts">
+        <div class="block-heading">
+              <!-- <p>Le Secrétariat Permanent</p> -->
+              <h2 class="sp-title">Instituts sous tutelle du MINRESI</h2>
+        </div>
+
+        <!-- Conteneur du Carrousel Swiper -->
+        <div class="swiper instituts-carousel">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/impm.png" alt="IMPM" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Navigation & Pagination -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        
+    </section>
+
+  </main>
+
+  
+@endsection

@@ -35,7 +35,7 @@ window.CNDT_SITE = { root: '' };
 
   <div class="main-nav-wrap">
     <div class="main-nav">
-      <a class="brand" href="${window.CNDT_SITE.root}index.html" aria-label="Accueil du CNDT">
+      <a class="brand" href="/" aria-label="Accueil du CNDT">
         <img src="${window.CNDT_SITE.root}assets/logo-cndt.webp" alt="Logo du CNDT">
         <span class="brand-copy">
           <strong>Comité National de Développement des Technologies</strong>
@@ -49,7 +49,7 @@ window.CNDT_SITE = { root: '' };
       </button>
 
       <nav id="primary-nav" class="primary-nav" aria-label="Navigation principale">
-        <a href="${window.CNDT_SITE.root}index.html">Accueil</a>
+        <a href="/">Accueil</a>
 
         <button
           type="button"
@@ -64,10 +64,10 @@ window.CNDT_SITE = { root: '' };
           </svg>
         </button>
 
-        <a href="${window.CNDT_SITE.root}actualites.html">Actualités</a>
-        <a href="${window.CNDT_SITE.root}publication.html">Publications</a>
-        <a href="${window.CNDT_SITE.root}projets.html">Projets</a>
-        <a href="${window.CNDT_SITE.root}contact.html">Contact</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/publications">Publications</a>
+        <a href="/projets">Projets</a>
+        <a href="/contact">Contact</a>
 
         <div class="nav-search" data-nav-search role="search">
           <form class="nav-search__form" autocomplete="off" novalidate>
@@ -160,17 +160,17 @@ window.CNDT_SITE = { root: '' };
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="${window.CNDT_SITE.root}index.html#institution">
+                      <a href="/#institution">
                         <span>Mot du Secrétaire Permanent</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}comite.html">
+                      <a href="/comite">
                         <span>Comité</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}cabinet.html">
+                      <a href="/cabinet">
                         <span>Cabinet du Secrétaire Permanent</span>
                       </a>
                     </li>
@@ -180,17 +180,17 @@ window.CNDT_SITE = { root: '' };
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="${window.CNDT_SITE.root}crmp.html">
+                      <a href="/crmp">
                         <span>Commission recherche et management des projets</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}caaf.html">
+                      <a href="/caaf">
                         <span>Commission des affaires administratives, financières et des engagements</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}cdcrp.html">
+                      <a href="/cdcrp">
                         <span>Commission documentation, communication et relations publiques</span>
                       </a>
                     </li>
@@ -200,22 +200,22 @@ window.CNDT_SITE = { root: '' };
                 <div class="mega-menu__col">
                   <ul class="mega-menu__list">
                     <li>
-                      <a href="${window.CNDT_SITE.root}rhcaj.html">
+                      <a href="/rhcaj">
                         <span>Commission des ressources humaines, de la coopération et des affaires juridiques</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}ct.html">
+                      <a href="/ct">
                         <span>Commission technique</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}personnel.html">
+                      <a href="/personnel">
                         <span>Catalogue du personnel</span>
                       </a>
                     </li>
                     <li>
-                      <a href="${window.CNDT_SITE.root}galerie.html">
+                      <a href="/galerie">
                         <span>Galerie photo</span>
                       </a>
                     </li>
@@ -225,7 +225,7 @@ window.CNDT_SITE = { root: '' };
               </div>
 
               <div class="mega-menu__foot">
-                <a class="mega-menu__cta" href="${window.CNDT_SITE.root}organigramme.html">
+                <a class="mega-menu__cta" href="/organigramme">
                   Voir l'organigramme complet
                   <span aria-hidden="true">→</span>
                 </a>
@@ -240,15 +240,15 @@ window.CNDT_SITE = { root: '' };
 </header>`;
 
     // Lien actif de la navbar (selon le fichier courant)
-    const page = (location.pathname.split('/').pop() || 'index.html');
+    const page = (location.pathname.split('/').pop() || '');
     document.querySelectorAll('.primary-nav > a').forEach((link) => {
       const target = (link.getAttribute('href') || '').split('/').pop();
       if (target === page) link.classList.add('active');
     });
 
     // Pages organisation -> déclencheur « Secrétariats Permanents » actif
-    const ORG_PAGES = ['organigramme.html', 'comite.html', 'cabinet.html', 'crmp.html',
-                       'cdcrp.html', 'rhcaj.html', 'caaf.html', 'ct.html', 'personnel.html'];
+    const ORG_PAGES = ['organigramme', 'comite', 'cabinet', 'crmp',
+                       'cdcrp', 'rhcaj', 'caaf', 'ct', 'personnel'];
     if (ORG_PAGES.includes(page)) {
       document.querySelector('.primary-nav__trigger')?.classList.add('active');
     }
@@ -292,13 +292,13 @@ window.CNDT_SITE = { root: '' };
     </div>
     <div>
       <h2>Accès rapide</h2>
-      <a href="${window.CNDT_SITE.root}index.html#institution">Présentation</a>
-      <a href="${window.CNDT_SITE.root}organigramme.html">Organigramme</a>
-      <a href="${window.CNDT_SITE.root}contact.html">Contact</a>
+      <a href="/#institution">Présentation</a>
+      <a href="/organigramme">Organigramme</a>
+      <a href="/contact">Contact</a>
       <div>
-        <a href="${window.CNDT_SITE.root}actualites.html">Actualités</a>
-        <a href="${window.CNDT_SITE.root}publication.html">Publications</a>
-        <a href="${window.CNDT_SITE.root}projets.html">Projets</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/publications">Publications</a>
+        <a href="/projets">Projets</a>
       </div>
     </div>
     <div>
@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ---------- Assemblage ---------- */
     mount.innerHTML = `
       <div class="org-tree">
-        <a class="org-tree__root" href="${root}comite.html">
+        <a class="org-tree__root" href="/comite">
           <span class="org-tree__code">CNDT</span>
           <strong>Comité National de Développement des Technologies</strong>
           <small>Secrétariat Permanent</small>
@@ -625,60 +625,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const SEARCH_INDEX = [
       /* --- Pages principales --- */
-      { title: "Accueil",                    url: "index.html",
+      { title: "Accueil",                    url: "/",
         group: "Pages", excerpt: "Présentation institutionnelle du CNDT",
         keywords: "accueil cndt comité technologie cameroun" },
 
-      { title: "Organigramme",               url: "organigramme.html",
+      { title: "Organigramme",               url: "/organigramme",
         group: "Pages", excerpt: "Structure et organisation du CNDT",
         keywords: "organigramme organisation structure hiérarchie chapitres" },
 
-      { title: "Personnel",                  url: "personnel.html",
+      { title: "Personnel",                  url: "/personnel",
         group: "Pages", excerpt: "Annuaire du personnel par niveau hiérarchique",
         keywords: "personnel équipe staff membres annuaire" },
 
-      { title: "Actualités",                 url: "actualites.html",
+      { title: "Actualités",                 url: "/actualites",
         group: "Pages", excerpt: "Événements, rencontres et activités du CNDT",
         keywords: "actualités news événements rencontres communiqués" },
 
-      { title: "Publications",               url: "publication.html",
+      { title: "Publications",               url: "/publications",
         group: "Pages", excerpt: "Rapports, actes et documents scientifiques",
         keywords: "publications documents rapports technomag médias" },
 
-      { title: "Galerie photo",              url: "galerie.html",
+      { title: "Galerie photo",              url: "/galerie",
         group: "Pages", excerpt: "Albums photos des activités du CNDT",
         keywords: "galerie photos albums images" },
 
-      { title: "Contact",                    url: "contact.html",
+      { title: "Contact",                    url: "/contact",
         group: "Pages", excerpt: "Coordonnées et formulaire de contact",
         keywords: "contact email téléphone adresse formulaire" },
 
       /* --- Organisation --- */
-      { title: "Comité du CNDT",             url: "comite.html",
+      { title: "Comité du CNDT",             url: "/comite",
         group: "Organisation", excerpt: "Le Comité national et ses membres",
         keywords: "comité membres session ministère" },
 
-      { title: "Cabinet du Secrétaire Permanent", url: "cabinet.html",
+      { title: "Cabinet du Secrétaire Permanent", url: "/cabinet",
         group: "Organisation", excerpt: "Chapitre I — 7 cellules rattachées au SP",
         keywords: "cabinet secrétaire permanent chapitre" },
 
-      { title: "Commission Recherche & Management des Projets", url: "crmp.html",
+      { title: "Commission Recherche & Management des Projets", url: "/crmp",
         group: "Organisation", excerpt: "Recherche, projets et secrétariats techniques",
         keywords: "recherche management projets commission" },
 
-      { title: "Commission Documentation, Communication & Relations Publiques", url: "cdcrp.html",
+      { title: "Commission Documentation, Communication & Relations Publiques", url: "/cdcrp",
         group: "Organisation", excerpt: "Documentation, communication et relations publiques",
         keywords: "documentation communication relations publiques archives" },
 
-      { title: "Commission RH, Coopération & Affaires Juridiques", url: "rhcaj.html",
+      { title: "Commission RH, Coopération & Affaires Juridiques", url: "/rhcaj",
         group: "Organisation", excerpt: "Ressources humaines, coopération et juridique",
         keywords: "ressources humaines coopération juridique contentieux" },
 
-      { title: "Commission des Affaires Administratives & Financières", url: "caaf.html",
+      { title: "Commission des Affaires Administratives & Financières", url: "/caaf",
         group: "Organisation", excerpt: "Affaires administratives, financières et engagements",
         keywords: "affaires administratives financières engagements budget" },
 
-      { title: "Commission Technique",       url: "ct.html",
+      { title: "Commission Technique",       url: "/ct",
         group: "Organisation", excerpt: "Les cinq secrétariats techniques du CNDT",
         keywords: "technique tic ia industrie biosciences énergie mines politiques" },
     ];

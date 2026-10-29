@@ -1,0 +1,263 @@
+@extends('layouts.site')
+
+@section('title', "Mme ISAOURA Bénite | CNDT Cameroun")
+
+@section('description', "Fiche de Mme ISAOURA Bénite, Coordonnatrice Exécutive Adjointe chargée de la Documentation, la Communication et les Relations Publiques du CNDT.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO du profil
+         ========================================================= -->
+    <section class="profile-hero">
+      <img class="profile-hero__bg" src="../assets/S-3.webp" alt="" aria-hidden="true">
+
+      <div class="container profile-hero__inner">
+
+        <div class="profile-hero__body">
+
+          <figure class="profile-hero__photo">
+            <img src="../assets/people/isaoura.webp" alt="Portrait de Mme ISAOURA Bénite" width="480" height="640">
+          </figure>
+
+          <div class="profile-hero__info">
+            <h1>Mme ISAOURA Bénite</h1>
+            <p class="profile-hero__role">Coordonnatrice Exécutive Adjointe — Documentation, Communication et Relations Publiques</p>
+
+            <ul class="profile-hero__meta" aria-label="Informations clés">
+              <li>
+                <span>Grade</span>
+                <strong>Attachée de Recherche</strong>
+              </li>
+              <li>
+                <span>Spécialité</span>
+                <strong>Informatique &amp; Développement d'applications</strong>
+              </li>
+              <li>
+                <span>Fonction</span>
+                <strong>Coordonnatrice Exécutive Adjointe — Documentation, Communication &amp; RP</strong>
+              </li>
+              <li>
+                <span>Affectation</span>
+                <strong>MINRESI / CNDT</strong>
+              </li>
+            </ul>
+
+            <!-- Réseaux sociaux & profils académiques -->
+            <ul class="profile-socials" aria-label="Réseaux sociaux et profils académiques">
+
+              <li>
+                <a href="https://www.facebook.com/Benite-Isaoura-2" target="_blank" rel="noopener"
+                   aria-label="Profil Facebook de Mme ISAOURA Bénite">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0 0 22 12Z"/>
+                  </svg>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.linkedin.com/in/isaoura-bénite-18b452a7" target="_blank" rel="noopener"
+                   aria-label="Profil LinkedIn de Mme ISAOURA Bénite">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6.94 8.5H4.06V19.5h2.88V8.5ZM5.5 7.19a1.69 1.69 0 1 0 0-3.38 1.69 1.69 0 0 0 0 3.38ZM20 19.5v-6.02c0-3.2-1.71-4.69-3.99-4.69-1.84 0-2.66 1.01-3.12 1.72V8.5H10.1c.04.82 0 11 0 11h2.79v-6.14c0-.25.02-.5.09-.68.2-.5.66-1.02 1.43-1.02 1.01 0 1.41.77 1.41 1.89v5.95H20Z"/>
+                  </svg>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <!-- =========================================================
+             LAYOUT : contenu + sidebar
+             ========================================================= -->
+        <div class="profile-layout">
+
+          <!-- ---------- Contenu principal ---------- -->
+          <article class="project-content">
+
+            <!-- ============ Biographie ============ -->
+            <section id="biographie" class="project-section">
+              <h2>Biographie</h2>
+              <p class="lead">
+                <strong>Mme ISAOURA Bénite</strong> est <strong>Attachée de Recherche</strong> au
+                Comité National de Développement des Technologies (CNDT). Elle est titulaire d'un
+                diplôme d'<strong>Ingénieure en Informatique</strong> obtenu à l'Institut Supérieur
+                du Sahel, devenu École Polytechnique de l'Université de Maroua.
+              </p>
+              <p>
+                Au sein du CNDT, elle occupe le poste de <strong>Coordonnatrice Exécutive Adjointe
+                chargée de la Documentation, de la Communication et des Relations Publiques</strong>.
+                Elle est également <strong>Coordonnatrice Adjointe de la Commission Appui et
+                Logistique</strong> et <strong>membre de la Commission scientifique TIC et
+                Intelligence Artificielle</strong>.
+              </p>
+              <p>
+                Ses compétences couvrent la gestion de projets numériques, le développement
+                d'applications et le développement web. Elle contribue activement à la transformation
+                digitale de l'institution et à la valorisation de son image institutionnelle.
+              </p>
+            </section>
+
+            <!-- ============ Domaines d'expertise ============ -->
+            <section id="expertise" class="project-section">
+              <h2>Domaines d'expertise</h2>
+
+              <ul class="project-list">
+                <li>Ingénierie informatique et systèmes d'information ;</li>
+                <li>Développement web et développement d'applications ;</li>
+                <li>Gestion de projets numériques et coordination d'équipes ;</li>
+                <li>Documentation, communication institutionnelle et relations publiques ;</li>
+                <li>Animation des plateformes numériques et des réseaux sociaux ;</li>
+                <li>Appui logistique et coordination administrative.</li>
+              </ul>
+            </section>
+
+            <!-- ============ Centres d'intérêts ============ -->
+            <section id="interets" class="project-section">
+              <h2>Centres d'intérêts</h2>
+
+              <ul class="chip-list" aria-label="Domaines d'expertise et centres d'intérêts">
+                <li class="chip">Gestion des projets</li>
+                <li class="chip">Développement web</li>
+                <li class="chip">Développement d'applications</li>
+                <li class="chip">Informatique</li>
+                <li class="chip">Communication digitale</li>
+              </ul>
+            </section>
+
+          </article>
+
+          <!-- ---------- SIDEBAR ---------- -->
+          <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+            <section class="news-agenda" aria-labelledby="news-title">
+              <div class="sidebar-heading">
+                <h2 id="news-title">Actualités</h2>
+              </div>
+              <div class="agenda-list">
+
+
+                <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
+                  <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                  <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+                </a>
+                <a href="/actualite/aiea70-2026">
+                  <time datetime="2026-09-14"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+                  <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+                </a>
+                <a href="/actualite/formation-finances-publiques-2026">
+                  <time datetime="2026-08-19"><small>MER</small><strong>19</strong><span>AOU<br>2026</span></time>
+                  <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+                </a>
+                <a href="/actualite/cndt-43e-session-comite">
+                  <time datetime="2026-07-09"><small>JEU</small><strong>09</strong><span>JUIL<br>2026</span></time>
+                  <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+                </a>
+                <a href="/actualite/sia-minresi-2026">
+                  <time datetime="2026-06-09"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+                  <p>Semaine de l'Intelligence Artificielle au MINRESI</p>
+                </a>
+              </div>
+              <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="/publications#technomag"><span aria-hidden="true">›</span>Techno Mag</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span>Émissions TV</a>
+                <a href="/publications#phototheque"><span aria-hidden="true">›</span>Photothèque</a>
+                <a href="/publications"><span aria-hidden="true">›</span>Innovation</a>
+                <a href="/publications#rapports"><span aria-hidden="true">›</span>Rapports</a>
+                <a href="/contact"><span aria-hidden="true">›</span>Contact</a>
+              </nav>
+            </section>
+          </aside>
+        </div>
+
+        <!-- Retour -->
+        <div class="project-back">
+          <a class="text-link" href="/personnel">← Retour au personnel du CNDT</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CARROUSEL INSTITUTS
+         ========================================================= -->
+    <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts sous tutelle du MINRESI</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

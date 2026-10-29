@@ -1214,3 +1214,45 @@ servies en alias :
 Toutes les URLs propres : 200 ✓ ; les 3 redirections de slugs : 301 vers la
 forme `?slug=` ✓ ; URLs historiques toujours 200 ✓ ; image API rebuildée et
 conteneur redémarré (routage persistant).
+
+## 48. Suppression des liens .html — URLs propres partout
+
+**Demande** : changer les liens de la navbar (et de tout le site) ; plus aucune
+page accessible par une URL en `.html`.
+
+### Ce qui a été fait
+- **Vues + layout** : remplacement en masse de tous les `href` —
+  `X.html` → `/X`, `../X.html` → `/X`, `publication.html` → `/publications`,
+  `index.html` → `/`, articles/fiches historiques → `/actualite/{page}`,
+  `/membres/{page}`. Zéro `href="…html"` restant dans les 41 vues.
+- **app.js** : index de recherche, `ORG_PAGES` et templates dormants passés aux
+  URLs propres ; le lien actif de la navbar fonctionne avec les URLs propres
+  (le layout garde `data-site-header`/`data-site-footer`, sinon la logique du
+  lien actif sortait avant de s'exécuter — bug corrigé au passage).
+- **api-actualites.js** : `articleLink()` → `/article/{slug}` ; bouton du hero
+  → `/article/{slug}` ; cartes du personnel → `/membre/{slug}` ; cartes
+  projets → `/projet/{slug}` ; slugs lus depuis le chemin
+  (`/article/{slug}`, `/membre/{slug}`, `/projet/{slug}`) avec repli `?slug=` ;
+  préfixe des logos instituts désormais fondé sur la profondeur de l'URL.
+- **routes/web.php** : `/article/{slug}`, `/membre/{slug}`, `/projet/{slug}`
+  servent directement les vues (URLs canoniques) ; les pages historiques
+  deviennent `/actualite/{page}`, `/membres/{page}`, `/projets/{page}` ;
+  **toutes les anciennes URLs .html → 301 vers l'URL propre, chaîne de
+  requête préservée** (`/galerie.html?album=x` → `/galerie?album=x`).
+- **Données** : `page_url` des membres seedés converti en URLs propres
+  (`/membres/ele-abiama-patrice`, …) + PersonnelSeeder mis à jour.
+
+### Validation (Edge headless)
+17 pages visitées : 0 lien `.html` dans le DOM ✓ ; navbar « Actualités »
+active sur /actualites ✓ ; déclencheur « Secrétariats Permanents » actif sur
+les pages organisation ✓ ; /article/test, /membre/dr-madeleine-tchuinte et
+/projet/strategie-nationale-tic-ia rendus avec leur contenu ✓ ; logos
+instituts chargés sur toutes les profondeurs ✓ ; cartes du personnel et
+bouton du hero en URLs propres ✓ ; lightbox galerie + lien profond ?album ✓ ;
+formulaire de contact ✓ ; aucune erreur JS. Toutes les URLs .html testées →
+301 avec leurs paramètres. Image API rebuildée.
+
+### Incident de manipulation (résolu)
+Des copies locales des vues ont été supprimées par effet de bord de
+commandes `docker exec` (conversion de chemins MSYS) ; récupération depuis
+git + re-application du script de remplacement, sans perte.

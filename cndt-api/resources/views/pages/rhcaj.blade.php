@@ -14,9 +14,9 @@
 
           <!-- Fil d'Ariane -->
           <!-- <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="index.html">Accueil</a>
+            <a href="/">Accueil</a>
             <span aria-hidden="true">›</span>
-            <a href="organigramme.html#commission-support">Commission Support</a>
+            <a href="/organigramme#commission-support">Commission Support</a>
             <span aria-hidden="true">›</span>
             <span aria-current="page">Ressources Humaines, Coopération &amp; Affaires Juridiques</span>
           </nav> -->
@@ -230,39 +230,39 @@
             <div class="agenda-list">
 
 
-              <a href="actualite/fracture-numerique-per-bayangam-akonolinga.html">
+              <a href="/actualite/fracture-numerique-per-bayangam-akonolinga">
                 <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
                 <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
               </a>
-              <a href="actualite/aiea70-2026.html">
+              <a href="/actualite/aiea70-2026">
                 <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
                 <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
               </a>
-              <a href="actualite/formation-finances-publiques-2026.html">
+              <a href="/actualite/formation-finances-publiques-2026">
                 <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
                 <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
               </a>
-              <a href="actualite/cndt-43e-session-comite.html">
+              <a href="/actualite/cndt-43e-session-comite">
                 <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
                 <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
               </a>
-              <a href="actualite/sia-minresi-2026.html">
+              <a href="/actualite/sia-minresi-2026">
                 <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
                 <p>Semaine de l'Intelligence Articielle au MINRESI</p>
               </a>
             </div>
-          <a class="sidebar-more" href="actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+          <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
         </section>
 
         <section id="ressources" class="resource-module" aria-labelledby="resources-title">
           <h2 id="resources-title">Publications &amp; médias</h2>
           <nav aria-label="Publications et médias">
-            <a href="publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
-            <a href="publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
-            <a href="publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+            <a href="/publications#technomag"><span aria-hidden="true">›</span> Technomag</a>
+            <a href="/publications#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+            <a href="/publications#documents"><span aria-hidden="true">›</span> Documents techniques</a>
             <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
-            <a href="publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
-            <a href="contact.html"><span aria-hidden="true">›</span>Contact</a>
+            <a href="/publications#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+            <a href="/contact"><span aria-hidden="true">›</span>Contact</a>
           </nav>
         </section>
       </aside>

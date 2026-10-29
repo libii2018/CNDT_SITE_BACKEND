@@ -69,18 +69,18 @@
                 <h2 id="membre-news-title">Actualités</h2>
               </div>
               <div class="agenda-list" data-news-list></div>
-              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+              <a class="sidebar-more" href="/actualites">Toutes les actualités <span aria-hidden="true">→</span></a>
             </section>
 
             <section id="ressources" class="resource-module" aria-labelledby="membre-resources-title">
               <h2 id="membre-resources-title">Publications &amp; médias</h2>
               <nav aria-label="Publications et médias">
-                <a href="../publication.html"><span aria-hidden="true">›</span>Techno Mag</a>
+                <a href="/publications"><span aria-hidden="true">›</span>Techno Mag</a>
                 <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span>Émissions TV</a>
-                <a href="../galerie.html"><span aria-hidden="true">›</span>Photothèque</a>
+                <a href="/galerie"><span aria-hidden="true">›</span>Photothèque</a>
                 <a href="#"><span aria-hidden="true">›</span>Innovation</a>
                 <a href="#"><span aria-hidden="true">›</span>Rapports</a>
-                <a href="../contact.html"><span aria-hidden="true">›</span>Contact</a>
+                <a href="/contact"><span aria-hidden="true">›</span>Contact</a>
               </nav>
             </section>
           </aside>
@@ -88,7 +88,7 @@
 
         <!-- Retour -->
         <div class="project-back">
-          <a class="text-link" href="../personnel.html">← Retour au personnel du CNDT</a>
+          <a class="text-link" href="/personnel">← Retour au personnel du CNDT</a>
         </div>
 
       </div>
