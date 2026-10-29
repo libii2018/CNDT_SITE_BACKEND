@@ -1,0 +1,10 @@
+# Défense en profondeur : aucun script ne doit jamais être exécuté
+# depuis le stockage public, même si une extension exécutable s'y
+# glissait malgré la validation amont.
+<IfModule mod_php.c>
+  php_flag engine off
+</IfModule>
+<FilesMatch "\.(php|phtml|php\d|phar|cgi|pl|py|sh)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

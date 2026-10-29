@@ -39,8 +39,8 @@ Route::apiResource('albums', AlbumController::class)->only(['index', 'show']);
 Route::apiResource('members', MemberController::class)->only(['index', 'show']);
 Route::apiResource('projects', ProjectController::class)->only(['index', 'show']);
 
-// Formulaire de contact
-Route::post('/contact', [MessageController::class, 'store']);
+// Formulaire de contact (limité : voir RateLimiter "contact")
+Route::post('/contact', [MessageController::class, 'store'])->middleware('throttle:contact');
 
 // ---------- Administration (token Sanctum + rôle admin requis) ----------
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {

@@ -8,6 +8,7 @@ use App\Models\Message;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -25,7 +26,7 @@ class MessageController extends Controller
     }
 
     /**
-     * Formulaire de contact public.
+     * Formulaire de contact public (limité par le throttle "contact").
      */
     public function store(Request $request): MessageResource
     {
@@ -37,7 +38,32 @@ class MessageController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        return new MessageResource(Message::create($data));
+        $message = Message::create($data);
+
+        // Alerte e-mail vers l'adresse configurée (MAIL_ALERT_TO) :
+        // sans cette variable, l'alerte part dans les logs (MAIL_MAILER=log).
+        if ($to = config('mail.alert_to')) {
+            try {
+                Mail::raw(
+                    "Nouveau message reçu via le formulaire de contact du site CNDT.\n\n"
+                    ."De : {$data['name']} <{$data['email']}>\n"
+                    ."Téléphone : ".($data['phone'] ?? '—')."\n"
+                    ."Objet : ".($data['subject'] ?? '—')."\n\n"
+                    .$data['message']."\n\n"
+                    ."— Répondez directement à cet e-mail ou consultez le dashboard (Messages).",
+                    function ($mail) use ($to, $data): void {
+                        $mail->to($to)
+                            ->replyTo($data['email'], $data['name'])
+                            ->subject('[CNDT] Contact site : '.($data['subject'] ?: 'nouveau message'));
+                    }
+                );
+            } catch (\Throwable $e) {
+                // L'alerte ne doit jamais faire échouer l'enregistrement
+                report($e);
+            }
+        }
+
+        return new MessageResource($message);
     }
 
     public function show(Message $message): MessageResource

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MemberResource;
 use App\Models\Member;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -61,7 +62,7 @@ class MemberController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'first_name' => 'sometimes|required|string|max:100',
             'last_name' => 'sometimes|required|string|max:100',
             'slug' => 'sometimes|nullable|string|max:255|unique:members,slug',
@@ -75,5 +76,12 @@ class MemberController extends Controller
             'is_visible' => 'sometimes|boolean',
             'position' => 'sometimes|integer',
         ]);
+
+        // HTML riche nettoyé avant stockage (anti-XSS)
+        if (array_key_exists('biography', $data)) {
+            $data['biography'] = HtmlSanitizer::clean($data['biography']);
+        }
+
+        return $data;
     }
 }

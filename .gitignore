@@ -1,9 +1,16 @@
 # Laravel (cndt-api/.gitignore gère vendor, .env, cache…)
 *.log
 
+# Secrets de la stack Docker — JAMAIS versionnés
+.env
+
+# Sauvegardes locales
+backups/
+
 # Données locales / volumineuses non versionnées
 cndt-api/database/database.sqlite
-cndt-api/storage/app/public/uploads/
+cndt-api/storage/app/public/uploads/*
+!cndt-api/storage/app/public/uploads/.htaccess
 cndt-api/public/storage
 cndt-api/storage/logs/
 cndt-api/storage/framework/cache/data/

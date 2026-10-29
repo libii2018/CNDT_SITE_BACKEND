@@ -30,5 +30,8 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 
 EXPOSE 80
 
-# Migrations + seed idempotents au démarrage, puis serveur Apache
-CMD ["sh", "-c", "php artisan storage:link >/dev/null 2>&1 || true; php artisan migrate --seed --force && apache2-foreground"]
+# Migrations au démarrage (jamais de seed automatique :
+# le seeding est opt-in via DB_SEED=true, et le seeder est
+# non-destructif — il n'écrase aucune donnée existante),
+# puis serveur Apache
+CMD ["sh", "-c", "php artisan storage:link >/dev/null 2>&1 || true; php artisan migrate --force && { [ \"${DB_SEED:-false}\" = \"true\" ] && php artisan db:seed --force; }; apache2-foreground"]

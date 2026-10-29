@@ -13,7 +13,9 @@
    ============================================================ */
 
 window.CNDT_API = window.CNDT_API || {
-  url: 'http://127.0.0.1:8000/api/v1',
+  // Adresse relative : le frontal Apache proxifie /api/ vers l'API
+  // (fonctionne en local et en production, sans origine figée).
+  url: '/api/v1',
 };
 
 (() => {

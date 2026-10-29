@@ -1,14 +1,28 @@
+# =====================================================================
+# Stack CNDT — configuration de BASE orientée production.
+#
+# Tous les secrets viennent du fichier .env (jamais versionné) placé
+# à côté de ce fichier (voir .env.example). Aucun mot de passe en clair
+# ici, aucune adresse d'API en dur, et le seed de la base ne s'exécute
+# jamais automatiquement.
+#
+# Développement : les ajustements (code monté en volume, APP_DEBUG=true,
+# port direct de l'API, seed automatique) vivent dans
+# docker-compose.override.yml, chargé automatiquement par
+# `docker compose up`.
+# =====================================================================
+
 services:
 
-  # ---------- Base de données ----------
+  # ---------- Base de données (MySQL 8.4 LTS — 8.0 est en fin de support) ----------
   mysql:
-    image: mysql:8.0
+    image: mysql:8.4
     container_name: cndt-mysql
     environment:
-      MYSQL_DATABASE: cndt_api
-      MYSQL_USER: cndt
-      MYSQL_PASSWORD: cndt_secret
-      MYSQL_ROOT_PASSWORD: root_secret
+      MYSQL_DATABASE: ${DB_DATABASE:-cndt_api}
+      MYSQL_USER: ${DB_USERNAME:-cndt}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Définissez MYSQL_PASSWORD dans .env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Définissez MYSQL_ROOT_PASSWORD dans .env}
     volumes:
       - mysql-data:/var/lib/mysql
     healthcheck:
@@ -18,6 +32,27 @@ services:
       retries: 30
     restart: unless-stopped
 
+  # ---------- Sauvegarde quotidienne (dump gzippé, rétention 14 jours) ----------
+  backup:
+    image: mysql:8.4
+    container_name: cndt-backup
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      MYSQL_PWD: ${MYSQL_ROOT_PASSWORD:?}
+    volumes:
+      - ./backups:/backups
+    entrypoint: ["sh", "-c"]
+    command: >
+      'while true; do ts=$$(date +%Y%m%d-%H%M%S);
+      mysqldump -h mysql -P 3306 -u root --single-transaction --routines --triggers ${DB_DATABASE:-cndt_api} | gzip > /backups/cndt-api-$$ts.sql.gz;
+      echo "Sauvegarde /backups/cndt-api-$$ts.sql.gz effectuée";
+      find /backups -name "cndt-api-*.sql.gz" -mtime +14 -delete;
+      sleep 86400;
+      done'
+    restart: unless-stopped
+
   # ---------- API Laravel ----------
   api:
     build: ./cndt-api
@@ -25,36 +60,54 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-    ports:
-      - "8000:80"
+    expose:
+      - "80"                     # accessible uniquement via le réseau Docker
     volumes:
-      # Dev : le code source est monté (modifications live sans rebuild)
-      - ./cndt-api:/var/www/html
-      # vendor reste sur le FS du conteneur (rapide) — le montage Windows
-      # rendrait chaque requête très lente (des milliers de fichiers PHP)
-      - api-vendor:/var/www/html/vendor
+      - api-storage:/var/www/html/storage/app/public
     environment:
-      APP_ENV: local
-      APP_DEBUG: "true"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: ${APP_KEY:?Définissez APP_KEY dans .env (php artisan key:generate --show)}
+      APP_URL: ${APP_URL:-http://localhost}
       DB_CONNECTION: mysql
       DB_HOST: mysql
       DB_PORT: "3306"
-      DB_DATABASE: cndt_api
-      DB_USERNAME: cndt
-      DB_PASSWORD: cndt_secret
+      DB_DATABASE: ${DB_DATABASE:-cndt_api}
+      DB_USERNAME: ${DB_USERNAME:-cndt}
+      DB_PASSWORD: ${MYSQL_PASSWORD:?}
       SANCTUM_TOKEN_EXPIRATION: "10080"
+      # Mot de passe du compte admin créé au premier seed (DB_SEED=true).
+      # Après création, le seed ne le modifie plus jamais.
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Définissez ADMIN_PASSWORD dans .env}
+      # Alertes e-mail du formulaire de contact (optionnel mais recommandé)
+      MAIL_MAILER: ${MAIL_MAILER:-log}
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-contact@cndtcameroun.cm}
+      MAIL_FROM_NAME: "${MAIL_FROM_NAME:-CNDT}"
+      MAIL_ENCRYPTION: ${MAIL_ENCRYPTION:-tls}
+      MAIL_ALERT_TO: ${MAIL_ALERT_TO:-}
     restart: unless-stopped
 
-  # ---------- Site vitrine (statique) ----------
+  # ---------- Site vitrine + dashboard (frontal unique) ----------
+  # Ce frontal sert le site statique ET proxifie /api/ + /storage/
+  # vers l'API : site public et dashboard n'utilisent que des URLs
+  # relatives (/api/v1), utilisables telles quelles en production.
   frontend:
-    image: httpd:2.4-alpine
+    build: ./docker/frontend
     container_name: cndt-frontend
+    depends_on:
+      - api
     ports:
-      - "8080:80"
+      # Écoute locale uniquement : en production, placez un reverse
+      # proxy (HTTPS) devant, ou publiez délibérément le port.
+      - "127.0.0.1:8080:80"
     volumes:
       - ./CNDT_SITE_VITRINE_2:/usr/local/apache2/htdocs:ro
     restart: unless-stopped
 
 volumes:
   mysql-data:
-  api-vendor:
+  api-storage:

@@ -1,5 +1,7 @@
 // Client de l'API CNDT — gestion du token Sanctum
-export const API_URL = "http://127.0.0.1:8000/api/v1";
+// Adresse relative : le dashboard est servi par le même frontal Apache
+// que l'API (proxy /api/). Surchage possible via VITE_API_URL au build.
+export const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "/api/v1";
 const TOKEN_KEY = "cndt_admin_token";
 const USER_KEY = "cndt_admin_user";
 
@@ -11,17 +13,19 @@ export interface ApiUser {
 }
 
 export function getToken(): string | null {
-  return localStorage.getItem(TOKEN_KEY);
+  // sessionStorage (et non localStorage) : le jeton ne survit pas à la
+  // fermeture du navigateur et n'est pas persisté sur le disque.
+  return sessionStorage.getItem(TOKEN_KEY);
 }
 
 export function setSession(token: string, user: ApiUser) {
-  localStorage.setItem(TOKEN_KEY, token);
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
+  sessionStorage.setItem(TOKEN_KEY, token);
+  sessionStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
 export function clearSession() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
+  sessionStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(USER_KEY);
 }
 
 export class ApiError extends Error {

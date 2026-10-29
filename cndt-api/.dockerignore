@@ -1,4 +1,5 @@
 vendor
+.env
 node_modules
 .git
 database/database.sqlite

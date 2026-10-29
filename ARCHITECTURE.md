@@ -33,9 +33,22 @@
                      └───────────────────┘
 ```
 
-Les trois services tournent dans Docker (`docker-compose.yml`) :
-`cndt-frontend` (httpd:2.4-alpine, port 8080), `cndt-api` (php:8.3-apache, port 8000),
-`cndt-mysql` (mysql:8.0, volume persistant `mysql-data`).
+Les quatre services tournent dans Docker (`docker-compose.yml`, secrets
+dans `.env` — voir `.env.example`, jamais versionné) :
+`cndt-frontend` (httpd:2.4-alpine + proxy `/api/` et `/storage/`, 127.0.0.1:8080),
+`cndt-api` (php:8.3-apache, interne — 127.0.0.1:8000 en dev uniquement),
+`cndt-mysql` (mysql:8.4 LTS, volume persistant `mysql-data`) et
+`cndt-backup` (dump gzippé quotidien dans `./backups`, rétention 14 jours).
+
+**Sécurité** : en base (compose), `APP_ENV=production`, `APP_DEBUG=false`,
+ports liés à 127.0.0.1, aucun secret en clair (tout vient de `.env`),
+et l'API n'est PAS re-seedée au démarrage (le seed est opt-in via
+`DB_SEED=true`, uniquement en dev — `docker-compose.override.yml`) ;
+le seeder est non-destructif (`firstOrCreate` : n'écrase jamais le
+contenu modifié dans le dashboard) et le mot de passe admin vient de
+`ADMIN_PASSWORD`. Les adresses d'API sont **relatives** (`/api/v1`)
+partout : site public (`app.js`, `api-actualites.js`), dashboard
+compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 
 ## 1. Frontend public — site vitrine
 
@@ -52,8 +65,10 @@ Les trois services tournent dans Docker (`docker-compose.yml`) :
   (l'ancien `admin.html` à la racine redirige vers `admin/`)
 - Stack : **React 19**, **Tailwind CSS v4**, **shadcn/ui** (composants Radix UI), lucide-react,
   sonner (toasts), routage par hash (`#overview`, `#articles`, …) — aucun serveur de rewrite requis.
-- **Authentification** : `POST /auth/login` → token Sanctum en `localStorage`, restauré au
-  rechargement via `GET /auth/me` ; 401 → retour à l'écran de connexion.
+- **Authentification** : `POST /auth/login` → token Sanctum en `sessionStorage`
+  (jamais `localStorage`), restauré au rechargement via `GET /auth/me` ;
+  401 → retour à l'écran de connexion. Le HTML des contenus est nettoyé
+  côté API (`App\Support\HtmlSanitizer`) avant stockage.
 
 ### Organisation du code
 ```
@@ -128,15 +143,19 @@ incluses via `?all=true`.
 ## 5. Docker — organisation des services
 
 ```yaml
-cndt-mysql   :3306 interne   volume mysql-data, healthcheck
-cndt-api     8000→80         ./cndt-api monté en volume (dev live, sans rebuild)
-cndt-frontend 8080→80        ../CNDT_SITE_VITRINE_2 monté en lecture seule
+cndt-mysql    3306 interne      mysql:8.4 LTS, volume mysql-data, healthcheck
+cndt-api      80 interne        (dev : 127.0.0.1:8000) ./cndt-api monté en volume
+cndt-frontend 127.0.0.1:8080    site statique + proxy /api/ et /storage/ → cndt-api
+cndt-backup   —                 mysqldump quotidien → ./backups (rétention 14 j)
 ```
 
-Variables d'environnement (compose) : `DB_HOST=mysql`, `DB_DATABASE=cndt_api`,
-`DB_USERNAME=cndt`, `DB_PASSWORD=cndt_secret`, `SANCTUM_TOKEN_EXPIRATION=10080`.
+Tous les secrets viennent du fichier `.env` (voir `.env.example`) :
+`APP_KEY`, `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`, `ADMIN_PASSWORD`,
+`MAIL_*`. En dev uniquement (`docker-compose.override.yml`, chargé
+automatiquement) : code monté en volume, `APP_DEBUG=true`, `DB_SEED=true`
+(seeder non-destructif), port direct 127.0.0.1:8000.
 
-Le code de l'API est **monté en volume** : toute modification du code est prise en
+Le code de l'API est **monté en volume** (dev) : toute modification du code est prise en
 compte sans rebuild de l'image (redémarrage du conteneur requis pour le cache de
 routes/config s'il y en avait). Reconstruire avec `docker compose up -d --build api`
 uniquement si `composer.json` ou le `Dockerfile` changent.
@@ -146,9 +165,11 @@ uniquement si `composer.json` ou le `Dockerfile` changent.
 ```bash
 cd CNDT_SITE_BACKEND
 docker compose up -d --build
-# Site public    : http://localhost:8080
-# Dashboard      : http://localhost:8080/admin/   (admin@cndt.cm / password)
-# API            : http://localhost:8000/api/v1/articles
+# Site public    : http://localhost:8080          (API via /api/v1, proxy intégré)
+# Dashboard      : http://localhost:8080/admin/    (compte créé au premier seed :
+#                                                  admin@cndt.cm / ADMIN_PASSWORD du .env)
+# API (dev)      : http://localhost:8000/api/v1/articles
+# Sauvegardes    : ./backups/ (dump quotidien, rétention 14 jours)
 ```
 
 Accès alternatif via XAMPP (Apache sur le port 80) :
@@ -164,7 +185,7 @@ Dashboard                API                          BD
    │                      │  Hash::check(password)    │
    │   {token, user}      │  crée personal_access_token
    │ ◄────────────────────│                            │
-   │  localStorage[token] │                            │
+   │ sessionStorage[token]│                            │
    │                      │                            │
    │  GET /articles       │                            │
    │  Authorization: Bearer … ───► middleware sanctum │
@@ -175,9 +196,10 @@ Dashboard                API                          BD
 
 ## 8. Prochaines étapes
 
-1. Brancher les pages publiques du site vitrine sur l'API (actualités, organigramme…).
-2. Upload de fichiers réel (images de couverture, photos) via multipart.
-3. HTTPS + mots de passe forts en production.
+1. Double authentification (2FA) pour le compte administrateur.
+2. Rôles rédacteur / valideur (workflow de publication prévu par le TDR).
+3. HTTPS en production (reverse proxy devant 127.0.0.1:8080) + SMTP réel
+   pour les alertes du formulaire de contact (`MAIL_ALERT_TO`).
 
 ---
 

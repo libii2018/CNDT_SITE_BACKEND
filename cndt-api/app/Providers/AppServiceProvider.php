@@ -26,5 +26,11 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(5)->by($request->ip().'|'.$request->input('email'));
         });
+
+        // Formulaire de contact public : 5 messages par tranche de 10
+        // minutes et par IP (anti-spam)
+        RateLimiter::for('contact', function (Request $request) {
+            return Limit::perMinutes(10, 5)->by($request->ip());
+        });
     }
 }

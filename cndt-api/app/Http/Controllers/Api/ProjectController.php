@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -57,7 +58,7 @@ class ProjectController extends Controller
 
     private function validated(Request $request): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'slug' => 'sometimes|nullable|string|max:255|unique:projects,slug',
             'status' => 'sometimes|nullable|string|in:a_venir,en_cours,termine',
@@ -70,5 +71,12 @@ class ProjectController extends Controller
             'end_date' => 'sometimes|nullable|date|after_or_equal:start_date',
             'is_published' => 'sometimes|boolean',
         ]);
+
+        // HTML riche nettoyé avant stockage (anti-XSS)
+        if (array_key_exists('description', $data)) {
+            $data['description'] = HtmlSanitizer::clean($data['description']);
+        }
+
+        return $data;
     }
 }

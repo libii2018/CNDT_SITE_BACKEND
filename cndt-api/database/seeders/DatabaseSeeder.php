@@ -31,21 +31,36 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($institutes as $i => $inst) {
-            Institute::updateOrCreate(
+            // firstOrCreate : le seed n'écrase jamais ce qui a été modifié
+            // dans le dashboard (le seed ne s'exécute de toute façon que si
+            // DB_SEED=true au premier démarrage).
+            Institute::firstOrCreate(
                 ['name' => $inst['name']],
                 $inst + ['position' => $i + 1, 'is_visible' => true],
             );
         }
 
         // ----- Comptes -----
-        User::updateOrCreate(
+        // Le mot de passe vient de la variable d'environnement ADMIN_PASSWORD
+        // (jamais de mot de passe en clair dans le dépôt). S'il n'est pas
+        // défini, un mot de passe aléatoire est généré et affiché une seule
+        // fois dans les logs du conteneur. Un compte existant n'est JAMAIS
+        // modifié par le seed.
+        $adminPassword = env('ADMIN_PASSWORD') ?: Str::random(24);
+        $admin = User::firstOrCreate(
             ['email' => 'admin@cndt.cm'],
             [
                 'name' => 'Administrateur CNDT',
-                'password' => 'password',
+                'password' => $adminPassword,
                 'is_admin' => true,
             ],
         );
+        if ($admin->wasRecentlyCreated && ! env('ADMIN_PASSWORD')) {
+            $this->command->warn(
+                'Compte admin créé avec le mot de passe généré : '.$adminPassword.
+                ' — changez-le immédiatement (ou définissez ADMIN_PASSWORD).'
+            );
+        }
 
         // ----- Actualités (contenu réel du site) -----
         // Retire les articles de démonstration initiaux
@@ -136,7 +151,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($articles as $a) {
-            Article::updateOrCreate(
+            // firstOrCreate par slug : les articles modifiés ou enrichis via
+            // le dashboard ne sont jamais écrasés par le seed.
+            Article::firstOrCreate(
                 ['slug' => $a['slug']],
                 [
                     'title' => $a['title'],
@@ -164,7 +181,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($publications as $i => $p) {
-            Publication::updateOrCreate(
+            Publication::firstOrCreate(
                 ['slug' => Str::slug($p['title'])],
                 $p + ['is_published' => true, 'published_at' => now()->subMonths($i)],
             );
@@ -180,14 +197,14 @@ class DatabaseSeeder extends Seeder
 
         foreach ($members as $m) {
             $name = $m['first_name'].' '.$m['last_name'];
-            Member::updateOrCreate(
+            Member::firstOrCreate(
                 ['slug' => Str::slug($name)],
                 $m + ['is_visible' => true],
             );
         }
 
         // ----- Projets -----
-        Project::updateOrCreate(
+        Project::firstOrCreate(
             ['slug' => 'strategie-nationale-tic-ia'],
             [
                 'title' => 'Élaboration de la stratégie nationale TIC & IA',
@@ -200,7 +217,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // ----- Galerie -----
-        $album = Album::updateOrCreate(
+        $album = Album::firstOrCreate(
             ['slug' => 'session-ordinaire'],
             [
                 'title' => 'Session ordinaire du Conseil',
@@ -253,7 +270,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // ----- Messages de contact -----
-        Message::updateOrCreate(
+        Message::firstOrCreate(
             ['email' => 'visiteur@example.com', 'subject' => 'Demande d\'information'],
             [
                 'name' => 'Visiteur Example',

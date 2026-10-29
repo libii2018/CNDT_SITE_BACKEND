@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticleImageResource;
 use App\Models\Article;
+use App\Support\HtmlSanitizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -121,7 +122,16 @@ class ArticleController extends Controller
             $rules['title'] = 'sometimes|required|string|max:255';
         }
 
-        return $request->validate($rules);
+        $data = $request->validate($rules);
+
+        // Le HTML riche est nettoyé avant stockage (anti-XSS) : voir
+        // App\Support\HtmlSanitizer — le contenu est réaffiché dans des
+        // pages du même domaine que le dashboard.
+        if (array_key_exists('content', $data)) {
+            $data['content'] = HtmlSanitizer::clean($data['content']);
+        }
+
+        return $data;
     }
 
     private function uniqueSlug(string $title, ?int $ignoreId = null): string

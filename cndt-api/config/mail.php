@@ -115,4 +115,15 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Alerte — nouveau message de contact
+    |--------------------------------------------------------------------------
+    | Adresse destinataire de l'alerte envoyée à chaque message reçu
+    | via le formulaire de contact du site. Vide = pas d'alerte.
+    |
+    */
+
+    'alert_to' => env('MAIL_ALERT_TO'),
+
 ];

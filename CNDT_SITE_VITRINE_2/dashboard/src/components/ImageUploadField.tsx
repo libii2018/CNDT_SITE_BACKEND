@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { ImagePlus, Loader2, Link2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { API_URL, getToken } from "@/lib/api";
 
 // Upload d'image par glisser-déposer (ou sélection) → stockage Laravel (disque public)
 // Le champ garde l'URL/chemin retourné dans la valeur du formulaire.
@@ -14,11 +15,11 @@ interface ImageUploadFieldProps {
 }
 
 export async function uploadImage(file: File): Promise<{ path: string; url: string }> {
-  const token = localStorage.getItem("cndt_admin_token");
+  const token = getToken();
   const form = new FormData();
   form.append("file", file);
 
-  const res = await fetch("http://127.0.0.1:8000/api/v1/upload", {
+  const res = await fetch(API_URL + "/upload", {
     method: "POST",
     headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     body: form,

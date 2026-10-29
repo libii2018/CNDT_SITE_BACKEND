@@ -1,0 +1,28 @@
+# =====================================================================
+# Ajustements DÉVELOPPEMENT — chargés automatiquement par
+# `docker compose up` (fusionnés avec docker-compose.yml).
+#
+# En production, supprimez ce fichier (ou lancez avec :
+#   docker compose -f docker-compose.yml up -d)
+# =====================================================================
+
+services:
+
+  api:
+    # Code source monté (modifications live sans rebuild)
+    volumes:
+      - ./cndt-api:/var/www/html
+      - api-vendor:/var/www/html/vendor
+      - api-storage:/var/www/html/storage/app/public
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      # Seed automatique au démarrage — le seeder est non-destructif
+      # (firstOrCreate : jamais d'écrasement du contenu du dashboard)
+      DB_SEED: "true"
+    ports:
+      # Accès direct à l'API pour les tests (local uniquement)
+      - "127.0.0.1:8000:80"
+
+volumes:
+  api-vendor:
