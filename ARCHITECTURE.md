@@ -35,7 +35,9 @@
 
 Les quatre services tournent dans Docker (`docker-compose.yml`, secrets
 dans `.env` — voir `.env.example`, jamais versionné) :
-`cndt-frontend` (httpd:2.4-alpine + proxy `/api/` et `/storage/`, 127.0.0.1:8080),
+`cndt-frontend` (httpd:2.4-alpine, **reverse proxy complet** vers l'application
+Laravel — site Blade, dashboard `/admin/`, API `/api/v1`, stockage `/storage/` —
+127.0.0.1:8080),
 `cndt-api` (php:8.3-apache, interne — 127.0.0.1:8000 en dev uniquement),
 `cndt-mysql` (mysql:8.4 LTS, volume persistant `mysql-data`) et
 `cndt-backup` (dump gzippé quotidien dans `./backups`, rétention 14 jours).
@@ -50,18 +52,28 @@ contenu modifié dans le dashboard) et le mot de passe admin vient de
 partout : site public (`app.js`, `api-actualites.js`), dashboard
 compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 
-## 1. Frontend public — site vitrine
+## 1. Frontend public — site vitrine (Blade)
 
-- **Emplacement** : `CNDT_SITE_VITRINE_2/` (à la racine)
-- HTML/CSS/JS purs sans build ; header/footer injectés par `app.js`.
-- Actuellement **statique** ; prévu pour consommer l'API via `fetch()`
-  (ex. `GET /api/v1/articles`, `/api/v1/organigramme`).
+**Refonte** : le site vitrine est servi par l'application Laravel (`cndt-api`).
+
+- **Vues** : `cndt-api/resources/views/pages/*.blade.php` (une vue par page,
+  conversion intégrale du site statique d'origine — 40 vues) +
+  `layouts/site.blade.php` (header et footer **rendus côté serveur**).
+- **URLs historiques conservées** (`/`, `/galerie.html`, `/actualite/article.html`,
+  `/membres/{page}.html`, …) : `routes/web.php` — tous les liens internes
+  existants fonctionnent à l'identique.
+- **Assets** : `cndt-api/public/` (`site.css`, `app.js`, `api-actualites.js`,
+  `assets/`) ; `app.js` n'injecte plus header/footer si déjà rendus (garde).
+- Le contenu dynamique reste alimenté côté client par `api-actualites.js`
+  (actualités, hero, instituts, galerie, personnel, fiches, projets).
 - Formulaire de contact : `POST /api/v1/contact`.
+- `CNDT_SITE_VITRINE_2/` conserve la **source du dashboard** et sert de
+  référence historique (le site statique n'est plus servi directement).
 
 ## 2. Frontend admin — dashboard (React + Tailwind + shadcn/ui)
 
 - **Source** : `CNDT_SITE_VITRINE_2/dashboard/` (Vite + React 19 + TypeScript)
-- **Build déployé** : `CNDT_SITE_VITRINE_2/admin/` — même URL : http://localhost:8080/admin/
+- **Build déployé** : `cndt-api/public/admin/` — même URL : http://localhost:8080/admin/
   (l'ancien `admin.html` à la racine redirige vers `admin/`)
 - Stack : **React 19**, **Tailwind CSS v4**, **shadcn/ui** (composants Radix UI), lucide-react,
   sonner (toasts), routage par hash (`#overview`, `#articles`, …) — aucun serveur de rewrite requis.
@@ -85,7 +97,7 @@ dashboard/src/
     ├── OverviewPage.tsx     Cartes de stats + derniers messages
     ├── EntityPage.tsx       CRUD générique + gestion des photos (galerie)
     ├── MessagesPage.tsx     Messages : non lus, marquer lu, suppression
-    └── OrganigrammePage.tsx Arbre des unités + CRUD
+    └── HeroCarouselPage.tsx Carrousel de l'accueil (recherche d'articles)
 ```
 
 ### Développement et déploiement
@@ -145,7 +157,7 @@ incluses via `?all=true`.
 ```yaml
 cndt-mysql    3306 interne      mysql:8.4 LTS, volume mysql-data, healthcheck
 cndt-api      80 interne        (dev : 127.0.0.1:8000) ./cndt-api monté en volume
-cndt-frontend 127.0.0.1:8080    site statique + proxy /api/ et /storage/ → cndt-api
+cndt-frontend 127.0.0.1:8080    reverse proxy complet → cndt-api (Laravel : Blade + /admin + /api + /storage)
 cndt-backup   —                 mysqldump quotidien → ./backups (rétention 14 j)
 ```
 

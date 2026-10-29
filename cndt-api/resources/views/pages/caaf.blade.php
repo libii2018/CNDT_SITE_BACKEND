@@ -1,0 +1,398 @@
+@extends('layouts.site')
+
+@section('title', "Commission Affaires Administratives &amp; Financières | CNDT Cameroun")
+
+@section('description', "Commission des Affaires Administratives, Financières et des Engagements du CNDT — Budget, comptabilité, engagements et Centre d'Appui à la Technologie et à l'Innovation (CATI).")
+
+@section('content')
+  <main id="contenu">
+
+    <section class="container ecart home-grid">
+
+      <section class="inner-section">
+        <div class="container">
+
+          <!-- Fil d'Ariane -->
+          <!-- <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="index.html">Accueil</a>
+            <span aria-hidden="true">›</span>
+            <a href="organigramme.html#commission-support">Commission Support</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Affaires Administratives &amp; Financières</span>
+          </nav> -->
+
+          <!-- ---------- Présentation générale ---------- -->
+          <div class="page-heading">
+            <div>
+              <h2>Commission des Affaires Administratives, Financières &amp; des Engagements</h2>
+            </div>
+          </div>
+
+          <div class="org-intro">
+            <p>
+              Placée sous l'autorité d'un <strong>Coordonnateur Exécutif Adjoint</strong>, la
+              Commission des Affaires Administratives, Financières et des Engagements est chargée de
+              la préparation, du suivi et du contrôle de l'exécution du budget, de la tenue de la
+              comptabilité budgétaire, générale et analytique, de la mobilisation des ressources
+              financières, ainsi que de la préparation et de la mise en œuvre des engagements du
+              Comité National de Développement des Technologies.
+            </p>
+            <p style="margin-top:14px;">
+              Elle anime également le <strong>Centre d'Appui à la Technologie et à l'Innovation
+              (CATI)</strong> du CNDT et assure la promotion de la propriété intellectuelle au sein de
+              l'institution. Elle est structurée en <strong>quatre Secrétariats techniques</strong>.
+            </p>
+          </div>
+
+          <!-- =========================================================
+               ATTRIBUTIONS DE LA COMMISSION
+               ========================================================= -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <h2>Ce dont la Commission est chargée</h2>
+            </div>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>De la préparation, du suivi et du contrôle de l'exécution du budget ;</li>
+            <li>De l'élaboration du Cadre des Dépenses à Moyen Terme (CDMT) du CNDT ;</li>
+            <li>De la tenue de la comptabilité budgétaire, générale et analytique ;</li>
+            <li>De la préparation des états financiers ;</li>
+            <li>De la mobilisation des ressources financières ;</li>
+            <li>De la préparation des engagements financiers, des liquidations et des ordonnancements de toutes les dépenses ;</li>
+            <li>De la consolidation de toute la documentation relative à la préparation, au suivi et à l'exécution du budget (TDR, DAO, lettres-commandes, marchés, etc.) ;</li>
+            <li>De la préparation, du suivi et de l'appui à l'exécution du budget ;</li>
+            <li>De l'élaboration du compte administratif ;</li>
+            <li>Du classement et de la conservation des pièces comptables à présenter à toutes les réquisitions ;</li>
+            <li>De la reprographie dans les matières qui le concernent ;</li>
+            <li>De la présentation des comptes d'emplois du CNDT et des justificatifs des dépenses éventuellement effectuées dans des cadres spécifiques ;</li>
+            <li>De la gestion administrative du CNDT, suivant les instructions du Secrétaire Permanent ;</li>
+            <li>De l'élaboration des rapports rendant compte des activités du CNDT ;</li>
+            <li>De l'élaboration des rapports d'activités, de la feuille de route et du rapport annuel de performance ;</li>
+            <li>De l'élaboration des comptes rendus des réunions et sessions du Comité ;</li>
+            <li>De la promotion et de la coordination de l'ensemble des activités relatives à la propriété intellectuelle, en liaison avec les organismes et les Départements ministériels concernés, en collaboration avec le responsable du CATI ;</li>
+            <li>De l'animation du Centre d'Appui à la Technologie et à l'Innovation (CATI) du CNDT ;</li>
+            <li>De la gestion des codes d'accès aux bases de données de l'Organisation Mondiale de la Propriété Intellectuelle (OMPI) ;</li>
+            <li>De la sensibilisation du personnel du MINRESI et des usagers sur les fondamentaux de la propriété intellectuelle ;</li>
+            <li>De la définition d'un cadre de collaboration avec les représentations régionales des groupements patronaux et des autres CATI ;</li>
+            <li>De l'animation de la plateforme et de la participation aux activités des réseaux national et international des CATI ;</li>
+            <li>De la conception, de la réalisation et de la diffusion du bulletin d'information « CATI-INFO » du CNDT, en liaison avec le Secrétariat de la Communication et des Relations Publiques ;</li>
+            <li>De la production des rapports d'activités mensuelles, trimestrielles, semestrielles et annuelles du CATI.</li>
+          </ul>
+
+          <!-- =========================================================
+               III.2.1 — SECRÉTARIAT CHARGÉ DE L'ADMINISTRATION GÉNÉRALE
+               ========================================================= -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <h2>Secrétariat chargé de l'Administration Générale</h2>
+            </div>
+          </div>
+
+          <div class="org-intro" style="margin-bottom:24px;">
+            <p>
+              Placé sous l'autorité d'un <strong>Chef de Secrétariat</strong>, le Secrétariat chargé
+              de l'Administration Générale assure la gestion administrative du CNDT suivant les
+              instructions du Secrétaire Permanent, l'élaboration des rapports d'activités et des
+              comptes rendus des sessions du Comité, ainsi que la promotion et la coordination des
+              activités relatives à la propriété intellectuelle.
+            </p>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>De la gestion administrative du CNDT, suivant les instructions du Secrétaire Permanent ;</li>
+            <li>De l'élaboration des rapports rendant compte des activités du CNDT ;</li>
+            <li>De l'élaboration des rapports d'activités, de la feuille de route et du rapport annuel de performance ;</li>
+            <li>De l'élaboration des comptes rendus des réunions et sessions du Comité ;</li>
+            <li>De la promotion et de la coordination de l'ensemble des activités relatives à la propriété intellectuelle, en liaison avec les organismes et Départements ministériels concernés et en collaboration avec le responsable du CATI.</li>
+          </ul>
+
+          <div class="org-chapter-grid" style="margin-top:26px;">
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la page dédiée du Secrétariat chargé de l'Administration Générale">
+              <h3>Chef de Secrétariat</h3>
+              <p>Coordination administrative, rapports d'activités et propriété intellectuelle.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de Secrétariat Adjoint chargé des affaires administratives">
+              <h3>Chef de Secrétariat Adjoint — Affaires administratives</h3>
+              <p>Appui à la gestion administrative et aux dossiers de propriété intellectuelle.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir l'équipe des Cadres Chargés d'Études Assistants">
+              <h3>Cadres Chargés d'Études Assistants</h3>
+              <p>Appui à la rédaction des rapports et au suivi des dossiers administratifs.</p>
+            </a>
+
+          </div>
+
+          <!-- =========================================================
+               III.2.2 — SECRÉTARIAT DES AFFAIRES FINANCIÈRES ET DES ENGAGEMENTS
+               ========================================================= -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <h2>Secrétariat des Affaires Financières &amp; des Engagements</h2>
+            </div>
+          </div>
+
+          <div class="org-intro" style="margin-bottom:24px;">
+            <p>
+              Placé sous l'autorité d'un <strong>Chef de Secrétariat</strong>, le Secrétariat des
+              Affaires Financières et des Engagements est chargé de la préparation des états
+              financiers, des engagements financiers, des liquidations et des ordonnancements de
+              toutes les dépenses, ainsi que du suivi de l'exécution du budget et de l'élaboration du
+              Cadre des Dépenses à Moyen Terme (CDMT).
+            </p>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>De la préparation des états financiers ;</li>
+            <li>De la préparation des engagements financiers, des liquidations et des ordonnancements de toutes les dépenses ;</li>
+            <li>Du suivi de l'exécution du budget ;</li>
+            <li>De la préparation du compte administratif ;</li>
+            <li>De l'élaboration du Cadre des Dépenses à Moyen Terme (CDMT) du CNDT.</li>
+          </ul>
+
+          <div class="org-chapter-grid" style="margin-top:26px;">
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la page dédiée du Secrétariat des Affaires Financières et des Engagements">
+              <h3>Chef de Secrétariat</h3>
+              <p>Coordination des affaires financières, des engagements et des états financiers.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de Secrétariat Adjoint chargé des Affaires Financières">
+              <h3>Chef de Secrétariat Adjoint — Affaires Financières</h3>
+              <p>Appui à la préparation des états financiers et au suivi de l'exécution budgétaire.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de Secrétariat Adjoint chargé des Engagements">
+              <h3>Chef de Secrétariat Adjoint — Engagements</h3>
+              <p>Appui aux engagements, liquidations et ordonnancements des dépenses.</p>
+            </a>
+
+          </div>
+
+          <!-- =========================================================
+               III.2.3 — SECRÉTARIAT DE PRÉPARATION ET DE SUIVI DE L'EXÉCUTION DU BUDGET
+               ========================================================= -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <h2>Secrétariat de Préparation &amp; de Suivi de l'Exécution du Budget</h2>
+            </div>
+          </div>
+
+          <div class="org-intro" style="margin-bottom:24px;">
+            <p>
+              Placé sous l'autorité d'un <strong>Chef de Secrétariat</strong>, le Secrétariat de
+              Préparation et de Suivi de l'Exécution du Budget est chargé du suivi des dossiers
+              financiers du CNDT, de la préparation du budget et de la situation des disponibilités,
+              ainsi que du classement, de la conservation et de l'archivage des pièces comptables et
+              des comptes d'emplois.
+            </p>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>Du suivi des dossiers financiers du CNDT ;</li>
+            <li>De la préparation du budget ;</li>
+            <li>Du classement et de la conservation des pièces comptables à présenter à toutes les réquisitions ;</li>
+            <li>De la préparation de la situation des disponibilités ;</li>
+            <li>De la préparation des comptes d'emplois du CNDT et des justificatifs des dépenses éventuellement effectuées dans des cadres spécifiques ;</li>
+            <li>De la consolidation et de l'archivage des comptes d'emplois du CNDT et des justificatifs des dépenses éventuellement effectuées dans des cadres spécifiques.</li>
+          </ul>
+
+          <div class="org-chapter-grid" style="margin-top:26px;">
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la page dédiée du Secrétariat de Préparation et de Suivi de l'Exécution du Budget">
+              <h3>Chef de Secrétariat</h3>
+              <p>Coordination de la préparation et du suivi de l'exécution du budget du CNDT.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de Secrétariat Adjoint chargé de la préparation du budget">
+              <h3>Chef de Secrétariat Adjoint — Préparation du budget</h3>
+              <p>Appui à la préparation du budget annuel et des situations de disponibilités.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de Secrétariat Adjoint chargé du suivi de l'exécution du budget">
+              <h3>Chef de Secrétariat Adjoint — Suivi de l'exécution du budget</h3>
+              <p>Suivi des comptes d'emplois et consolidation des justificatifs de dépenses.</p>
+            </a>
+
+          </div>
+
+          <!-- =========================================================
+               III.2.4 — SECRÉTARIAT EN CHARGE DU CATI
+               ========================================================= -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <h2>Secrétariat en charge du Centre d'Appui à la Technologie et à l'Innovation (CATI)</h2>
+            </div>
+          </div>
+
+          <div class="org-intro" style="margin-bottom:24px;">
+            <p>
+              Placé sous l'autorité d'un <strong>Chef de Secrétariat, Point focal</strong>, le
+              Secrétariat en charge du Centre d'Appui à la Technologie et à l'Innovation (CATI)
+              assure l'animation du Centre, la gestion des codes d'accès aux bases de données de
+              l'Organisation Mondiale de la Propriété Intellectuelle (OMPI), la sensibilisation à la
+              propriété intellectuelle et la coordination des réseaux nationaux et internationaux
+              des CATI.
+            </p>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>De l'animation du Centre d'Appui à la Technologie et à l'Innovation (CATI) du CNDT ;</li>
+            <li>De la gestion des codes d'accès aux bases de données de l'Organisation Mondiale de la Propriété Intellectuelle (OMPI) ;</li>
+            <li>De la sensibilisation du personnel du MINRESI et des usagers sur les fondamentaux de la propriété intellectuelle ;</li>
+            <li>De la définition d'un cadre de collaboration avec les représentations régionales des groupements patronaux et des autres CATI ;</li>
+            <li>De l'animation de la plateforme et de la participation aux activités des réseaux national et international des CATI ;</li>
+            <li>De la conception, de la réalisation et de la diffusion du bulletin d'information « CATI-INFO » du CNDT, en liaison avec le Secrétariat de la Communication et des Relations Publiques ;</li>
+            <li>De la production des rapports d'activités mensuelles, trimestrielles, semestrielles et annuelles du CATI.</li>
+          </ul>
+
+          <div class="org-chapter-grid" style="margin-top:26px;">
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la page dédiée du Secrétariat en charge du CATI">
+              <h3>Chef de Secrétariat — Point focal CATI</h3>
+              <p>Animation du Centre, propriété intellectuelle et coopération avec l'OMPI.</p>
+            </a>
+
+            <a class="org-chapter-card" href="#"
+               aria-label="Voir la fiche du Chef de la Cellule Informatique (assistant du Point focal)">
+              <h3>Chef de la Cellule Informatique</h3>
+              <p>Assiste le Point focal CATI sur les aspects numériques et techniques.</p>
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =========================================================
+           SIDEBAR
+           ========================================================= -->
+      <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+        <section class="news-agenda" aria-labelledby="news-title">
+          <div class="sidebar-heading">
+            <h2 id="news-title">Actualités</h2>
+          </div>
+            <div class="agenda-list">
+
+
+              <a href="actualite/fracture-numerique-per-bayangam-akonolinga.html">
+                <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+              </a>
+              <a href="actualite/aiea70-2026.html">
+                <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+                <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+              </a>
+              <a href="actualite/formation-finances-publiques-2026.html">
+                <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
+                <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+              </a>
+              <a href="actualite/cndt-43e-session-comite.html">
+                <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
+                <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+              </a>
+              <a href="actualite/sia-minresi-2026.html">
+                <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+                <p>Semaine de l'Intelligence Articielle au MINRESI</p>
+              </a>
+            </div>
+          <a class="sidebar-more" href="actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+        </section>
+
+        <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+          <h2 id="resources-title">Publications &amp; médias</h2>
+          <nav aria-label="Publications et médias">
+            <a href="publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
+            <a href="publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+            <a href="publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+            <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
+            <a href="publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+            <a href="contact.html"><span aria-hidden="true">›</span>Contact</a>
+          </nav>
+        </section>
+      </aside>
+
+    </section>
+
+    <!-- Carrousel partenaires -->
+    <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts et Partenaires</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                <img src="assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

@@ -1,0 +1,661 @@
+@extends('layouts.site')
+
+@section('title', "Personnel | CNDT Cameroun")
+
+@section('description', "Liste du personnel du Comité National de Développement des Technologies, organisée par niveau hiérarchique.")
+
+@section('content')
+  <main id="contenu">
+
+    <section class="inner-hero">
+      <img src="assets/header_personnel.jpg" alt="Personnel du CNDT réuni en activité" width="1100" height="825">
+      <div class="container">
+        <p class="page-kicker">Ressources humaines</p>
+        <h1>Le personnel du CNDT</h1>
+        <p>Une équipe organisée par niveaux hiérarchiques, du Secrétariat Permanent aux Secrétariats techniques.</p>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="index.html">Accueil</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">Personnel</span>
+        </nav>
+
+        <div class="page-heading">
+          <div>
+            <p class="page-kicker">Annuaire interne</p>
+            <h2>Effectif par niveau hiérarchique</h2>
+          </div>
+          <p>Chaque ligne sépare un niveau hiérarchique. Cliquez sur une personne pour voir sa fiche.</p>
+        </div>
+
+        <!-- =========================================================
+             BARRE DE RECHERCHE
+             ========================================================= -->
+        <div class="staff-search" role="search">
+          <label for="staff-search-input" class="staff-search__label">
+            <span class="visually-hidden">Rechercher un membre du personnel</span>
+            <svg class="staff-search__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M10 4a6 6 0 1 0 3.9 10.56l4.27 4.27 1.41-1.41-4.27-4.27A6 6 0 0 0 10 4Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>
+            </svg>
+            <input
+              id="staff-search-input"
+              type="search"
+              placeholder="Rechercher un nom, une fonction ou un Secrétariat…"
+              autocomplete="off"
+              spellcheck="false"
+              data-staff-search
+            >
+          </label>
+
+          <p class="staff-search__meta" aria-live="polite">
+            <span data-staff-count>0</span> personne(s) affichée(s)
+            <button type="button" class="staff-search__reset" data-staff-reset hidden>Réinitialiser</button>
+          </p>
+        </div>
+
+        <!-- =========================================================
+             LISTE HIÉRARCHIQUE
+             ========================================================= -->
+        <div class="staff-hierarchy" data-staff-hierarchy>
+
+          <!-- ---------- Niveau 1 : Direction ---------- -->
+          <section class="staff-level" data-staff-level aria-labelledby="level-1">
+            <header class="staff-level__head">
+              <h3 id="level-1" class="staff-level__title">Direction</h3>
+              <span class="staff-level__count" data-level-count>1 personne</span>
+            </header>
+
+            <div class="staff-level__grid">
+              <a class="staff-person" href="#"
+                data-staff-item
+                data-search="président du comité présidence membres du comité direction tchuinte">
+                <img src="assets/people/ministre.jpg" alt="Dr Madeleine TCHUINTE" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr Madeleine TCHUINTE</strong>
+                  <span>Ministre de la Recherche Scientifique et de l'Innovation — Présidente du Comité</span>
+                  <em class="staff-person__degree" title="Docteur">Docteur</em>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- ---------- Niveau 2 : Secrétariat Permanent ---------- -->
+          <section class="staff-level" data-staff-level aria-labelledby="level-2">
+            <header class="staff-level__head">
+              <h3 id="level-2" class="staff-level__title">Secrétariat Permanent</h3>
+              <span class="staff-level__count" data-level-count>1 personne</span>
+            </header>
+
+            <div class="staff-level__grid">
+              <a class="staff-person" href="membres/ele-abiama-patrice.html"
+                data-staff-item
+                data-search="dr ele abiama patrice secrétaire permanent secrétariat permanent">
+                <img src="assets/people/sp.webp" alt="Dr ELE ABIAMA Patrice" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr ELE ABIAMA Patrice</strong>
+                  <span>Secrétaire Permanent du CNDT</span>
+                  <em class="staff-person__degree" title="Directeur de Recherche">Directeur de Recherche</em>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- ---------- Niveau 3 : Coordinations exécutives adjointes ---------- -->
+          <section class="staff-level" data-staff-level aria-labelledby="level-3">
+            <header class="staff-level__head">
+              <h3 id="level-3" class="staff-level__title">Coordinations exécutives adjointes</h3>
+              <span class="staff-level__count" data-level-count>4 personnes</span>
+            </header>
+
+            <div class="staff-level__grid">
+              <a class="staff-person" href="membres/tsuanyo-david.html"
+                data-staff-item
+                data-search="dr tsuanyo david coordonnateur exécutif adjoint recherche">
+                <img src="assets/people/tsuanyo.webp" alt="Dr TSUANYO David" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr TSUANYO David</strong>
+                  <span>Coordonnateur Exécutif Adjoint chargé de la Recherche</span>
+                  <em class="staff-person__degree" title="Doctorat en Ingénierie de l'Énergie">Doctorat en Ingénierie de l'Énergie</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/kouna-jean.html"
+                data-staff-item
+                data-search="M. KOUNA Jean Baptiste coordonnateur administratif financier comptable">
+                <img src="assets/people/kouna.webp" alt="M. KOUNA Jean Baptiste" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>M. KOUNA Jean Baptiste</strong>
+                  <span>Coordonnateur Exécutif Adjoint — Commission Administrative, Financière et Comptable</span>
+                  <em class="staff-person__degree" title="Master Professionnel en Propriété Intellectuelle">Master Professionnel en Propriété Intellectuelle</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/bilounga-sandrine.html"
+                data-staff-item
+                data-search="Mme BILOUNGA BINDOUA Marie Sandrine coordonnateur coopération">
+                <img src="assets/people/bilounga.webp" alt="Mme BILOUNGA BINDOUA Marie Sandrine" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Mme BILOUNGA BINDOUA Marie Sandrine</strong>
+                  <span>Coordonnatrice Exécutive Adjointe chargée de la Coopération</span>
+                  <em class="staff-person__degree" title="Master en Économie · DESS Banque-Finance · Master GRH">Master en Économie · DESS Banque-Finance · Master GRH</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/isaoura-benite.html"
+                data-staff-item
+                data-search="Mme ISAOURA Bénite documentation communication relations publiques">
+                <img src="assets/people/isaoura.webp" alt="Mme ISAOURA Bénite" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Mme ISAOURA Bénite</strong>
+                  <span>Coordonnatrice Exécutive Adjointe — Documentation, Communication et Relations Publiques</span>
+                  <em class="staff-person__degree" title="Master Professionnel en Informatique">Master Professionnel en Informatique</em>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- ---------- Niveau 4 : Chefs de Secrétariat titulaires ---------- -->
+          <section class="staff-level" data-staff-level aria-labelledby="level-4">
+            <header class="staff-level__head">
+              <h3 id="level-4" class="staff-level__title">Chefs de Secrétariat titulaires</h3>
+              <span class="staff-level__count" data-level-count>5 personnes</span>
+            </header>
+
+            <div class="staff-level__grid">
+              <a class="staff-person" href="membres/aboubakar-el-boukar.html"
+                data-staff-item
+                data-search="dr aboubakar el boukar politiques scientifiques technologiques">
+                <img src="assets/people/el-boukar.webp" alt="Dr ABOUBAKAR EL BOUKAR" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr ABOUBAKAR EL BOUKAR</strong>
+                  <span>Chef du Secrétariat des Politiques Scientifiques et Technologiques</span>
+                  <em class="staff-person__degree" title="Doctorat en Droit Public">Doctorat en Droit Public</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/amada-brahim.html"
+                data-staff-item
+                data-search="M. AMADA BRAHIM ressources humaines action sociale multiculturalisme">
+                <img src="assets/people/amada.webp" alt="M. AMADA BRAHIM" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>M. AMADA BRAHIM</strong>
+                  <span>Chef du Secrétariat des Ressources Humaines, de l'Action Sociale et du Multiculturalisme</span>
+                  <em class="staff-person__degree" title="Doctorant en Biologie">Doctorant en Biologie</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/menga-francis-daniel.html"
+                data-staff-item
+                data-search="dr menga francis-daniel recherche">
+                <img src="assets/people/menga.jpeg" alt="Dr MENGA Francis-Daniel" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr MENGA Francis Daniel</strong>
+                  <span>Chef de Secrétariat Technologies de l'Energie des Mines et de l'Environnement</span>
+                  <em class="staff-person__degree" title="Doctorat en Énergétique et Environnement">Doctorat en Énergétique et Environnement</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/paglan-paul-andre.html"
+                data-staff-item
+                data-search="dr paglan paul andré technologies transformations industrielles">
+                <img src="assets/people/paglan.webp" alt="Dr PAGLAN Paul André" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Dr PAGLAN Paul André</strong>
+                  <span>Chef du Secrétariat Technologies et Transformations Industrielles</span>
+                  <em class="staff-person__degree" title="Doctorat en Physique Non Linéaire et Systèmes Complexes">Doctorat en Physique Non Linéaire et Systèmes Complexes</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/temgoua-pelagie.html"
+                data-staff-item
+                data-search="Mme TEMGOUA NANFACK Pélagie Flore TIC intelligence artificielle">
+                <img src="assets/people/temgoua.webp" alt="Mme TEMGOUA NANFACK Pélagie Flore" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Mme TEMGOUA NANFACK Pélagie Flore épse ABOMO</strong>
+                  <span>Chef du Secrétariat TIC et Intelligence Artificielle</span>
+                  <em class="staff-person__degree" title="Master de Recherche en Informatique">Master de Recherche en Informatique</em>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          <!-- ---------- Niveau 5 : Chefs de Secrétariat Adjoints & Autres responsables ---------- -->
+          <section class="staff-level" data-staff-level aria-labelledby="level-5">
+            <header class="staff-level__head">
+              <h3 id="level-5" class="staff-level__title">Autres Chefs de Secrétariat</h3>
+              <span class="staff-level__count" data-level-count>3 personnes</span>
+            </header>
+
+            <div class="staff-level__grid">
+              <a class="staff-person" href="membres/eyoum-henriette.html"
+                data-staff-item
+                data-search="eyoum ekoule henriette assistante secrétaire permanent">
+                <img src="assets/people/eyoum.webp" alt="Mme EYOUM EKOULE Henriette Annie Dorette" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>Mme EYOUM EKOULE Henriette Annie Dorette</strong>
+                  <span>Assistante du Secrétaire Permanent</span>
+                  <em class="staff-person__degree" title="Baccalauréat D">Baccalauréat D</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/babgai-raphael.html"
+                data-staff-item
+                data-search="babgai raphaël guidéké parc informatique">
+                <img src="assets/people/babgai-raphael-guidéke.jpeg" alt="M. BABGAI Raphaël GUIDÉKÉ" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>M. BABGAI Raphaël GUIDÉKÉ</strong>
+                  <span>Chef de Secrétariat Adjoint — Responsable du Parc Informatique</span>
+                  <em class="staff-person__degree" title="Master en Informatique et Télécommunications">Master en Informatique et Télécommunications</em>
+                </div>
+              </a>
+
+              <a class="staff-person" href="membres/avah-jean-jaures.html"
+                data-staff-item
+                data-search="avah jean jaurès fils documentation archives">
+                <img src="assets/people/avah.webp" alt="M. AVAH Jean Jaurès Fils" loading="lazy">
+                <div class="staff-person__info">
+                  <strong>M. AVAH Jean Jaurès Fils</strong>
+                  <span>Chef de la cellule informatique</span>
+                  <em class="staff-person__degree" title="DEA en Biologie Animale, option Zoologie">DEA en Biologie Animale, option Zoologie</em>
+                </div>
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- État vide -->
+        <div class="staff-empty" data-staff-empty hidden>
+          <p><strong>Aucun résultat</strong></p>
+          <p>Aucune personne ne correspond à votre recherche. Essayez un autre nom, une fonction ou un Secrétariat.</p>
+          <button type="button" class="staff-search__reset staff-search__reset--lg" data-staff-reset>Réinitialiser la recherche</button>
+        </div>
+
+
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+     TABLEAU — Attachés de Recherche (trié alphabétiquement)
+     ========================================================= -->
+    <section class="staff-level container" aria-labelledby="level-6">
+      <header class="staff-level__head">
+        <h3 id="level-6" class="staff-level__title">Personnels</h3>
+        <span class="staff-level__count">40 personnes</span>
+      </header>
+
+      <div class="staff-recherche-wrap">
+        <table class="staff-recherche-table">
+          <caption class="staff-recherche-table__caption">Liste du personnels en service</caption>
+
+          <thead>
+            <tr>
+              <th scope="col" class="staff-recherche-table__num">N°</th>
+              <th scope="col">Nom et prénom(s)</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Diplôme de recrutement / spécialité</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td><strong>Mme ATEM TAKANG-ETTA Linda-Rose</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Génie des Procédés Chimiques</td>
+            </tr>
+
+            <tr>
+              <td>02</td>
+              <td><strong>Mme BALKISSOU Hamidou</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Science de l'Environnement — option Génie des Ressources en Eau et Assainissement des Villes Africaines</td>
+            </tr>
+
+            <tr>
+              <td>03</td>
+              <td><strong>M. BANG NJENJOCK Blixen Bolie</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master II en Physique — option Atome et Radiation</td>
+            </tr>
+
+            <tr>
+              <td>04</td>
+              <td><strong>M. BAYIHA JUNIOR Dorian</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Géologie Minière</td>
+            </tr>
+
+            <tr>
+              <td>05</td>
+              <td><strong>M. DONTSA JIMMY Orlus</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Cryptographie</td>
+            </tr>
+
+            <tr>
+              <td>06</td>
+              <td><strong>M. ELIGUENE FRANCK Gislain</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Géologie Appliquée</td>
+            </tr>
+
+            <tr>
+              <td>07</td>
+              <td><strong>M. EPEE WILLIE Aurélein</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Génie des Procédés et Ingénierie</td>
+            </tr>
+
+            <tr>
+              <td>08</td>
+              <td><strong>Mme FETMOUFA NJENJI Linda Ange</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Doctorat Ph.D en Propriété Intellectuelle</td>
+            </tr>
+
+            <tr>
+              <td>09</td>
+              <td><strong>M. FOTSO FOTSO Guy Phares</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Doctorat en Mathématiques</td>
+            </tr>
+
+            <tr>
+              <td>10</td>
+              <td><strong>M. GUIDANA Pierre</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur des Procédés — option Chimie Industrielle et Génie de l'Environnement</td>
+            </tr>
+
+            <tr>
+              <td>11</td>
+              <td><strong>Mme GUEA BISSAH Christelle</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master II en Droit Public</td>
+            </tr>
+
+            <tr>
+              <td>12</td>
+              <td><strong>Mme HAPSATOU DANLADY</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Génie Informatique et Télécommunications</td>
+            </tr>
+
+            <tr>
+              <td>13</td>
+              <td><strong>M. INOUSS MAMATE Abakaka</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Énergies Renouvelables</td>
+            </tr>
+
+            <tr>
+              <td>14</td>
+              <td><strong>Mme KENMOGNE TCHATCHIM Liliane</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master Professionnel en Gouvernance Financière</td>
+            </tr>
+
+            <tr>
+              <td>15</td>
+              <td><strong>M. KEUTCHANGA FONCHA Jules Marcel</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception — option Génie Mécanique</td>
+            </tr>
+
+            <tr>
+              <td>16</td>
+              <td><strong>M. KUATE FOTSO Jean-Marie</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master II en Système et Logiciel en Environnement Distribué</td>
+            </tr>
+
+            <tr>
+              <td>17</td>
+              <td><strong>M. LIBII LI NTEP Joseph Junior</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master in Computer Science — option Science des Données</td>
+            </tr>
+
+            <tr>
+              <td>18</td>
+              <td><strong>M. MABOU DEFO Rodrigue Sommet</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Modélisation Mathématique</td>
+            </tr>
+
+            <tr>
+              <td>19</td>
+              <td><strong>M. MAFAI MAGUELVA Nelson</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Informatique</td>
+            </tr>
+
+            <tr>
+              <td>20</td>
+              <td><strong>M. MBARGA Hervé Thaddée</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Télécommunication et Technologie de l'Information et de la Communication</td>
+            </tr>
+
+            <tr>
+              <td>21</td>
+              <td><strong>M. MENGUE François Dieudonné</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Doctorat Ph.D en Physique — option Électronique et Instrumentation</td>
+            </tr>
+
+            <tr>
+              <td>22</td>
+              <td><strong>Mme MILENE ONDOUA NDONGO</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Droit Privé</td>
+            </tr>
+
+            <tr>
+              <td>23</td>
+              <td><strong>Mme NDA ONDOA Elise Natacha</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Management des Risques Industriels et Environnementaux</td>
+            </tr>
+
+            <tr>
+              <td>24</td>
+              <td><strong>M. NDJAKA Patrick Aimé</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Télécommunication et Technologie de l'Information et de la Communication</td>
+            </tr>
+
+            <tr>
+              <td>25</td>
+              <td><strong>M. NDZANGA ONDOA Luc Claver</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Mécatronique</td>
+            </tr>
+
+            <tr>
+              <td>26</td>
+              <td><strong>M. NGIMBUS LAURENT Joël Junior</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Chimie Industrielle et Environnement</td>
+            </tr>
+
+            <tr>
+              <td>27</td>
+              <td><strong>Mme NGO NGWEM Marcelline Carine</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Chimie Industrielle et Génie de l'Environnement</td>
+            </tr>
+
+            <tr>
+              <td>28</td>
+              <td><strong>Mme NGOS BIYIHA Erika Mado</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Physique</td>
+            </tr>
+
+            <tr>
+              <td>29</td>
+              <td><strong>M. NNANGA NNANGA Jorel Brice</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Doctorat en Médecine Générale</td>
+            </tr>
+
+            <tr>
+              <td>30</td>
+              <td><strong>M. NOUBOUOWO CHOUAKE Arthur Stella</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur de Conception en Agronomie et Sciences Agricoles</td>
+            </tr>
+
+            <tr>
+              <td>31</td>
+              <td><strong>Mme NTEP Juliette Patricia Fanta</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Télécommunication — option Sécurité des Réseaux et Systèmes d'Information</td>
+            </tr>
+
+            <tr>
+              <td>32</td>
+              <td><strong>Mme OKALA BOUILLONG Noelly Manuela</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Biochimie — option Biotechnologie et Développement</td>
+            </tr>
+
+            <tr>
+              <td>33</td>
+              <td><strong>Mme ONANA Ebodé</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme de Master II en Histoire Économique et Sociale</td>
+            </tr>
+
+            <tr>
+              <td>34</td>
+              <td><strong>M. OUMAROU DJOUBAIROU Oumarou</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Maintenance Industrielle et Productique</td>
+            </tr>
+
+            <tr>
+              <td>35</td>
+              <td><strong>M. OWONA Jorel Landry</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master II en Sciences de la Matière — Électronique, Électrotechnique, Automatique</td>
+            </tr>
+
+            <tr>
+              <td>36</td>
+              <td><strong>M. SOULEYMANOU MANSOUROU</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Réseaux et Services Distribués</td>
+            </tr>
+
+            <tr>
+              <td>37</td>
+              <td><strong>M. TCHATCHOUANG BRAVEL Benveniste</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Physique</td>
+            </tr>
+
+            <tr>
+              <td>38</td>
+              <td><strong>Mme TOUEMBOU MAFFO Murielle</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master Professionnel en Biologie des Organismes Végétaux</td>
+            </tr>
+
+            <tr>
+              <td>39</td>
+              <td><strong>M. TSILLA NDONGO Damien Serge</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Diplôme d'Ingénieur en Télécommunication — option Sécurité des Réseaux et Systèmes d'Information</td>
+            </tr>
+
+            <tr>
+              <td>40</td>
+              <td><strong>Mme YAOUDA M SOPHIE</strong></td>
+              <td><span class="staff-tag">Attaché de Recherche</span></td>
+              <td>Master en Droit Public</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="instituts">
+        <div class="block-heading">
+              <!-- <p>Le Secrétariat Permanent</p> -->
+              <h2 class="sp-title">Instituts sous tutelle du MINRESI</h2>
+        </div>
+
+        <!-- Conteneur du Carrousel Swiper -->
+        <div class="swiper instituts-carousel">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/impm.png" alt="IMPM" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                        <img src="assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Navigation & Pagination -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+        
+    </section>
+  </main>
+
+  
+@endsection

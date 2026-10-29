@@ -1,0 +1,275 @@
+@extends('layouts.site')
+
+@section('title', "Dr ABOUBAKAR EL BOUKAR | CNDT Cameroun")
+
+@section('description', "Fiche de Dr ABOUBAKAR EL BOUKAR, Chef de la Cellule de Suivi et Chef du Secrétariat des Politiques Scientifiques et Technologiques du CNDT.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO du profil
+         ========================================================= -->
+    <section class="profile-hero">
+      <img class="profile-hero__bg" src="../assets/S-3.webp" alt="" aria-hidden="true">
+
+      <div class="container profile-hero__inner">
+
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html">Accueil</a>
+          <span aria-hidden="true">›</span>
+          <a href="../organigramme.html">Organisation</a>
+          <span aria-hidden="true">›</span>
+          <a href="../personnel.html">Personnel</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">Dr ABOUBAKAR EL BOUKAR</span>
+        </nav>
+
+        <div class="profile-hero__body">
+
+          <figure class="profile-hero__photo">
+            <img src="../assets/people/el-boukar.webp" alt="Portrait de Dr ABOUBAKAR EL BOUKAR" width="480" height="640">
+          </figure>
+
+          <div class="profile-hero__info">
+            <h1>Dr ABOUBAKAR EL BOUKAR</h1>
+            <p class="profile-hero__role">Chef de la Cellule de Suivi — Chef du Secrétariat des Politiques Scientifiques et Technologiques</p>
+
+            <ul class="profile-hero__meta" aria-label="Informations clés">
+              <li>
+                <span>Grade</span>
+                <strong>Chargé de Recherche</strong>
+              </li>
+              <li>
+                <span>Spécialité</span>
+                <strong>Droit Public</strong>
+              </li>
+              <li>
+                <span>Fonction</span>
+                <strong>Chef de la Cellule de Suivi &amp; Chef du Secrétariat PST</strong>
+              </li>
+              <li>
+                <span>Affectation</span>
+                <strong>MINRESI / CNDT</strong>
+              </li>
+            </ul>
+
+            <!-- Réseaux sociaux & profils académiques -->
+            <ul class="profile-socials" aria-label="Réseaux sociaux et profils académiques">
+
+              <li>
+                <a href="https://www.linkedin.com/in/aboubakar-el-boukar-9376a2227" target="_blank" rel="noopener"
+                   aria-label="Profil LinkedIn de Dr ABOUBAKAR EL BOUKAR">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6.94 8.5H4.06V19.5h2.88V8.5ZM5.5 7.19a1.69 1.69 0 1 0 0-3.38 1.69 1.69 0 0 0 0 3.38ZM20 19.5v-6.02c0-3.2-1.71-4.69-3.99-4.69-1.84 0-2.66 1.01-3.12 1.72V8.5H10.1c.04.82 0 11 0 11h2.79v-6.14c0-.25.02-.5.09-.68.2-.5.66-1.02 1.43-1.02 1.01 0 1.41.77 1.41 1.89v5.95H20Z"/>
+                  </svg>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.researchgate.net/profile/Aboubakar-El-Boukar" target="_blank" rel="noopener"
+                   aria-label="Profil ResearchGate de Dr ABOUBAKAR EL BOUKAR">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M19.6 2H4.4C3.07 2 2 3.07 2 4.4v15.2C2 20.93 3.07 22 4.4 22h15.2c1.33 0 2.4-1.07 2.4-2.4V4.4C22 3.07 20.93 2 19.6 2ZM9.75 12.54h-1.9V6.63h2.78c1.4 0 2.34.79 2.34 2.05 0 .95-.55 1.66-1.45 1.93l1.62 2.93h-2.04l-1.35-2.62v-.05H9.75v2.67Zm0-4.62v2.01h.72c.68 0 1.09-.38 1.09-.99 0-.62-.41-1.02-1.09-1.02h-.72Zm7.32 5.82c-1.31 0-2.36-.9-2.36-2.5v-1.3c0-1.6 1.05-2.5 2.36-2.5.68 0 1.24.25 1.61.71v-.52h1.72v6.06h-1.6l-.11-.56c-.36.45-.9.61-1.62.61Zm.4-1.42c.65 0 1.05-.42 1.05-1.12v-1.42c0-.71-.4-1.12-1.05-1.12-.64 0-1.03.41-1.03 1.12v1.42c0 .7.39 1.12 1.03 1.12Z"/>
+                  </svg>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <!-- =========================================================
+             LAYOUT : contenu + sidebar
+             ========================================================= -->
+        <div class="profile-layout">
+
+          <!-- ---------- Contenu principal ---------- -->
+          <article class="project-content">
+
+            <!-- ============ Biographie ============ -->
+            <section id="biographie" class="project-section">
+              <h2>Biographie</h2>
+              <p class="lead">
+                <strong>Dr ABOUBAKAR EL BOUKAR</strong> est <strong>Chargé de Recherche</strong> en
+                service au Comité National de Développement des Technologies (CNDT). Il est titulaire
+                d'un <strong>Doctorat/Ph.D en Droit Public</strong>.
+              </p>
+              <p>
+                Au sein du CNDT, il occupe cumulativement plusieurs postes de responsabilité :
+                <strong>Chef du Secrétariat Technique des Politiques Scientifiques et
+                Technologiques (SPST)</strong>, <strong>Chef du Secrétariat Juridique, de Contrôle de
+                Gestion et du Contentieux (SJCGC)</strong> et <strong>Chef de la Cellule de Suivi
+                (CS)</strong>.
+              </p>
+              <p>
+                Ses travaux de recherche et son expertise portent principalement sur les
+                <strong>questions de politiques publiques</strong>, la <strong>technologie et
+                l'innovation</strong>, le droit du travail et le contrôle de gestion. Il contribue
+                ainsi à la structuration et à la consolidation du cadre juridique et institutionnel
+                des activités du Comité.
+              </p>
+            </section>
+
+            <!-- ============ Domaines d'expertise ============ -->
+            <section id="expertise" class="project-section">
+              <h2>Domaines d'expertise</h2>
+
+              <ul class="project-list">
+                <li>Droit public et cadre juridique des institutions publiques ;</li>
+                <li>Politiques publiques et politiques scientifiques ;</li>
+                <li>Technologie, innovation et développement ;</li>
+                <li>Droit du travail et gestion des contentieux ;</li>
+                <li>Contrôle de gestion et audit interne ;</li>
+                <li>Administration publique et pilotage institutionnel.</li>
+              </ul>
+            </section>
+
+            <!-- ============ Centres d'intérêts ============ -->
+            <section id="interets" class="project-section">
+              <h2>Centres d'intérêts</h2>
+
+              <ul class="chip-list" aria-label="Domaines d'expertise et centres d'intérêts">
+                <li class="chip">Droit du travail</li>
+                <li class="chip">Politiques scientifiques</li>
+                <li class="chip">Contrôle de gestion</li>
+                <li class="chip">Administration</li>
+                <li class="chip">Technologie &amp; Innovation</li>
+                <li class="chip">Droit public</li>
+              </ul>
+            </section>
+
+          </article>
+
+          <!-- ---------- SIDEBAR ---------- -->
+          <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+            <section class="news-agenda" aria-labelledby="news-title">
+              <div class="sidebar-heading">
+                <h2 id="news-title">Actualités</h2>
+              </div>
+              <div class="agenda-list">
+
+
+                <a href="../actualite/fracture-numerique-per-bayangam-akonolinga.html">
+                  <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                  <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+                </a>
+                <a href="../actualite/aiea70-2026.html">
+                  <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+                  <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+                </a>
+                <a href="../actualite/formation-finances-publiques-2026.html">
+                  <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
+                  <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+                </a>
+                <a href="../actualite/cndt-43e-session-comite.html">
+                  <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
+                  <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+                </a>
+                <a href="../actualite/sia-minresi-2026.html">
+                  <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+                  <p>Semaine de l'Intelligence Articielle au MINRESI</p>
+                </a>
+              </div>
+              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="../publication.html#technomag"><span aria-hidden="true">›</span>Techno Mag</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span>Émissions TV</a>
+                <a href="../publication.html#phototheque"><span aria-hidden="true">›</span>Photothèque</a>
+                <a href="../publication.html"><span aria-hidden="true">›</span>Innovation</a>
+                <a href="../publication.html#rapports"><span aria-hidden="true">›</span>Rapports</a>
+                <a href="../contact.html"><span aria-hidden="true">›</span>Contact</a>
+              </nav>
+            </section>
+          </aside>
+        </div>
+
+        <!-- Retour -->
+        <div class="project-back">
+          <a class="text-link" href="../personnel.html">← Retour au personnel du CNDT</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CARROUSEL INSTITUTS
+         ========================================================= -->
+    <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts sous tutelle du MINRESI</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

@@ -1,0 +1,357 @@
+@extends('layouts.site')
+
+@section('title', "Comité du CNDT | CNDT Cameroun")
+
+@section('description', "Comité National de Développement des Technologies — Organe délibérant, composition, missions et sessions du Comité.")
+
+@section('content')
+  <main id="contenu">
+
+    <section class="container ecart home-grid">
+
+      <section class="inner-section">
+        <div class="container">
+
+          <!-- ---------- Présentation du Comité ---------- -->
+          <div class="page-heading">
+            <div>
+              <!-- <p class="page-kicker">Organe délibérant</p> -->
+              <h2>Le Comité</h2>
+            </div>
+          </div>
+
+          <div class="org-intro">
+            <p>
+              Le <strong>Comité National de Développement des Technologies</strong> est l'organe délibérant
+              de l'institution. Présidé par le Ministre en charge de la Recherche Scientifique et de
+              l'Innovation, il réunit les représentants des administrations camerounaises concernées par
+              le développement et le transfert des technologies.
+            </p>
+            <p style="margin-top:14px;">
+              Le Comité fixe les grandes orientations en matière de veille, d'adaptation et de transfert
+              technologique. Il délibère sur les programmes, valide les rapports d'activités et formule
+              au Gouvernement des recommandations sur les orientations à suivre.
+            </p>
+          </div>
+
+          <!-- ---------- Missions du Comité ---------- -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <p class="page-kicker">Attributions</p>
+              <h2>Missions du Comité</h2>
+            </div>
+          </div>
+
+          <ul class="project-list" style="columns:2; column-gap:34px;">
+            <li>Définir les orientations stratégiques du CNDT ;</li>
+            <li>Valider les programmes annuels d'activités ;</li>
+            <li>Délibérer sur les rapports d'activités et de performance ;</li>
+            <li>Approuver les recommandations sur les politiques de transfert technologique ;</li>
+            <li>Superviser l'action du Secrétariat Permanent ;</li>
+            <li>Valider les partenariats stratégiques nationaux et internationaux ;</li>
+            <li>Formuler des avis sur les grands choix technologiques du Cameroun ;</li>
+            <li>Assurer le suivi des décisions et recommandations adoptées.</li>
+          </ul>
+
+          <!-- ---------- Présidence du Comité ---------- -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <p class="page-kicker">Présidence</p>
+              <h2>Présidente du Comité</h2>
+            </div>
+          </div>
+
+          <article class="secretary-card" style="margin-bottom:24px;">
+            <figure>
+              <img src="assets/people/ministre.jpg" alt="Dr Madeleine TCHUINTE, Présidente du Comité" width="480" height="640" loading="lazy">
+              <figcaption>
+                <strong>Dr Madeleine TCHUINTE</strong>
+                <span>Présidente du Comité</span>
+              </figcaption>
+            </figure>
+            <div class="secretary-copy">
+              <span class="opening-quote" aria-hidden="true">“</span>
+              <p>Le Comité National de Développement des Technologies constitue un instrument stratégique au service de la souveraineté technologique du Cameroun.</p>
+              <p>À travers ses délibérations, il veille à ce que la recherche scientifique et l'innovation technologique soient pleinement mobilisées pour répondre aux priorités nationales de développement.</p>
+              <!-- <a class="text-link" href="organigramme.html">Voir l'organigramme <span aria-hidden="true">→</span></a> -->
+            </div>
+          </article>
+
+          <section class="secretary-block" aria-labelledby="sp-title">
+            <div class="block-heading">
+              <p>Le Secrétariat Permanent</p>
+              <h2 class="sp-title">Mot du Secrétaire Permanent</h2>
+            </div>
+            <div class="secretary-card">
+              <figure>
+                <img src="assets/people/sp/1.jpeg" alt="Dr ELE ABIAMA Patrice, Secrétaire Permanent du CNDT" width="640" height="480" loading="lazy">
+                <figcaption>
+                  <strong>Dr ELE ABIAMA Patrice</strong>
+                  <span>Secrétaire Permanent</span>
+                </figcaption>
+              </figure>
+              <div class="secretary-copy">
+                <span class="opening-quote" aria-hidden="true">“</span>
+                <p>Je vous souhaite, chers internautes, une agréable bienvenue sur le site officiel du Comité National de Développement des Technologies.</p>
+                <p>Cet espace met en valeur nos actions de veille, d’adaptation et de transfert des technologies, avec l’ambition de rapprocher la recherche des besoins concrets de développement du Cameroun.</p>
+                <!-- <a class="text-link" href="comite.html">Découvrir le CNDT <span aria-hidden="true">→</span></a> -->
+              </div>
+            </div>
+          </section>
+
+          <!-- ---------- Composition du Comité ---------- -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <p class="page-kicker">Composition</p>
+              <h2>Membres du Comité</h2>
+            </div>
+          </div>
+
+          <p style="margin:0 0 26px;color:#4f5c54;font-size:0.9rem;line-height:1.65;">
+            Le Comité réunit les représentants des administrations camerounaises, des instituts de recherche
+            et des organismes partenaires concernés par le développement et le transfert des technologies.
+          </p>
+
+          <!-- ---------- Fonctionnement du Comité ---------- -->
+          <div class="page-heading" style="margin-top:56px;">
+            <div>
+              <p class="page-kicker">Fonctionnement</p>
+              <h2>Sessions et délibérations</h2>
+            </div>
+          </div>
+
+          <ol class="chapter-path" aria-label="Fonctionnement du Comité">
+            <li>
+              <span class="chapter-path__dot" aria-hidden="true"></span>
+              <div>
+                <strong>Sessions ordinaires</strong>
+                <em>Réunions périodiques du Comité selon le calendrier fixé par la Présidence</em>
+              </div>
+            </li>
+            <li>
+              <span class="chapter-path__dot" aria-hidden="true"></span>
+              <div>
+                <strong>Sessions extraordinaires</strong>
+                <em>Réunions convoquées sur des questions urgentes ou stratégiques</em>
+              </div>
+            </li>
+            <li>
+              <span class="chapter-path__dot" aria-hidden="true"></span>
+              <div>
+                <strong>Préparation et suivi</strong>
+                <em>Assurés par le Secrétariat Permanent, rapporteur du Comité</em>
+              </div>
+            </li>
+            <li>
+              <span class="chapter-path__dot" aria-hidden="true"></span>
+              <div>
+                <strong>Mise en œuvre des décisions</strong>
+                <em>Suivi des recommandations par les Commissions Opérationnelle et Support</em>
+              </div>
+            </li>
+          </ol>
+
+          <!-- ---------- Lien vers l'organigramme ---------- -->
+          <!-- <div class="project-back">
+            <a class="text-link" href="organigramme.html">Voir l'organigramme complet du CNDT <span aria-hidden="true">→</span></a>
+          </div> -->
+
+        </div>
+      </section>
+
+      <!-- =========================================================
+           SIDEBAR
+           ========================================================= -->
+      <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+        <section class="news-agenda" aria-labelledby="news-title">
+          <div class="sidebar-heading">
+            <h2 id="news-title">Actualités</h2>
+          </div>
+            <div class="agenda-list">
+
+
+              <a href="actualite/fracture-numerique-per-bayangam-akonolinga.html">
+                <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+              </a>
+              <a href="actualite/aiea70-2026.html">
+                <time datetime="2026-09-04"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+                <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+              </a>
+              <a href="actualite/formation-finances-publiques-2026.html">
+                <time datetime="2026-06-15"><small>LUN</small><strong>19</strong><span>AOU<br>2026</span></time>
+                <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+              </a>
+              <a href="actualite/cndt-43e-session-comite.html">
+                <time datetime="2026-05-25"><small>LUN</small><strong>09</strong><span>JUIL<br>2026</span></time>
+                <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+              </a>
+              <a href="actualite/sia-minresi-2026.html">
+                <time datetime="2026-09-04"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+                <p>Semaine de l'Intelligence Articielle au MINRESI</p>
+              </a>
+            </div>
+          <a class="sidebar-more" href="actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+        </section>
+
+        <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+          <h2 id="resources-title">Publications &amp; médias</h2>
+          <nav aria-label="Publications et médias">
+            <a href="publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
+            <a href="publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+            <a href="publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+            <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
+            <a href="publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+            <a href="contact.html"><span aria-hidden="true">›</span>Contact</a>
+          </nav>
+        </section>
+      </aside>
+
+    </section>
+
+        <!-- =========================================================
+        TABLEAU — Membres titulaires
+        ========================================================= -->
+    <div class="container comite-table-wrap">
+      <table class="comite-table">
+        <caption class="comite-table__caption">Membres titulaires</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="comite-table__num">N°</th>
+            <th scope="col">Nom et prénom(s)</th>
+            <th scope="col">Institution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td><strong>Pr NGOH NEWILAH Gérard</strong></td><td><span class="comite-tag">SPM</span> Services du Premier Ministre</td></tr>
+          <tr><td>02</td><td><strong>M. NKE Dominique</strong></td><td><span class="comite-tag">MINFI</span> Ministère des Finances</td></tr>
+          <tr><td>03</td><td><strong>Pr AKONO</strong></td><td><span class="comite-tag">MINESUP</span> Ministère de l'Enseignement Supérieur</td></tr>
+          <tr><td>04</td><td><strong>Pr TSOPMBENG NOUMBO Gaston</strong></td><td><span class="comite-tag">MINRESI</span> Ministère de la Recherche Scientifique et de l'Innovation</td></tr>
+          <tr><td>05</td><td><strong>M. MBARGA Francis Armand</strong></td><td><span class="comite-tag">MINADER</span> Ministère de l'Agriculture et du Développement Rural</td></tr>
+          <tr><td>06</td><td><strong>Dr MVENG SANDING Georges</strong></td><td><span class="comite-tag">MINEPIA</span> Ministère de l'Élevage, des Pêches et des Industries Animales</td></tr>
+          <tr><td>07</td><td><strong>M. ZRA KODJI NDEHOUM</strong></td><td><span class="comite-tag">MINPOSTEL</span> Ministère des Postes et Télécommunications</td></tr>
+          <tr><td>08</td><td><strong>Pr SOH FOTSING Bertin</strong></td><td><span class="comite-tag">MINEPAT</span> Ministère de l'Économie, de la Planification et de l'Aménagement du Territoire</td></tr>
+          <tr><td>09</td><td><strong>M. NGOUBE ESSAMA Léon</strong></td><td><span class="comite-tag">MINEE</span> Ministère de l'Eau et de l'Énergie</td></tr>
+          <tr><td>10</td><td><strong>M. KAMSU MELIPHE Elvis</strong></td><td><span class="comite-tag">MINMIDT</span> Ministère des Mines, de l'Industrie et du Développement Technologique</td></tr>
+          <tr><td>11</td><td><strong>M. CHENDJOU SOH Stevy Corneille</strong></td><td><span class="comite-tag">MINHDU</span> Ministère de l'Habitat et du Développement Urbain</td></tr>
+          <tr><td>12</td><td><strong>M. IBRAHIMA Saidou</strong></td><td><span class="comite-tag">CENEEMA</span> Centre National d'Études et d'Expérimentation du Machinisme Agricole</td></tr>
+          <tr><td>13</td><td><strong>M. BIDZOGO Bienvenue</strong></td><td><span class="comite-tag">CCIMA</span> Chambre de Commerce, d'Industrie, des Mines et de l'Artisanat</td></tr>
+          <tr><td>14</td><td><strong>M. ABADA ASSOMO Siméon</strong></td><td><span class="comite-tag">CAPEF</span> Chambre des Acteurs de la Pêche et de l'Économie Forestière</td></tr>
+          <tr><td>15</td><td><strong>Dr EHABE Eugene Ejolle</strong></td><td><span class="comite-tag">IRAD</span> Institut de Recherche Agricole pour le Développement</td></tr>
+          <tr><td>16</td><td><strong>Dr NGOUANET Chrétien</strong></td><td><span class="comite-tag">INC</span> Institut National de Cartographie</td></tr>
+          <tr><td>17</td><td><strong>Dr KANKEU Boniface</strong></td><td><span class="comite-tag">IRGM</span> Institut de Recherches Géologiques et Minières</td></tr>
+          <tr><td>18</td><td><strong>Dr TCHINDA TIABOU Alembert</strong></td><td><span class="comite-tag">IMPM</span> Institut de Recherches Médicales et d'Études des Plantes Médicinales</td></tr>
+          <tr><td>19</td><td><strong>Dr LIKIBY Boubakar</strong></td><td><span class="comite-tag">MIPROMALO</span> Mission de Promotion des Matériaux Locaux</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ---------- Textes de référence ---------- -->
+    <div class="container page-heading" style="margin-top:16px;">
+      <div>
+        <p class="page-kicker">Textes officiels</p>
+        <h2>Textes de référence</h2>
+      </div>
+    </div>
+
+    <ul class="container report-list" style="margin-bottom:26px;">
+     
+      <li class="report-item">
+        <span class="report-icon" aria-hidden="true">PDF</span>
+        <div class="report-body">
+          <strong>Décret n° 78/109 du 1er avril 1978</strong>
+          <p>Création du Comité National de Développement des Technologies.</p>
+          <span class="report-meta">PDF · Texte fondateur</span>
+        </div>
+        <a class="report-link" href="#" download>Télécharger <span aria-hidden="true">↓</span></a>
+      </li>
+
+      <li class="report-item">
+        <span class="report-icon" aria-hidden="true">PDF</span>
+        <div class="report-body">
+          <strong>Décret n° 82/126 du 18 mars 1982</strong>
+          <p>Modification et complément du décret de création du CNDT.</p>
+          <span class="report-meta">PDF · Texte modificatif</span>
+        </div>
+        <a class="report-link" href="#" download>Télécharger <span aria-hidden="true">↓</span></a>
+      </li>
+
+      <li class="report-item">
+        <span class="report-icon is-doc" aria-hidden="true">PDF</span>
+        <div class="report-body">
+          <strong>Note de service n° 000199/MINRESI/SPCNDT du 15 mai 2025</strong>
+          <p>Portant création et organisation des Commissions au sein du CNDT.</p>
+          <span class="report-meta">PDF · Texte d'organisation</span>
+        </div>
+        <a class="report-link" href="#" download>Télécharger <span aria-hidden="true">↓</span></a>
+      </li>
+    </ul>
+
+    <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts et Partenaires</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+              <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                  <img src="assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+              </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

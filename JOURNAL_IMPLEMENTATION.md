@@ -1133,3 +1133,44 @@ Navigation sans « Projets » ✓ ; hash `#projects` → aucune section cassée
 (repli silencieux) ✓ ; section Messages : 0 tableau, pas de bouton
 « Nouveau », bouton « Rafraîchir » unique (page dédiée seule) ✓ ;
 Actualités / Galerie / Personnel fonctionnels ✓ ; aucune erreur JS.
+
+## 45. Refonte : le site vitrine migre dans Laravel (Blade)
+
+**Objectif** : tout doit être dans Laravel — le site vitrine en **Blade**,
+l'API inchangée, le dashboard inchangé (build React), toujours sous Docker.
+
+### Ce qui a été fait
+- **Vues Blade** : `cndt-api/resources/views/pages/` — 40 vues converties
+  automatiquement depuis le site statique (contenu identique, titres et
+  descriptions en `@section`) + `layouts/site.blade.php` avec **header et
+  footer rendus côté serveur** (extraits des templates d'app.js). Correction
+  en cours de route : certaines pages ont du contenu APRÈS `</main>`
+  (lightbox de la galerie, sections instituts) — l'extraction couvre donc tout
+  le corps de page (du header au footer) et le layout n'encapsule plus `<main>`.
+- **app.js** : garde d'injection (`if (!header.children.length)`) — n'injecte
+  plus header/footer quand ils sont déjà rendus par Blade ; la logique du
+  lien actif continue de fonctionner (URLs .html conservées).
+- **routes/web.php** : toutes les URLs historiques sont servies à l'identique
+  (`/`, `/galerie.html`, `/actualite/article.html`, `/membres/{page}.html`,
+  `/projets/{page}.html` avec garde d'existence de vue → 404 propre) ;
+  `/admin.html` redirige vers `/admin/`.
+- **Assets** : `cndt-api/public/` reçoit `site.css`, `app.js`,
+  `api-actualites.js`, `assets/` (images) et le **build du dashboard**
+  (`public/admin/` — URLs relatives, fonctionne tel quel).
+- **API inchangée** : `routes/api.php` et les contrôleurs non modifiés ; le
+  contenu dynamique reste alimenté côté client par `api-actualites.js`.
+- **Docker** : `cndt-frontend` devient un **reverse proxy complet** vers
+  l'application Laravel (`/api/`, `/storage/`, puis `/` en catch-all) ;
+  le montage htdocs du site statique est retiré du compose. Images api et
+  frontend rebuildées, conteneurs redémarrés.
+
+### Validation (Edge headless + curl)
+- 21 pages publiques : header/footer serveur présents (utility-bar unique) ✓ ;
+  page inconnue → 404 ✓ ; API `/api/v1/*` ✓ ; `/storage/…` ✓ ; `/admin/` ✓.
+- Fonctionnalités dynamiques : accueil (6 slides hero, 8 instituts, 5 news),
+  galerie (albums + **lightbox** restaurée après la correction d'extraction),
+  personnel (6 niveaux, 16 cartes, 40 lignes, recherche), fiche individuelle
+  automatique, projets, **formulaire de contact** (message reçu + section
+  Messages du dashboard), navigation dashboard complète ✓.
+- Aucune erreur JS sur l'ensemble des pages ; messages de test supprimés
+  (le message réel de l'utilisateur est conservé).

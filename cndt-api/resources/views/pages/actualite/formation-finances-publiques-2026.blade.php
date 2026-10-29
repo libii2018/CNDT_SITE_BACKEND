@@ -1,0 +1,211 @@
+@extends('layouts.site')
+
+@section('title', "Atelier sur la gestion des finances publiques | CNDT Cameroun")
+
+@section('description', "Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun — CNDT, 19-20 août 2026.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO : en-tête de l'actualité
+         ========================================================= -->
+    <section class="inner-hero inner-hero--project">
+      <img src="../assets/FormationFInancePublique_1.jpg" alt="Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques au CNDT" width="1100" height="825">
+      <div class="container">
+        <h1>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques au Cameroun</h1>
+        <ul class="project-hero-meta" aria-label="Informations clés de l'événement">
+          <li><span>Période</span><strong>19 août 2026</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <!-- =========================================================
+             LAYOUT : navigation latérale + contenu
+             ========================================================= -->
+        <div class="project-layout">
+
+          <!-- ---------- Contenu principal ---------- -->
+          <article class="project-content">
+
+            <!-- ============ 1. Présentation ============ -->
+            <section id="presentation" class="project-section">
+              <h2>Présentation</h2>
+
+              <p class="lead">
+                Les <strong>19 et 20 août 2026</strong>, le Comité National de Développement des Technologies (CNDT)
+                a organisé un atelier consacré à l'évolution du cadre légal et réglementaire de la gestion
+                des finances publiques au Cameroun.
+              </p>
+
+              <p>
+                La session a été animée par des experts en finances publiques, venus partager leur expertise
+                avec les responsables du CNDT.
+              </p>
+
+              <p>
+                Cette démarche vise à renforcer la maîtrise du cadre juridique et réglementaire en vigueur,
+                pour une gestion des finances publiques toujours plus rigoureuse et conforme aux évolutions
+                normatives du secteur.
+              </p>
+
+              <p>
+                Par une telle initiative, le Secrétaire Permanent du CNDT,
+                <strong>Dr ELE ABIAMA Patrice</strong>, entend consolider durablement les capacités du
+                personnel de la structure.
+              </p>
+            </section>
+
+            <!-- ============ 2. Objectifs de l'atelier ============ -->
+            <section id="objectifs" class="project-section">
+              <h2>Objectifs de l'atelier</h2>
+              <ul class="project-list">
+                <li>Renforcer la maîtrise du cadre légal et réglementaire en vigueur ;</li>
+                <li>Accompagner la mise en conformité des procédures internes du CNDT ;</li>
+                <li>Renforcer les capacités des responsables sur les évolutions normatives récentes ;</li>
+                <li>Consolider durablement les compétences du personnel de la structure.</li>
+              </ul>
+            </section>
+
+            <!-- ============ 3. Galerie ============ -->
+            <section id="galerie" class="project-section" data-article-gallery="formation-finances-publiques-2026">
+              <h2>Galerie</h2>
+
+              <div class="project-gallery">
+                <figure>
+                  <img src="../assets/formation_finances_publiques/1.jpg" alt="Ouverture de l'atelier sur la gestion des finances publiques" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/formation_finances_publiques/2.jpg" alt="Experts en finances publiques lors de la session de formation" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/formation_finances_publiques/3.jpg" alt="Responsables du CNDT participant à l'atelier" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/formation_finances_publiques/4.jpg" alt="Experts en finances publiques lors de la session de formation" loading="lazy">
+                </figure>
+                <figure>
+                  <img src="../assets/formation_finances_publiques/5.jpg" alt="Responsables du CNDT participant à l'atelier" loading="lazy">
+                </figure>
+              </div>
+            </section>
+
+          </article>
+
+          <!-- ---------- SIDEBAR ---------- -->
+          <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+            <section class="news-agenda" aria-labelledby="news-title">
+              <div class="sidebar-heading">
+                <h2 id="news-title">Actualités</h2>
+              </div>
+              <div class="agenda-list">
+                <a href="fracture-numerique-per-bayangam-akonolinga.html">
+                  <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                  <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+                </a>
+                <a href="formation-finances-publiques-2026.html">
+                  <time datetime="2026-08-19"><small>MER</small><strong>19</strong><span>AOÛ<br>2026</span></time>
+                  <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+                </a>
+                <a href="../actualites.html#per-numerique">
+                  <time datetime="2026-09-15"><small>MAR</small><strong>15</strong><span>SEP<br>2026</span></time>
+                  <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+                </a>
+                <a href="../actualites.html#sia-2026">
+                  <time datetime="2026-06-15"><small>LUN</small><strong>15</strong><span>JUN<br>2026</span></time>
+                  <p>Première édition de la Semaine de l'Intelligence Artificielle au MINRESI</p>
+                </a>
+                <a href="../actualites.html#souverainete-numerique">
+                  <time datetime="2026-05-25"><small>LUN</small><strong>25</strong><span>MAI<br>2026</span></time>
+                  <p>Intelligence artificielle et souveraineté numérique : chercheurs et experts en dialogue</p>
+                </a>
+              </div>
+              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="../publication.html#technomag"><span aria-hidden="true">›</span> Technomag</a>
+                <a href="../publication.html#rapports"><span aria-hidden="true">›</span> Rapports et actes scientifiques</a>
+                <a href="../publication.html#documents"><span aria-hidden="true">›</span> Documents techniques</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span> Émissions TV</a>
+                <a href="../publication.html#phototheque"><span aria-hidden="true">›</span> Photothèque</a>
+              </nav>
+            </section>
+          </aside>
+
+        </div>
+
+        <!-- Retour -->
+        <div class="project-back">
+          <a class="text-link" href="../actualites.html">Retour aux Actualités</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <section class="instituts">
+    <div class="block-heading">
+        <h2 class="sp-title">Instituts et Partenaires</h2>
+    </div>
+
+    <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/impm.png" alt="IMPM" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+                </a>
+            </div>
+
+            <div class="swiper-slide">
+                <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+                    <img src="../assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+                </a>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  
+@endsection

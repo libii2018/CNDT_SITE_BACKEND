@@ -1,0 +1,253 @@
+@extends('layouts.site')
+
+@section('title', "Mme EYOUM EKOULE Henriette Annie Dorette | CNDT Cameroun")
+
+@section('description', "Fiche de Mme EYOUM EKOULE Henriette Annie Dorette, Assistante du Secrétaire Permanent du CNDT.")
+
+@section('content')
+  <main id="contenu">
+
+    <!-- =========================================================
+         HERO du profil
+         ========================================================= -->
+    <section class="profile-hero">
+      <img class="profile-hero__bg" src="../assets/S-3.webp" alt="" aria-hidden="true">
+
+      <div class="container profile-hero__inner">
+
+        <div class="profile-hero__body">
+
+          <figure class="profile-hero__photo">
+            <img src="../assets/people/eyoum.webp" alt="Portrait de Mme EYOUM EKOULE Henriette Annie Dorette" width="480" height="640">
+          </figure>
+
+          <div class="profile-hero__info">
+            <h1>Mme EYOUM EKOULE Henriette Annie Dorette</h1>
+            <p class="profile-hero__role">Assistante du Secrétaire Permanent</p>
+
+            <ul class="profile-hero__meta" aria-label="Informations clés">
+              <li>
+                <span>Grade</span>
+                <strong>Assistante de Direction</strong>
+              </li>
+              <li>
+                <span>Diplôme</span>
+                <strong>Baccalauréat D</strong>
+              </li>
+              <li>
+                <span>Fonction</span>
+                <strong>Assistante du Secrétaire Permanent</strong>
+              </li>
+              <li>
+                <span>Affectation</span>
+                <strong>CNDT — Cabinet du SP</strong>
+              </li>
+            </ul>
+
+            <!-- Réseaux sociaux & profils académiques -->
+            <ul class="profile-socials" aria-label="Réseaux sociaux et profils académiques">
+
+              <li>
+                <a href="mailto:eyoumenhriette@cndtcameroun.cm"
+                   aria-label="Envoyer un email à Mme EYOUM EKOULE Henriette">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2 7.6 5.1L19.6 7H4.4ZM20 8.3l-7.4 5a1 1 0 0 1-1.2 0L4 8.3V17h16V8.3Z"/>
+                  </svg>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="inner-section">
+      <div class="container">
+
+        <!-- =========================================================
+             LAYOUT : contenu + sidebar
+             ========================================================= -->
+        <div class="profile-layout">
+
+          <!-- ---------- Contenu principal ---------- -->
+          <article class="project-content">
+
+            <!-- ============ Biographie ============ -->
+            <section id="biographie" class="project-section">
+              <h2>Biographie</h2>
+              <p class="lead">
+                <strong>Mme EYOUM EKOULE Henriette Annie Dorette</strong> est
+                <strong>Assistante du Secrétaire Permanent</strong> du Comité National de Développement
+                des Technologies (CNDT). Elle est titulaire d'un <strong>Baccalauréat D</strong>.
+              </p>
+              <p>
+                Elle a d'abord exercé pendant plusieurs années dans le secteur privé en tant
+                qu'<strong>Assistante de Direction</strong>, avant de rejoindre le Comité National de
+                Développement des Technologies (CNDT / MINRESI), où elle met aujourd'hui ses
+                compétences au service de la direction exécutive de l'institution.
+              </p>
+              <p>
+                Au sein du Cabinet du Secrétaire Permanent, elle assure la coordination
+                administrative quotidienne, la gestion des agendas, l'accueil des usagers et le suivi
+                des dossiers stratégiques. Elle contribue ainsi directement à la fluidité du
+                fonctionnement de la direction du Comité.
+              </p>
+            </section>
+
+            <!-- ============ Domaines d'expertise ============ -->
+            <section id="expertise" class="project-section">
+              <h2>Domaines d'expertise</h2>
+
+              <ul class="project-list">
+                <li>Assistanat de direction et coordination administrative ;</li>
+                <li>Gestion des agendas et organisation des réunions ;</li>
+                <li>Gestion et suivi du courrier entrant et sortant ;</li>
+                <li>Accueil, information et orientation des usagers ;</li>
+                <li>Management et appui au secrétariat de direction ;</li>
+                <li>Rédaction administrative et tenue de dossiers.</li>
+              </ul>
+            </section>
+
+            <!-- ============ Centres d'intérêts ============ -->
+            <section id="interets" class="project-section">
+              <h2>Centres d'intérêts</h2>
+
+              <ul class="chip-list" aria-label="Domaines d'expertise et centres d'intérêts">
+                <li class="chip">Administration</li>
+                <li class="chip">Secrétariat</li>
+                <li class="chip">Gestion des courriers</li>
+                <li class="chip">Management</li>
+                <li class="chip">Assistanat de direction</li>
+              </ul>
+            </section>
+
+          </article>
+
+          <!-- ---------- SIDEBAR ---------- -->
+          <aside class="sidebar" aria-label="Actualités et publications du CNDT">
+            <section class="news-agenda" aria-labelledby="news-title">
+              <div class="sidebar-heading">
+                <h2 id="news-title">Actualités</h2>
+              </div>
+              <div class="agenda-list">
+
+
+                <a href="../actualite/fracture-numerique-per-bayangam-akonolinga.html">
+                  <time datetime="2026-06-07"><small>SAM</small><strong>07</strong><span>JUIN<br>2026</span></time>
+                  <p>Réduction de la fracture numérique en milieu rural : PER de Bayangam et d'Akonolinga</p>
+                </a>
+                <a href="../actualite/aiea70-2026.html">
+                  <time datetime="2026-09-14"><small>MAR</small><strong>14</strong><span>SEP<br>2026</span></time>
+                  <p>Le Cameroun à la 70ᵉ Conférence Générale de l'AIEA</p>
+                </a>
+                <a href="../actualite/formation-finances-publiques-2026.html">
+                  <time datetime="2026-08-19"><small>MER</small><strong>19</strong><span>AOU<br>2026</span></time>
+                  <p>Atelier sur l'évolution du cadre légal et réglementaire de la gestion des finances publiques</p>
+                </a>
+                <a href="../actualite/cndt-43e-session-comite.html">
+                  <time datetime="2026-07-09"><small>JEU</small><strong>09</strong><span>JUIL<br>2026</span></time>
+                  <p>CNDT : 43ᵉ session du Comité National de Développement des Technologies</p>
+                </a>
+                <a href="../actualite/sia-minresi-2026.html">
+                  <time datetime="2026-06-09"><small>MAR</small><strong>09</strong><span>JUIN<br>2026</span></time>
+                  <p>Semaine de l'Intelligence Artificielle au MINRESI</p>
+                </a>
+              </div>
+              <a class="sidebar-more" href="../actualites.html">Toutes les actualités <span aria-hidden="true">→</span></a>
+            </section>
+
+            <section id="ressources" class="resource-module" aria-labelledby="resources-title">
+              <h2 id="resources-title">Publications &amp; médias</h2>
+              <nav aria-label="Publications et médias">
+                <a href="../publication.html#technomag"><span aria-hidden="true">›</span>Techno Mag</a>
+                <a href="https://www.youtube.com/channel/UC3OfHkDXBNVGwiI8henjNww" target="_blank" rel="noopener"><span aria-hidden="true">›</span>Émissions TV</a>
+                <a href="../publication.html#phototheque"><span aria-hidden="true">›</span>Photothèque</a>
+                <a href="../publication.html"><span aria-hidden="true">›</span>Innovation</a>
+                <a href="../publication.html#rapports"><span aria-hidden="true">›</span>Rapports</a>
+                <a href="../contact.html"><span aria-hidden="true">›</span>Contact</a>
+              </nav>
+            </section>
+          </aside>
+        </div>
+
+        <!-- Retour -->
+        <div class="project-back">
+          <a class="text-link" href="../personnel.html">← Retour au personnel du CNDT</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CARROUSEL INSTITUTS
+         ========================================================= -->
+    <section class="instituts">
+      <div class="block-heading">
+        <h2 class="sp-title">Instituts sous tutelle du MINRESI</h2>
+      </div>
+
+      <div class="swiper instituts-carousel">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+            <a href="https://www.cndtcameroun.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/logo-cndt.webp" alt="CNDT" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://anrp.cm/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/anrp-1.jpg" alt="ANRP" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://irad.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irad-1.jpg" alt="IRAD" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://impm-cm.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/impm.png" alt="IMPM" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.inc.ayoos.com/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/inc-1.jpg" alt="INC" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://www.mipromalo.cm/index.php/fr/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/mipromalo-1.jpg" alt="MIPROMALO" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="http://195.24.207.248/~minresi/index.php/2015/07/21/accueil_principal/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/cne-1.jpeg" alt="CNE" loading="lazy">
+            </a>
+          </div>
+
+          <div class="swiper-slide">
+            <a href="https://irgm-cameroun.org/" target="_blank" rel="noopener noreferrer" class="partner-card">
+              <img src="../assets/instituts/irgm-1.jpg" alt="IRGM" loading="lazy">
+            </a>
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+    </section>
+  </main>
+
+  
+@endsection

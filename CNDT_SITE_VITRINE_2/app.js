@@ -17,8 +17,10 @@ window.CNDT_SITE = { root: '' };
   window.CNDT_SITE.root = (header || footer).dataset.root || '';
 
   /* ---------- Template du header ---------- */
+  // (en-tête rendu côté serveur par le layout Blade : la balise est déjà
+  // remplie ; l'injection reste pour tout élément encore vide)
   if (header) {
-    header.outerHTML = `
+    if (!header.children.length) header.outerHTML = `
 <header class="site-header">
   <div class="utility-bar">
     <div class="utility-inner">
@@ -254,7 +256,7 @@ window.CNDT_SITE = { root: '' };
 
   /* ---------- Template du footer ---------- */
   if (footer) {
-    footer.outerHTML = `
+    if (!footer.children.length) footer.outerHTML = `
 <footer id="contact" class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">

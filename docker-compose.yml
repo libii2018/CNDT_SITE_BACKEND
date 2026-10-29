@@ -104,8 +104,8 @@ services:
       # Écoute locale uniquement : en production, placez un reverse
       # proxy (HTTPS) devant, ou publiez délibérément le port.
       - "127.0.0.1:8080:80"
-    volumes:
-      - ./CNDT_SITE_VITRINE_2:/usr/local/apache2/htdocs:ro
+    # Tout le trafic est proxifié vers l'application Laravel (conteneur "api") :
+    # site vitrine Blade, dashboard /admin/, API et stockage. Plus de htdocs local.
     restart: unless-stopped
 
 volumes:
