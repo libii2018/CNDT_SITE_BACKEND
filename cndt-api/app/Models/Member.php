@@ -8,7 +8,7 @@ class Member extends Model
 {
     protected $fillable = [
         'first_name', 'last_name', 'slug', 'display_type', 'level', 'level_position',
-        'role', 'grade', 'degree', 'speciality', 'unit', 'chapter',
+        'role', 'grade', 'degree', 'speciality', 'since', 'unit', 'chapter',
         'email', 'phone', 'photo', 'page_url', 'biography', 'is_visible', 'position',
     ];
 

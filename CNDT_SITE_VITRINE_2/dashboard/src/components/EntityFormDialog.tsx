@@ -192,7 +192,7 @@ export function EntityFormDialog({
           {description && <DialogDescription>{description}</DialogDescription>}
         </DialogHeader>
         <form onSubmit={submit} className="grid gap-4">
-          {fields.map(renderField)}
+          {fields.filter((f) => !f.showIf || f.showIf(values as unknown as Record<string, any>)).map(renderField)}
           {error && <p className="text-sm text-destructive">{error}</p>}
           <DialogFooter className="gap-2">
             <Button type="button" variant="outline" onClick={onClose} disabled={busy}>

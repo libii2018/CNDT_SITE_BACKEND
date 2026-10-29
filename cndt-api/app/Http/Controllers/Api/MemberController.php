@@ -73,6 +73,7 @@ class MemberController extends Controller
             'grade' => 'sometimes|nullable|string|max:255',
             'degree' => 'sometimes|nullable|string|max:255',
             'speciality' => 'sometimes|nullable|string|max:255',
+            'since' => 'sometimes|nullable|string|max:20',
             'unit' => 'sometimes|nullable|string|max:255',
             'chapter' => 'sometimes|nullable|string|max:10',
             'email' => 'sometimes|nullable|email|max:255',

@@ -46,10 +46,10 @@ window.CNDT_API = window.CNDT_API || {
   }
 
   function articleLink(slug) {
-    // Depuis le sous-dossier actualite/ les liens sont locaux, depuis la racine
-    // ils passent par le sous-dossier.
-    const inArticleFolder = /\/actualite\/[^/]*\.html/.test(location.pathname);
-    const prefix = inArticleFolder ? 'article.html?slug=' : 'actualite/article.html?slug=';
+    // Depuis les sous-dossiers (actualite/, membres/) les liens sont locaux,
+    // depuis la racine ils passent par le sous-dossier.
+    const inSubFolder = /\/(actualite|membres)\/[^/]*\.html/.test(location.pathname);
+    const prefix = inSubFolder ? 'article.html?slug=' : 'actualite/article.html?slug=';
     return prefix + encodeURIComponent(slug);
   }
 
@@ -613,7 +613,7 @@ window.CNDT_API = window.CNDT_API || {
             </header>
             <div class="staff-level__grid">
               ${liste.map((m) => `
-                <a class="staff-person" href="${esc(m.page_url || '#')}"
+                <a class="staff-person" href="${esc(m.page_url || 'membres/membre.html?slug=' + encodeURIComponent(m.slug))}"
                   data-staff-item
                   data-search="${esc((fullName(m) + ' ' + (m.role || '') + ' ' + niveau + ' ' + (m.degree || '') + ' ' + (m.unit || '')).toLowerCase())}">
                   ${m.photo ? `<img src="${esc(imgSrc(m.photo))}" alt="${esc(fullName(m))}" loading="lazy" onerror="this.remove()">` : ''}
@@ -704,6 +704,75 @@ window.CNDT_API = window.CNDT_API || {
     appliquer();
   }
 
+  /* ---------- 8. Fiche individuelle automatique (membres/membre.html) ---------- */
+  async function renderMembreFiche() {
+    const hero = $('[data-membre-hero]');
+    if (!hero) return; // pas la page fiche
+
+    const slug = new URLSearchParams(location.search).get('slug');
+    const nom = $('[data-membre-nom]', hero);
+    if (!slug) {
+      if (nom) nom.textContent = 'Aucune fiche demandée.';
+      return;
+    }
+
+    // Depuis membres/, les chemins relatifs du site remontent d'un niveau
+    const imgSrc = (p) => (!p ? '' : /^(https?:)?\//.test(p) ? p : '../' + p.replace(/^\/+/, ''));
+
+    try {
+      const res = await fetchApi('/members/' + encodeURIComponent(slug));
+      const m = res.data;
+      document.title = `${m.full_name || (m.first_name + ' ' + m.last_name)} | CNDT Cameroun`;
+
+      if (nom) nom.textContent = m.full_name || `${m.first_name} ${m.last_name}`;
+      const fonction = $('[data-membre-fonction]', hero);
+      if (fonction) fonction.textContent = m.role || '';
+
+      const photo = $('[data-membre-photo]', hero);
+      if (photo) {
+        if (m.photo) { photo.src = imgSrc(m.photo); photo.alt = 'Portrait de ' + (m.full_name || m.slug); }
+        else photo.hidden = true;
+      }
+
+      // Informations clés : seules les rubriques renseignées sont affichées
+      const metas = {
+        grade: m.grade,
+        specialite: m.speciality,
+        fonction: m.role,
+        depuis: m.since,
+      };
+      Object.entries(metas).forEach(([cle, valeur]) => {
+        const li = $(`[data-meta="${cle}"]`, hero);
+        if (!li) return;
+        if (valeur) {
+          li.hidden = false;
+          const strong = $('strong', li);
+          if (strong) strong.textContent = valeur;
+        } else {
+          li.hidden = true;
+        }
+      });
+
+      const bio = $('[data-membre-bio]');
+      if (bio) {
+        const contenu = m.biography || '';
+        if (contenu) {
+          if (/<\/?[a-z][\s\S]*>/i.test(contenu)) bio.outerHTML = contenu;
+          else {
+            const paragraphs = contenu.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+            bio.outerHTML = paragraphs.length
+              ? paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')
+              : '';
+          }
+        } else {
+          bio.textContent = "La biographie de cette personne n'a pas encore été renseignée.";
+        }
+      }
+    } catch {
+      if (nom) nom.textContent = 'Fiche introuvable ou API indisponible.';
+    }
+  }
+
   /* ---------- Démarrage ---------- */
   const start = () => {
     renderActualitesGrid();
@@ -713,6 +782,7 @@ window.CNDT_API = window.CNDT_API || {
     renderHero();
     renderGalerie();
     renderPersonnel();
+    renderMembreFiche();
   };
 
   if (document.readyState === 'loading') {

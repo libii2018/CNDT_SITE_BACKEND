@@ -12,6 +12,8 @@ export interface FieldConfig {
   type: FieldType;
   required?: boolean;
   options?: Array<[string, string]>;
+  // N'affiche le champ que si la condition est vraie (ex : selon display_type)
+  showIf?: (values: Record<string, any>) => boolean;
 }
 
 export interface ColumnConfig<T = any> {
@@ -129,18 +131,39 @@ export const ENTITIES: Record<string, EntityConfig> = {
         key: "display_type", label: "Type d'affichage sur la page Personnel", type: "select",
         options: [["card", "Carte hiérarchique (avec photo)"], ["table", "Tableau des personnels"]],
       },
-      { key: "level", label: "Niveau hiérarchique (cartes, ex : Direction)", type: "text" },
       { key: "role", label: "Fonction", type: "text" },
-      { key: "grade", label: "Grade (tableau, ex : Attaché de Recherche)", type: "text" },
-      { key: "degree", label: "Diplôme (carte)", type: "text" },
-      { key: "speciality", label: "Diplôme de recrutement / spécialité (tableau)", type: "text" },
+      {
+        key: "grade", label: "Grade de recherche", type: "select",
+        options: [
+          ["Attaché de Recherche", "Attaché de Recherche"],
+          ["Chargé de Recherche", "Chargé de Recherche"],
+          ["Maître de Recherche", "Maître de Recherche"],
+          ["Directeur de Recherche", "Directeur de Recherche"],
+        ],
+      },
+      { key: "speciality", label: "Spécialité / diplôme de recrutement", type: "text" },
+      { key: "photo", label: "Photo", type: "image" },
       { key: "unit", label: "Unité / Commission", type: "text" },
       { key: "email", label: "Email", type: "email" },
       { key: "phone", label: "Téléphone", type: "text" },
-      { key: "photo", label: "Photo", type: "image" },
-      { key: "page_url", label: "Lien de la fiche personnelle (ex : membres/prenom-nom.html)", type: "text" },
-      { key: "biography", label: "Biographie", type: "textarea" },
       { key: "is_visible", label: "Visible sur le site", type: "checkbox" },
+      // ----- Champs de la fiche individuelle (cartes hiérarchiques) -----
+      {
+        key: "level", label: "Niveau hiérarchique (ex : Direction)", type: "text",
+        showIf: (v) => v.display_type !== "table",
+      },
+      {
+        key: "degree", label: "Diplôme (affiché sur la carte)", type: "text",
+        showIf: (v) => v.display_type !== "table",
+      },
+      {
+        key: "since", label: "En fonction depuis (année — fiche individuelle)", type: "text",
+        showIf: (v) => v.display_type !== "table",
+      },
+      {
+        key: "biography", label: "Biographie (fiche individuelle)", type: "textarea",
+        showIf: (v) => v.display_type !== "table",
+      },
     ],
   },
 

@@ -971,3 +971,44 @@ Retours utilisateur :
 modale dashboard sans champ position/chapitre, champ lien présent ✓ ;
 aucune erreur JS. Note : le membre « test test » créé depuis le dashboard
 apparaît en dernier dans son niveau « Test » — supprimable depuis le dashboard.
+
+## 39. Fiche individuelle automatique des personnes du catalogue
+
+**Demandes** : 1) la page individuelle d'une personne créée dans le catalogue
+doit se créer automatiquement, avec les informations nécessaires dans le
+formulaire quand on choisit « carte hiérarchique » ; 2) 4 grades de recherche :
+Attaché, Chargé, Maître et Directeur de Recherche.
+
+### Backend
+- Colonne **`since`** sur `members` (année « Depuis », migration 2026_10_29_140000,
+  modèle, ressource, validation) ; la fiche individuelle est servie par
+  `GET /members/{slug}` (déjà en place : email/phone/biographie sur show).
+
+### Dashboard
+- **Champs conditionnels** : `showIf` dans FieldConfig, filtrés dans
+  EntityFormDialog selon les valeurs du formulaire.
+- Formulaire Personnel : « Grade de recherche » en **select** (Attaché de
+  Recherche, Chargé de Recherche, Maître de Recherche, Directeur de Recherche) ;
+  pour les cartes : niveau hiérarchique, diplôme, **En fonction depuis** et
+  biographie (champs fiche) ; ces champs disparaissent pour le tableau.
+  Le champ « Lien de la fiche personnelle » est retiré (page automatique).
+
+### Site public
+- **Nouvelle page `membres/membre.html?slug=…`** : fiche individuelle
+  dynamique calquée sur les fiches statiques d'origine (profile-hero avec photo,
+  nom, fonction, informations clés Grade/Spécialité/Fonction/Depuis — seules
+  les rubriques renseignées s'affichent —, biographie HTML, sidebar actualités
+  dynamiques, retour au personnel, carrousel instituts).
+- `renderMembreFiche()` dans api-actualites.js (v=10) ; `articleLink()` gère
+  désormais le sous-dossier membres/.
+- Les cartes de personnel.html pointent vers `page_url` (fiches statiques
+  d'origine, ex : membres/ele-abiama-patrice.html) **ou** vers la fiche
+  automatique `membres/membre.html?slug=…` pour les nouvelles personnes.
+
+### Validation (Edge headless)
+Membre créé via l'API (grade « Chargé de Recherche », depuis 2024, biographie
+riche) → fiche complète : titre, fonction, 4 infos clés, biographie HTML rendue,
+photo masquée si absente, 5 actualités dans la sidebar, lien retour ✓ ;
+formulaire dashboard : champs fiche présents pour « carte », absents pour
+« tableau » ✓ ; aucune erreur JS, aucune régression (index, galerie,
+actualités) ; membre de test supprimé.

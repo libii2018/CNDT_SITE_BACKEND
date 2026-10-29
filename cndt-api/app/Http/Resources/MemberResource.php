@@ -22,6 +22,7 @@ class MemberResource extends JsonResource
             'grade' => $this->grade,
             'degree' => $this->degree,
             'speciality' => $this->speciality,
+            'since' => $this->since,
             'unit' => $this->unit,
             'chapter' => $this->chapter,
             'email' => $this->when($request->routeIs('members.show'), $this->email),
