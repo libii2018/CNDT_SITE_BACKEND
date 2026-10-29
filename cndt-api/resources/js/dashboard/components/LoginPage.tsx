@@ -37,7 +37,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary via-primary to-emerald-800 p-4">
       <Card className="w-full max-w-sm">
         <CardHeader className="items-center text-center">
-          <img src="../assets/logo-cndt.webp" alt="CNDT" className="mx-auto mb-2 h-16 w-auto" />
+          <img src="/assets/logo-cndt.webp" alt="CNDT" className="mx-auto mb-2 h-16 w-auto" />
           <div className="mx-auto mb-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
             <ShieldCheck className="h-4 w-4 text-primary" />
           </div>

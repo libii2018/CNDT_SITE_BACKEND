@@ -78,8 +78,12 @@ compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 - **Source** : `cndt-api/resources/js/dashboard/` (React 19 + TypeScript),
   intégré au pipeline Vite **de Laravel** (`laravel-vite-plugin`,
   `cndt-api/vite.config.js`, alias `@` → `resources/js/dashboard`).
-- **Vue Blade** : `resources/views/admin.blade.php` (directive `@vite`,
-  chargement de `mammoth.browser.min.js`, `<div id="root">`) — route `/admin`.
+- **Inertia** : chaque section a **sa propre page Laravel** rendue par Inertia
+  (`inertiajs/inertia-laravel` + `@inertiajs/react`) : `/admin` (Vue
+  d'ensemble), `/admin/articles`, `/admin/publications`, `/admin/albums`,
+  `/admin/members`, `/admin/messages`, `/admin/hero`, `/admin/login` —
+  navigation côté client, état actif par URL (`usePage()`). Vue racine :
+  `resources/views/app.blade.php` (`@inertia`/`@inertiaHead`).
 - **Build** : `npm run build` (tsc + Vite → `cndt-api/public/build/` +
   manifest) ; exécuté **dans l'image Docker** (`npm ci && npm run build`,
   node:22-bookworm-slim). `public/build` n'est pas versionné.
@@ -94,10 +98,10 @@ compilé (`admin/`) — servies par le frontal qui proxifie vers l'API.
 
 ### Organisation du code
 ```
-dashboard/src/
+cndt-api/resources/js/dashboard/
 ├── lib/api.ts          Client fetch (token, erreurs) + types du contenu
 ├── lib/entities.tsx     Configuration générique des entités CRUD
-├── hooks/useHashRoute.ts Routeur par hash
+├── pages/Dashboard/   Pages Inertia (une par section)
 ├── components/
 │   ├── ui/              Composants shadcn (button, card, dialog, table…)
 │   ├── LoginPage.tsx    Écran de connexion

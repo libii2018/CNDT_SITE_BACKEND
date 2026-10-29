@@ -1322,3 +1322,41 @@ Laravel + ReactJS.
 `/build/assets/…` servies ✓ ; navigation, sections Actualités/Galerie/
 Personnel, Messages (page dédiée) ✓ ; aucune erreur JS ; aucune régression
 du site public (accueil, galerie, actualités, URLs propres).
+
+## 51. Dashboard Inertia — une page Laravel par onglet
+
+**Demande** : séparer les onglets du dashboard (Actualités sa page,
+Publications sa page, …) et utiliser Inertia pour le rendu.
+
+### Ce qui a été fait
+- **Laravel** : `inertiajs/inertia-laravel` ; routes `/admin`,
+  `/admin/articles`, `/admin/publications`, `/admin/albums`, `/admin/members`,
+  `/admin/messages`, `/admin/hero`, `/admin/login` — chacune rend sa page
+  Inertia ; vue racine `resources/views/app.blade.php` (`@inertiaHead`/`@inertia`).
+- **React** : `@inertiajs/react` ; `createInertiaApp` dans `main.tsx` (pages
+  résolues via `import.meta.glob` — rolldown/Vite 8 ne gère pas les imports
+  dynamiques multi-niveaux) ; `pages/Dashboard/{Overview,Articles,
+  Publications,Albums,Members,Messages,Hero,Login}.tsx` ; Layout persistant
+  avec `<Link>` Inertia, **état actif par URL** (`usePage().url`), garde
+  d'authentification (sans token → `/admin/login`) et badge de messages
+  non-lus (événement `cndt:messages`).
+- **Supprimé** : routage par hash (`useHashRoute`, `App.tsx`) ; les données
+  restent chargées côté client via l'API (`/api/v1`, token Sanctum) —
+  l'API ne change pas.
+- `Head` Inertia : titre du document par page (« Actualités | CNDT »…) ;
+  logo de connexion en chemin absolu.
+
+### Pièges rencontrés
+- Composer : l'image doit être reconstruite (`--no-cache`) après `composer
+  require` sinon le provider Inertia est absent de vendor/.
+- rolldown : les clés de `import.meta.glob` n'ont pas toujours le préfixe
+  `./` → résolution des pages par suffixe.
+- Le nom Inertia contient le dossier (`Dashboard/Overview`) — ne pas le
+  dupliquer dans le chemin de résolution.
+
+### Validation (Edge headless)
+/admin sans token → /admin/login ✓ ; connexion (mot de passe admin vient
+de `ADMIN_PASSWORD`) → /admin « Vue d'ensemble » ✓ ; chaque section à sa
+page avec titre et élément actif corrects ✓ ; badge messages (7 non lus)
+✓ ; modales de création/édition des articles (WYSIWYG) ✓ ; titre du
+document par page ✓ ; aucune erreur JS ; site public inchangé.

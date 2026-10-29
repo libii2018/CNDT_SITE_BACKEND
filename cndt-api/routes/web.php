@@ -113,6 +113,17 @@ Route::get('/projets/{page}', function (string $page) {
     return view($vue);
 })->where('page', '[A-Za-z0-9\-_]+');
 
-/* ---------- Dashboard React (pipeline Vite de Laravel, vue admin.blade.php) ---------- */
-Route::view('/admin', 'admin')->name('admin'); // /admin/ (barre finale) matche aussi
+/* ---------- Dashboard React — Inertia (une page par section) ----------
+   Chaque onglet du dashboard a sa propre page Laravel rendue par Inertia :
+   navigation côté client (sans rechargement), URLs partageables. */
+Route::prefix('admin')->group(function () {
+    Route::get('/', fn () => Inertia\Inertia::render('Dashboard/Overview'))->name('admin');
+    Route::get('/articles', fn () => Inertia\Inertia::render('Dashboard/Articles'))->name('admin.articles');
+    Route::get('/publications', fn () => Inertia\Inertia::render('Dashboard/Publications'))->name('admin.publications');
+    Route::get('/albums', fn () => Inertia\Inertia::render('Dashboard/Albums'))->name('admin.albums');
+    Route::get('/members', fn () => Inertia\Inertia::render('Dashboard/Members'))->name('admin.members');
+    Route::get('/messages', fn () => Inertia\Inertia::render('Dashboard/Messages'))->name('admin.messages');
+    Route::get('/hero', fn () => Inertia\Inertia::render('Dashboard/Hero'))->name('admin.hero');
+    Route::get('/login', fn () => Inertia\Inertia::render('Dashboard/Login'))->name('admin.login');
+});
 Route::redirect('/admin.html', '/admin', 301);
