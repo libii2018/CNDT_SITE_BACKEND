@@ -572,6 +572,140 @@ window.CNDT_API = window.CNDT_API || {
     });
   }
 
+  /* ---------- 7. Catalogue du personnel (personnel.html) ---------- */
+  async function renderPersonnel() {
+    const hierarchy = $('[data-staff-hierarchy]');
+    if (!hierarchy) return; // pas la page personnel
+
+    let members;
+    try {
+      const res = await fetchApi('/members?per_page=500');
+      members = res.data || [];
+    } catch {
+      return; // API indisponible : catalogue statique d'origine conservé
+    }
+    if (!members.length) return;
+
+    const imgSrc = (p) => (!p ? '' : /^(https?:)?\//.test(p) ? p : '/' + p.replace(/^\/+/, ''));
+    const fullName = (m) => m.full_name || `${m.first_name || ''} ${m.last_name || ''}`.trim();
+
+    /* ----- Cartes : membres regroupés par niveau hiérarchique ----- */
+    const cartes = members.filter((m) => (m.display_type || 'card') !== 'table');
+    if (cartes.length) {
+      // Regroupement : Map préserve l'ordre d'insertion
+      const niveaux = new Map();
+      cartes.forEach((m) => {
+        const cle = m.level || 'Autres';
+        if (!niveaux.has(cle)) niveaux.set(cle, []);
+        niveaux.get(cle).push(m);
+      });
+      const entrees = [...niveaux.entries()].sort((a, b) => {
+        const pa = Math.min(...a[1].map((m) => m.level_position ?? 0));
+        const pb = Math.min(...b[1].map((m) => m.level_position ?? 0));
+        return pa - pb;
+      });
+
+      hierarchy.innerHTML = entrees.map(([niveau, liste], i) => {
+        liste.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+        return `
+          <section class="staff-level" data-staff-level aria-labelledby="dyn-level-${i}">
+            <header class="staff-level__head">
+              <h3 id="dyn-level-${i}" class="staff-level__title">${esc(niveau)}</h3>
+              <span class="staff-level__count" data-level-count>${liste.length} personne${liste.length > 1 ? 's' : ''}</span>
+            </header>
+            <div class="staff-level__grid">
+              ${liste.map((m) => `
+                <a class="staff-person" href="#"
+                  data-staff-item
+                  data-search="${esc((fullName(m) + ' ' + (m.role || '') + ' ' + niveau + ' ' + (m.degree || '') + ' ' + (m.unit || '')).toLowerCase())}">
+                  ${m.photo ? `<img src="${esc(imgSrc(m.photo))}" alt="${esc(fullName(m))}" loading="lazy" onerror="this.remove()">` : ''}
+                  <div class="staff-person__info">
+                    <strong>${esc(fullName(m))}</strong>
+                    ${m.role ? `<span>${esc(m.role)}</span>` : ''}
+                    ${m.degree ? `<em class="staff-person__degree" title="${esc(m.degree)}">${esc(m.degree)}</em>` : ''}
+                  </div>
+                </a>`).join('')}
+            </div>
+          </section>`;
+      }).join('');
+    }
+
+    /* ----- Tableau : personnels (n°, nom, grade, spécialité) ----- */
+    const table = $('.staff-recherche-wrap table');
+    const lignes = members.filter((m) => m.display_type === 'table');
+    if (table && lignes.length) {
+      lignes.sort((a, b) => (a.last_name || '').localeCompare(b.last_name || '', 'fr'));
+      const tbody = $('tbody', table);
+      if (tbody) {
+        tbody.innerHTML = lignes.map((m, i) => `
+          <tr data-staff-row data-search="${esc((fullName(m) + ' ' + (m.grade || '') + ' ' + (m.speciality || '')).toLowerCase())}">
+            <td>${String(i + 1).padStart(2, '0')}</td>
+            <td><strong>${esc(fullName(m))}</strong></td>
+            <td><span class="staff-tag">${esc(m.grade || 'Personnel')}</span></td>
+            <td>${esc(m.speciality || '')}</td>
+          </tr>`).join('');
+      }
+      // Compteur de l'entête du tableau
+      const entete = table.closest('.staff-level');
+      const compte = entete?.querySelector('.staff-level__count');
+      if (compte) compte.textContent = `${lignes.length} personne${lignes.length > 1 ? 's' : ''}`;
+    }
+
+    initStaffSearch(hierarchy, cartes.length + (table && lignes.length ? lignes.length : 0));
+  }
+
+  // Recherche du personnel : filtrage des cartes et des lignes du tableau
+  // (le markup statique prévoyait la barre mais aucune logique ne l'implémentait).
+  function initStaffSearch(hierarchy, total) {
+    const input = $('[data-staff-search]');
+    if (!input) return;
+
+    const cartes = $$('[data-staff-item]', hierarchy);
+    const niveaux = $$('[data-staff-level]', hierarchy);
+    const lignes = $$('[data-staff-row]');
+    const count = $('[data-staff-count]');
+    const empty = $('[data-staff-empty]');
+    const resets = $$('[data-staff-reset]');
+
+    const appliquer = () => {
+      const mots = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const matche = (chaine) => mots.every((mot) => (chaine || '').includes(mot));
+      let visibles = 0;
+
+      cartes.forEach((el) => {
+        const ok = !mots.length || matche(el.dataset.search);
+        el.hidden = !ok;
+        if (ok) visibles += 1;
+      });
+
+      niveaux.forEach((niv) => {
+        const items = $$('[data-staff-item]', niv);
+        const visiblesNiv = items.filter((el) => !el.hidden).length;
+        niv.hidden = visiblesNiv === 0;
+        const compte = niv.querySelector('[data-level-count]');
+        if (compte) compte.textContent = `${visiblesNiv} personne${visiblesNiv > 1 ? 's' : ''}`;
+      });
+
+      lignes.forEach((el) => {
+        const ok = !mots.length || matche(el.dataset.search);
+        el.hidden = !ok;
+        if (ok) visibles += 1;
+      });
+
+      if (count) count.textContent = visibles;
+      resets.forEach((b) => { b.hidden = !mots.length; });
+      if (empty) empty.hidden = visibles > 0;
+    };
+
+    input.addEventListener('input', appliquer);
+    resets.forEach((b) => b.addEventListener('click', () => {
+      input.value = '';
+      appliquer();
+      input.focus();
+    }));
+    appliquer();
+  }
+
   /* ---------- Démarrage ---------- */
   const start = () => {
     renderActualitesGrid();
@@ -580,6 +714,7 @@ window.CNDT_API = window.CNDT_API || {
     renderInstituts();
     renderHero();
     renderGalerie();
+    renderPersonnel();
   };
 
   if (document.readyState === 'loading') {

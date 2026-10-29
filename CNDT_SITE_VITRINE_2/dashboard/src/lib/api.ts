@@ -92,7 +92,10 @@ export interface Album {
 }
 export interface Member {
   id: number; first_name: string; last_name: string; full_name?: string;
-  slug: string; role: string | null; unit: string | null; chapter: string | null;
+  slug: string; display_type?: "card" | "table"; level?: string | null;
+  level_position?: number; role: string | null; grade?: string | null;
+  degree?: string | null; speciality?: string | null;
+  unit: string | null; chapter: string | null;
   email: string | null; phone: string | null; photo: string | null;
   biography: string | null; is_visible: boolean; position: number;
 }

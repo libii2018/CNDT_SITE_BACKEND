@@ -898,3 +898,47 @@ Grille : 2 albums du dashboard rendus, covers chargées ✓ ; clic album → vue
 2 miniatures ✓ ; fermeture ✓ ; retour grille ✓ ; deep link `?album=…` ✓ ;
 aucune erreur JS ; aucune régression sur index/actualités/article (hero, cartes,
 widget actualités, carrousel instituts).
+
+## 37. Catalogue du personnel dynamique (personnel.html)
+
+**Objectif** : gérer le personnel depuis le dashboard, sachant qu'il s'affiche de
+deux façons sur la page publique : en **cartes** regroupées par niveau
+hiérarchique (photo + fonction + diplôme) et dans le **tableau** des personnels
+(N°, nom, grade, diplôme de recrutement / spécialité).
+
+### Backend (cndt-api)
+- Migration `2026_10_29_120000_add_catalog_fields_to_members_table` :
+  `display_type` ('card'|'table', défaut 'card'), `level` (niveau hiérarchique),
+  `level_position` (ordre du niveau), `grade` (tableau), `degree` (carte),
+  `speciality` (tableau) — + modèle, MemberResource, validation du contrôleur.
+- **PersonnelSeeder** : catalogue réel repris de la page d'origine
+  (14 cartes sur 5 niveaux avec photos `assets/people/*`, 40 personnels du
+  tableau) ; remplace les 4 membres de démonstration du seed initial.
+  Idempotent (updateOrCreate par slug) — DatabaseSeeder l'appelle désormais.
+
+### Dashboard
+- Entité Personnel : colonnes Nom/Fonction/**Affichage (Carte/Tableau)**/Niveau/
+  Unité/Visible ; champs « Type d'affichage sur la page Personnel » (select),
+  niveau hiérarchique + position du niveau, grade, diplôme, spécialité.
+- Build redéployé dans `admin/`.
+
+### Site public (api-actualites.js v=9)
+- `renderPersonnel()` : GET `/members?per_page=500`, cartes regroupées par
+  niveau (tri `level_position` puis `position`), lignes du tableau triées par
+  nom de famille, numérotation automatique, compteurs (« N personnes »)
+  mis à jour ; repli sur la page statique si l'API est vide/indisponible.
+- `initStaffSearch()` : la barre de recherche prévue dans le markup statique
+  n'était câblée par aucun script — elle filtre désormais cartes + lignes du
+  tableau (tous les mots doivent figurer), masque les niveaux vides, met à
+  jour le compteur et affiche le bouton « Réinitialiser » et l'état vide.
+- `personnel.html` : inclusion du script ; cache-busting `?v=9` sur toutes
+  les pages consommatrices.
+
+### Validation (Edge headless)
+Catalogue réel : 5 niveaux dans l'ordre d'origine (Direction → Autres Chefs de
+Secrétariat), 14 cartes, 14/14 photos chargées, 40 lignes triées (« 01 Mme
+ATEM TAKANG-ETTA Linda-Rose »), compteur 54, entête tableau « 40 personnes » ✓ ;
+recherche « tchuinte » → 1 carte, « tablard » (membre de test) → ligne du
+tableau ✓ ; création/édition/suppression via API testées puis nettoyées ✓ ;
+dashboard : colonnes + champs présents dans la modale ✓ ; aucune erreur JS,
+aucune régression sur index/galerie/actualités.

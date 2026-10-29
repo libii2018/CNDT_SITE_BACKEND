@@ -117,13 +117,24 @@ export const ENTITIES: Record<string, EntityConfig> = {
     columns: [
       { label: "Nom", key: "full_name" },
       { label: "Fonction", key: "role" },
+      { label: "Affichage", render: (m) => (m.display_type === "table" ? "Tableau" : "Carte") },
+      { label: "Niveau", key: "level" },
       { label: "Unité", key: "unit" },
       { label: "Visible", render: (m) => (m.is_visible ? "Oui" : "Non") },
     ],
     fields: [
       { key: "first_name", label: "Prénom", type: "text", required: true },
       { key: "last_name", label: "Nom", type: "text", required: true },
+      {
+        key: "display_type", label: "Type d'affichage sur la page Personnel", type: "select",
+        options: [["card", "Carte hiérarchique (avec photo)"], ["table", "Tableau des personnels"]],
+      },
+      { key: "level", label: "Niveau hiérarchique (cartes, ex : Direction)", type: "text" },
+      { key: "level_position", label: "Position du niveau (cartes)", type: "number" },
       { key: "role", label: "Fonction", type: "text" },
+      { key: "grade", label: "Grade (tableau, ex : Attaché de Recherche)", type: "text" },
+      { key: "degree", label: "Diplôme (carte)", type: "text" },
+      { key: "speciality", label: "Diplôme de recrutement / spécialité (tableau)", type: "text" },
       { key: "unit", label: "Unité / Commission", type: "text" },
       { key: "chapter", label: "Chapitre (I, II, III…)", type: "text" },
       { key: "email", label: "Email", type: "email" },
@@ -131,7 +142,7 @@ export const ENTITIES: Record<string, EntityConfig> = {
       { key: "photo", label: "Photo", type: "image" },
       { key: "biography", label: "Biographie", type: "textarea" },
       { key: "is_visible", label: "Visible sur le site", type: "checkbox" },
-      { key: "position", label: "Position", type: "number" },
+      { key: "position", label: "Position dans le niveau", type: "number" },
     ],
   },
 

@@ -187,21 +187,8 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // ----- Personnel -----
-        $members = [
-            ['first_name' => 'Marie', 'last_name' => 'Ngo Bell', 'role' => 'Secrétaire Permanent', 'chapter' => 'I', 'unit' => 'Cabinet du Secrétaire Permanent', 'position' => 1],
-            ['first_name' => 'Jean', 'last_name' => 'Ekani', 'role' => 'Chef de la Cellule Informatique', 'chapter' => 'I', 'unit' => 'Cellule Informatique', 'position' => 2],
-            ['first_name' => 'Alice', 'last_name' => 'Mvondo', 'role' => 'Présidente de la Commission Recherche & Management des Projets', 'chapter' => 'II', 'unit' => 'CRMP', 'position' => 3],
-            ['first_name' => 'Paul', 'last_name' => 'Atangana', 'role' => 'Secrétaire Technique TIC & IA', 'chapter' => 'II', 'unit' => 'Commission Technique', 'position' => 4],
-        ];
-
-        foreach ($members as $m) {
-            $name = $m['first_name'].' '.$m['last_name'];
-            Member::firstOrCreate(
-                ['slug' => Str::slug($name)],
-                $m + ['is_visible' => true],
-            );
-        }
+        // ----- Personnel : catalogue réel (PersonnelSeeder) -----
+        $this->call(PersonnelSeeder::class);
 
         // ----- Projets -----
         Project::firstOrCreate(
