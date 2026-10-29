@@ -30,6 +30,7 @@ class MemberResource extends JsonResource
             'photo' => $this->photo,
             'page_url' => $this->page_url,
             'biography' => $this->when($request->routeIs('members.show'), $this->biography),
+            'interests' => $this->when($request->routeIs('members.show'), $this->interests),
             'is_visible' => $this->is_visible,
             'position' => $this->position,
             'created_at' => $this->created_at?->toIso8601String(),

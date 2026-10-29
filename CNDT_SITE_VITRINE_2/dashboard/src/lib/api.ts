@@ -97,7 +97,7 @@ export interface Member {
   degree?: string | null; speciality?: string | null;
   unit: string | null; chapter: string | null; since?: string | null;
   email: string | null; phone: string | null; photo: string | null; page_url?: string | null;
-  biography: string | null; is_visible: boolean; position: number;
+  biography: string | null; interests?: string[] | null; is_visible: boolean; position: number;
 }
 export interface Project {
   id: number; title: string; slug: string; status: string;

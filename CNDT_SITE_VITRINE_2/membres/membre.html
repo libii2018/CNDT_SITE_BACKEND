@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="../site.css">
   <script defer src="../app.js"></script>
-  <script defer src="../api-actualites.js?v=10"></script>
+  <script defer src="../api-actualites.js?v=11"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -64,6 +64,12 @@
             <section id="biographie" class="project-section" data-membre-biographie>
               <h2>Biographie</h2>
               <p data-membre-bio>La biographie de cette personne n'a pas encore été renseignée.</p>
+            </section>
+
+            <!-- ============ Centres d'intérêts ============ -->
+            <section id="interets" class="project-section" data-membre-interets hidden>
+              <h2>Centres d'intérêts</h2>
+              <ul class="chip-list" aria-label="Domaines d'expertise et centres d'intérêts" data-membre-chips></ul>
             </section>
 
           </article>

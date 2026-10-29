@@ -768,6 +768,19 @@ window.CNDT_API = window.CNDT_API || {
           bio.textContent = "La biographie de cette personne n'a pas encore été renseignée.";
         }
       }
+
+      // Centres d'intérêts : « chips » comme sur les fiches d'origine
+      const sectionInterets = $('[data-membre-interets]');
+      const chips = $('[data-membre-chips]');
+      const interets = Array.isArray(m.interests) ? m.interests.filter(Boolean) : [];
+      if (sectionInterets && chips) {
+        if (interets.length) {
+          chips.innerHTML = interets.map((i) => `<li class="chip">${esc(i)}</li>`).join('');
+          sectionInterets.hidden = false;
+        } else {
+          sectionInterets.hidden = true;
+        }
+      }
     } catch {
       if (nom) nom.textContent = 'Fiche introuvable ou API indisponible.';
     }

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export type FieldType =
   | "text" | "textarea" | "number" | "checkbox" | "select" | "date" | "email" | "url"
-  | "richtext" | "image" | "gallery" | "member";
+  | "richtext" | "image" | "gallery" | "member" | "tags";
 
 export interface FieldConfig {
   key: string;
@@ -161,7 +161,11 @@ export const ENTITIES: Record<string, EntityConfig> = {
         showIf: (v) => v.display_type !== "table",
       },
       {
-        key: "biography", label: "Biographie (fiche individuelle)", type: "textarea",
+        key: "biography", label: "Biographie (fiche individuelle)", type: "richtext",
+        showIf: (v) => v.display_type !== "table",
+      },
+      {
+        key: "interests", label: "Centres d'intérêts (fiche individuelle)", type: "tags",
         showIf: (v) => v.display_type !== "table",
       },
     ],

@@ -16,12 +16,13 @@ import { RichTextEditor } from "@/components/RichTextEditor";
 import { ImageUploadField } from "@/components/ImageUploadField";
 import { ArticleGalleryField, type GalleryItem } from "@/components/ArticleGalleryField";
 import { MemberSelectField } from "@/components/MemberSelectField";
+import { TagsField } from "@/components/TagsField";
 import type { FieldConfig } from "@/lib/entities";
 
 // Modale de formulaire générique pilotée par la configuration des entités
 
 interface FormValues {
-  [key: string]: string | number | boolean | null | GalleryItem[];
+  [key: string]: string | number | boolean | null | GalleryItem[] | string[];
 }
 
 export interface EntityFormDialogProps {
@@ -46,6 +47,10 @@ export function EntityFormDialog({
         v[f.key] = imgs ? imgs.map((i) => ({ id: i.id, path: i.path, caption: i.caption })) : [];
         continue;
       }
+      if (f.type === "tags") {
+        v[f.key] = Array.isArray(item?.[f.key]) ? item[f.key] : [];
+        continue;
+      }
       const raw = item && item.id !== undefined
         ? item[f.key]
         : (extraData?.[f.key] ?? (f.type === "checkbox" ? true : f.type === "number" ? 0 : ""));
@@ -56,7 +61,7 @@ export function EntityFormDialog({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const set = (key: string, value: string | number | boolean | null | GalleryItem[]) =>
+  const set = (key: string, value: string | number | boolean | null | GalleryItem[] | string[]) =>
     setValues((v) => ({ ...v, [key]: value }));
 
   const submit = async (e: FormEvent) => {
@@ -71,6 +76,7 @@ export function EntityFormDialog({
         if (f.type === "member") { continue; }
         if (f.type === "checkbox") payload[f.key] = Boolean(val);
         else if (f.type === "gallery") payload[f.key] = (val as GalleryItem[]) ?? [];
+        else if (f.type === "tags") payload[f.key] = (val as string[]) ?? [];
         else if (val !== "" && val !== null) payload[f.key] = val;
         else if (!item) payload[f.key] = f.type === "number" ? 0 : null;
       }
@@ -118,6 +124,17 @@ export function EntityFormDialog({
           key={f.key}
           label={f.label}
           value={(values[f.key] as GalleryItem[]) ?? []}
+          onChange={(items) => set(f.key, items)}
+        />
+      );
+    }
+
+    if (f.type === "tags") {
+      return (
+        <TagsField
+          key={f.key}
+          label={f.label}
+          value={(values[f.key] as string[]) ?? []}
           onChange={(items) => set(f.key, items)}
         />
       );

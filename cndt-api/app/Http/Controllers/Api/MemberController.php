@@ -81,6 +81,8 @@ class MemberController extends Controller
             'photo' => 'sometimes|nullable|string|max:255',
             'page_url' => 'sometimes|nullable|string|max:255',
             'biography' => 'sometimes|nullable|string',
+            'interests' => 'sometimes|nullable|array',
+            'interests.*' => 'sometimes|string|max:150',
             'is_visible' => 'sometimes|boolean',
             'position' => 'sometimes|integer',
         ]);

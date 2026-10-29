@@ -1012,3 +1012,29 @@ photo masquée si absente, 5 actualités dans la sidebar, lien retour ✓ ;
 formulaire dashboard : champs fiche présents pour « carte », absents pour
 « tableau » ✓ ; aucune erreur JS, aucune régression (index, galerie,
 actualités) ; membre de test supprimé.
+
+## 40. Fiche individuelle — biographie en WYSIWYG et centres d'intérêts
+
+**Demandes** : éditeur visuel pour la biographie + saisie des points d'intérêt
+multiples, représentés comme sur le design (puces « chips »).
+
+### Ce qui a été fait
+- **Biographie** : le champ passe de `textarea` à l'éditeur WYSIWYG du
+  dashboard (RichTextEditor, déjà utilisé pour les articles) — contenu HTML
+  nettoyé côté serveur (HtmlSanitizer) et rendu tel quel sur la fiche.
+- **Centres d'intérêts** : nouvelle colonne `interests` sur `members`
+  (JSON, migration 2026_10_29_150000, cast `array`, validation
+  `interests.*:max 150`).
+- **Dashboard** : nouveau type de champ `tags` + composant `TagsField`
+  (saisie puis Entrée/virgule → puce retirable ; Retour arrière retire la
+  dernière puce). Le champ « Centres d'intérêts » n'apparaît que pour les
+  cartes hiérarchiques (showIf).
+- **Fiche publique** : section « Centres d'intérêts » avec les mêmes classes
+  que les fiches d'origine (`.project-section`, `ul.chip-list > li.chip`) —
+  masquée si aucun intérêt n'est renseigné. Cache-busting v=11.
+
+### Validation (Edge headless)
+Dashboard : éditeur WYSIWYG présent, champ intérêts présent, saisie de
+« Robotique de test » + Entrée → puce ajoutée puis seconde puce ✓ ;
+fiche publique : titre, biographie HTML rendue (gras), section intérêts avec
+3 chips ✓ ; aucune erreur JS ; membre de test supprimé.
